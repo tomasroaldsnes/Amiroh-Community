@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Amiroh.EditProfilePage">
+    <ContentPage.Content>
+        
+        <StackLayout>
+            <Label x:Name="message" FontSize="Large" FontAttributes="Bold"/>
+            <Label Text="Profile Description" FontAttributes="Bold"></Label>
+            <Editor x:Name="profileDescriptionEntry"  ></Editor>
+            <Button Text="Choose a profile picture" Clicked="PictureButton_Clicked"></Button>
+            <Label x:Name="errorPick"></Label>
+            <Button Text="Save Profile" Clicked="Button_Clicked"></Button>
+            <Image x:Name="imageblub" Source="{Binding URL}" Aspect="AspectFit" HeightRequest="300" WidthRequest="200" >
+                <ActivityIndicator
+                    Color="White"
+                    IsRunning="{Binding
+                    Source={x:Reference imageblub},
+                    Path=IsLoading}" 
+                ></ActivityIndicator>
+            </Image>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

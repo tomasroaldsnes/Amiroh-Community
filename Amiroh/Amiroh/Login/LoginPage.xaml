@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Amiroh.Login.LoginPage"
+             BackgroundColor="#203E4A">
+    
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                     BackgroundColor="#203E4A">
+            
+            <Entry x:Name="usernameEntry" Placeholder="Username" PlaceholderColor="White" TextColor="White"></Entry>
+
+            <Entry x:Name="passwordEntry" Placeholder="Password" PlaceholderColor="White" TextColor="White" IsPassword="True"></Entry>
+            <Label x:Name="errorLabel" Font="" FontFamily=""></Label>
+            
+                <Button Text="Login" Clicked="LoginButton_Clicked" ></Button>
+            <Button Text="Sign up" Clicked="OnSignUpButtonClicked" ></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

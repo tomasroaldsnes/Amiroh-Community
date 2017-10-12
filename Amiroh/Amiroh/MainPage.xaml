@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Amiroh"
+             x:Class="Amiroh.MainPage">
+
+
+    <local:InspoPage Title="InspoPage" ></local:InspoPage>
+    <local:ProfilePage Title="ProfilePage"></local:ProfilePage>
+    <local:FavoritePage Title="FavoritePage"></local:FavoritePage>
+    <local:WishlistPage Title="WishlistPage"></local:WishlistPage>
+
+</CarouselPage>

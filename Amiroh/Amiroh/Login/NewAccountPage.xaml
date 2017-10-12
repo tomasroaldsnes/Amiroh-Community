@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Amiroh.Login.NewAccountPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Let's get you signed up!" />
+            <Entry x:Name="nameEntry" Placeholder="Name"></Entry>
+            <Entry x:Name="emailEntry" Placeholder="Email"></Entry>
+            <Entry x:Name="usernameEntry" Placeholder="Username"></Entry>
+            <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="True"></Entry>
+            <Entry x:Name="profileDescriptionEntry" Placeholder="Profile Description"></Entry>
+            <Button Text="Sign Up" Clicked="SignupButton_Clicked"></Button>
+            <Label x:Name="whatsmyid"></Label>
+            <Label x:Name="errorPick"></Label>
+            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

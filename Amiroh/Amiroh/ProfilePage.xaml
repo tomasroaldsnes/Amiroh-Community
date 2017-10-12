@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="Amiroh.ProfilePage"
+             BackgroundColor="#203E4A"
+             Padding="10,25,10,0">
+
+    
+    <ScrollView>
+        <StackLayout BackgroundColor="#203E4A">
+            <controls:CircleImage x:Name="profilePick" Source="{Binding URL}" Aspect="AspectFill">
+                <controls:CircleImage.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double"
+                        iOS="155"
+                        Android="155"
+                        WinPhone="75"/>   
+                </controls:CircleImage.WidthRequest>
+                <controls:CircleImage.HeightRequest>
+                <OnPlatform x:TypeArguments="x:Double"
+                    iOS="155"
+                    Android="155"
+                    WinPhone="75"/>       
+            </controls:CircleImage.HeightRequest>
+        </controls:CircleImage>
+        
+        <!--//remember to round and size-->
+        <Label x:Name="userName" TextColor="White" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center" ></Label>
+        <Label x:Name="userDescription" TextColor="White" FontSize="14" HorizontalOptions="Center"></Label>
+            <Label x:Name="errorMessage"></Label>
+
+        <Grid x:Name="UserPicturesGrid">
+           
+        </Grid>
+    </StackLayout>
+    </ScrollView>
+</ContentPage>
