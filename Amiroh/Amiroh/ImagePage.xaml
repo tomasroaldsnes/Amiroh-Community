@@ -4,9 +4,21 @@
              x:Class="Amiroh.ImagePage"
              Title="ImagePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Image x:Name="bigImage" Source="{Binding URL}"></Image>
+        <StackLayout Orientation="Vertical">
+            <Image x:Name="bigImage" Source="{Binding URL}" Rotation="-90" Aspect="AspectFit" HeightRequest="400" WidthRequest="400"></Image>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Like"></Label>
+                <Label Text="Comment"></Label>
+                <Label Text="Favorite"></Label>
+            </StackLayout>
+            
+            <Label x:Name="lblUser" Text="{Binding Username}"></Label>
             <Label x:Name="bigTitle" Text="{Binding Title}" />
+            <Label x:Name="lblDescription" Text="{Binding Description}"></Label>
+
+            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

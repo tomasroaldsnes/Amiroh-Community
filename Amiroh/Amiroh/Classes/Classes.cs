@@ -45,7 +45,8 @@ public class MainUser
         public string URL { get; set; }
         public string UserId { get; set; }
         public string[] Comments { get; set; }
-        public int Claps { get; set; }
+        public int Points { get; set; }
+        public string[] Tags { get; set; } 
         public string[] ProductsUsed { get; set; }
 
     }

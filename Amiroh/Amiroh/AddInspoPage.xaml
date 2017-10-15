@@ -4,12 +4,31 @@
              x:Class="Amiroh.AddInspoPage">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="titleEntry" Placeholder="Title"></Entry>
-            
-            <Label></Label>
-            <Label Text="Description"></Label>
-            <Editor x:Name="descriptionEntry"></Editor>
-            <Button Text="Choose Image" Clicked="AddImageButton_Clicked"></Button>
+        <Button Text="Choose Image" Clicked="AddImageButton_Clicked"></Button>
+        <TableView Intent="Form">
+            <TableRoot>
+              <TableSection >
+                            
+                            <ViewCell>
+                                 <Editor x:Name="descriptionEntry" HeightRequest="300"></Editor>
+                            </ViewCell>
+                    </TableSection>
+
+
+
+                    <TableSection Title="Tag:">
+                        <SwitchCell Text="Tag 1" On="False" OnChanged="Switch_Toggled_1"></SwitchCell>
+                        <SwitchCell Text="Tag 2" On="False" OnChanged="Switch_Toggled_2"></SwitchCell>
+                        <SwitchCell Text="Tag 3" On="False" OnChanged="Switch_Toggled_3"></SwitchCell>
+                        <SwitchCell Text="Tag 4" On="False" OnChanged="Switch_Toggled_4"></SwitchCell>
+                        <SwitchCell Text="Tag 5" On="False" OnChanged="Switch_Toggled_5"></SwitchCell>
+                        <SwitchCell Text="Tag 6" On="False" OnChanged="Switch_Toggled_6"></SwitchCell>
+                    </TableSection>
+
+                   
+                     
+            </TableRoot>
+        </TableView>
             <Button  x:Name= "btnUpload" Text = "Upload Inspo" Clicked="UploadButton_Clicked" IsEnabled="False"></Button>
         </StackLayout>
     </ContentPage.Content>

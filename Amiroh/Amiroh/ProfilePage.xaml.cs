@@ -43,6 +43,7 @@ namespace Amiroh
             
             
         }
+        
 
         protected async override void OnAppearing()
         {
@@ -88,6 +89,7 @@ namespace Amiroh
                             CacheValidity = TimeSpan.FromHours(1)
 
                         };
+                        profilePick.GestureRecognizers.Add(new TapGestureRecognizer(ProfileImageTap));
                     }
 
                 
@@ -122,7 +124,7 @@ namespace Amiroh
                     UserPicturesGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
                     UserPicturesGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(115, GridUnitType.Absolute) });
 
-                    Button AddInspoBtn = new Button { Text = "+", TextColor = Color.White, BackgroundColor = Color.FromHex("#203E4A"), FontAttributes = FontAttributes.Bold, HeightRequest = 115, WidthRequest = 115 };
+                    Button AddInspoBtn = new Button { Text = "+", TextColor = Color.White, BackgroundColor = Color.FromHex("#555659"), FontAttributes = FontAttributes.Bold, HeightRequest = 115, WidthRequest = 115 };
                     AddInspoBtn.Clicked += AddInspo_Clicked;
                     UserPicturesGrid.Children.Add(AddInspoBtn , 0, 0);
 
@@ -145,6 +147,46 @@ namespace Amiroh
             base.OnAppearing();
         }
 
+        private async void ProfileImageTap(View arg1, object arg2)
+        {
+            var profilePictureURL = await ImageUpload.ProfilePictureUploadAsync();
+
+            
+
+              if (CrossConnectivity.Current.IsConnected)
+              {
+                try
+                {
+                    await Task.Delay(3000);
+                    string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL });
+                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+
+                    string new_url = url_user + MainUser.MainUserID.USERNAME;
+                    var response = _client.PutAsync(new_url, postdataString);
+                    var responseString = response.Result.Content.ReadAsStringAsync().Result;
+
+
+                    if (response.Result.IsSuccessStatusCode)
+                    {
+                        //var inspo_return = JsonConvert.DeserializeObject<User>(responseString);
+                        await Navigation.PushModalAsync(new MainPage());
+                    }
+                    else
+                    {
+                        await DisplayAlert("Upload Error", "No success", "OK");
+                    }
+                }
+                catch
+                {
+                    await DisplayAlert("Upload Error 2", "No success", "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Network Error", "Are you connected to Wifi?", "OK");
+            }
+        }
+
         private async void AddInspo_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddInspoPage());
@@ -163,25 +205,17 @@ namespace Amiroh
             {
 
                 UserPicturesGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(115, GridUnitType.Absolute) });
-                //UserPicturesGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
             }
-            //trenger denne å være her?
-            //var userPicture = new Image
-            //{
-            //    Source = new UriImageSource
-            //    {
-            //        Uri = new Uri(_users[0].ProfilePicture),
-            //        CachingEnabled = false,
-            //        CacheValidity = TimeSpan.FromHours(1)
-            //    }
-            //};
+           
 
 
-
+            //set row and columns => column to 1 since AddInspoBtn should always be at position 0,0
             int row = 0;
             int column = 1;
-            Button AddInspoBtn = new Button { Text = "+", TextColor = Color.White, BackgroundColor = Color.FromHex("#203E4A"), FontAttributes = FontAttributes.Bold, HeightRequest = 115, WidthRequest = 115 };
+
+            //create button for uploading a inspo post and set its position to 0,0 in the grid
+            Button AddInspoBtn = new Button { Text = "+", TextColor = Color.White, BackgroundColor = Color.FromHex("#555659"), FontAttributes = FontAttributes.Bold, HeightRequest = 115, WidthRequest = 115 };
             AddInspoBtn.Clicked += AddInspo_Clicked;
             UserPicturesGrid.Children.Add(AddInspoBtn, 0, row);
 

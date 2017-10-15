@@ -68,7 +68,7 @@ namespace Amiroh
         {
             if (listviewInspo.SelectedItem != null)
             {
-               
+                
 
                 var page = new ImagePage();
                 page.BindingContext = e.Item as Inspo;
