@@ -2,21 +2,28 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.InspoPage"
-             BackgroundColor="#203E4A">
+             BackgroundColor="#FFFFFF"
+             
+             Padding="0,10,0,10">
     <StackLayout>
-        <Label Text="Amiroh Makeup Inspo" FontSize="Large" FontAttributes="Bold" TextColor="White"></Label>
-       
-        <ListView x:Name="listviewInspo" BackgroundColor="#203E4A" HeightRequest="400" HasUnevenRows="True"
-              ItemTapped="ViewCell_Tapped">
+
+        <ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True"
+              ItemTapped="ViewCell_Tapped" SeparatorVisibility="None">
            
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical">
-                                <!--<ActivityIndicator Color="White" IsRunning="{Binding Source={x:imageInspo}, Path = IsLoading}"></ActivityIndicator>-->
-                                <Image x:Name="imageInspo" Source="{Binding URL}" HeightRequest="400" WidthRequest="400" Rotation="-90" Aspect="AspectFill"></Image>
-                                <Label Text="{Binding Username}" TextColor="White" FontSize="Small" VerticalOptions="Start" HorizontalOptions="CenterAndExpand"></Label>
-                                <Label></Label>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding Username}" TextColor="Black" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Small" VerticalOptions="End" HorizontalOptions="StartAndExpand" ></Label>    
+                            <Image x:Name="imageInspo" Source="{Binding URL}" HeightRequest="350" WidthRequest="410" Rotation="-90" Aspect="AspectFill"></Image>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Points" TextColor="Black" FontSize="Small" FontFamily="Lato-Light.ttf#Lato-Light" VerticalOptions="Start" HorizontalOptions="Start" ></Label>
+                                <Label Text="Comment" TextColor="Black" FontSize="Small" FontFamily="Lato-Light.ttf#Lato-Light" VerticalOptions="Start" HorizontalOptions="Start" ></Label>
+                                <Label Text="Fave" TextColor="Black" FontSize="Small" FontFamily="Lato-Light.ttf#Lato-Light" VerticalOptions="Start" HorizontalOptions="Start" ></Label>
+                                <Label Text="Products" TextColor="Black" FontSize="Small" FontFamily="Lato-Regular.ttf#Lato-Regular" VerticalOptions="Start" HorizontalOptions="End" ></Label>
+                            </StackLayout>
+                            <Label></Label>
+                                
                         
                             </StackLayout>
                         </ViewCell>

@@ -33,7 +33,7 @@ namespace Amiroh
         {
             InitializeComponent();
             
-            message.Text = "Congratulations! You have signed up to Amiroh. Let's set up the rest of your profile." + MainUser.MainUserID.USERNAME;
+            message.Text = "Congratulations! You have signed up to Amiroh. Let's set up the rest of your profile." + MainUser.MainUserID.Username;
             
         }
 
@@ -44,7 +44,7 @@ namespace Amiroh
                 try
                 {
 
-                    var content_u = await _client.GetStringAsync(url_username + MainUser.MainUserID.USERNAME);
+                    var content_u = await _client.GetStringAsync(url_username + MainUser.MainUserID.Username);
                     var userInfo = JsonConvert.DeserializeObject<List<User>>(content_u);
                     _user = new ObservableCollection<User>(userInfo);
 

@@ -1,13 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Amiroh"
-             x:Class="Amiroh.MainPage">
+             x:Class="Amiroh.MainPage"
+            BarBackgroundColor="White"
+            BarTextColor="Black">
 
 
-    <local:InspoPage Title="InspoPage" ></local:InspoPage>
-    <local:ProfilePage Title="ProfilePage"></local:ProfilePage>
-    <local:FavoritePage Title="FavoritePage"></local:FavoritePage>
-    <local:WishlistPage Title="WishlistPage"></local:WishlistPage>
+    <local:InspoPage Title="Feed" ></local:InspoPage>
+    
+    <local:DiscoverPage Title="Discover"></local:DiscoverPage>
 
-</CarouselPage>
+    <local:ProfilePage Title="Profile"></local:ProfilePage>
+    <!--<local:WishlistPage Title="WishlistPage"></local:WishlistPage>-->
+
+</TabbedPage>

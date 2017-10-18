@@ -39,14 +39,24 @@ namespace Amiroh
         public ProfilePage()
         {
             InitializeComponent();
+            Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
+            
 
-            
-            
         }
         
 
         protected async override void OnAppearing()
         {
+            profilePick.Source = new UriImageSource
+            {
+                Uri = new Uri("https://scontent.fbne3-1.fna.fbcdn.net/v/t31.0-8/20248271_10155308253382787_1002352637802164127_o.jpg?oh=6af2bc444aeb8ffd23f656c92e31be38&oe=5A852B09"),
+                CachingEnabled = false,
+                CacheValidity = TimeSpan.FromHours(1)
+            };
+            errorlbl.Text = MainUser.MainUserID.ProfilePicture;
+            userName.Text = MainUser.MainUserID.Username;
+            userDescription.Text = MainUser.MainUserID.ProfileDescription;
+            profilePick.GestureRecognizers.Add(new TapGestureRecognizer(ProfileImageTap));
             this.IsBusy = true;
            
             try
@@ -55,47 +65,29 @@ namespace Amiroh
                 if (CrossConnectivity.Current.IsConnected)
                 {
                     //check is device is connected to the internet
-                        var content_u = await _client.GetStringAsync(url_user + MainUser.MainUserID.USERNAME);
-                        var userInfo = JsonConvert.DeserializeObject<List<User>>(content_u);
-                        _users = new ObservableCollection<User>(userInfo);
+                        //var content_u = await _client.GetStringAsync(url_user + MainUser.MainUserID.Username);
+                        //var userInfo = JsonConvert.DeserializeObject<List<User>>(content_u);
+                        //_users = new ObservableCollection<User>(userInfo);
                    
 
                     
                     
 
-                    var content_p = await _client.GetStringAsync(url_photo + _users[0].Username);
+                    var content_p = await _client.GetStringAsync(url_photo + MainUser.MainUserID.Username);
                     var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
 
                     _userPhotos = new ObservableCollection<Inspo>(pI);
 
-                    if (_users[0].ProfilePicture == "")
+                    if (MainUser.MainUserID.ProfilePicture == "")
                     {
-                        profilePick.Source = new UriImageSource
-                        {
-
-                            Uri = new Uri("https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg"),
-                            CachingEnabled = false,
-                            CacheValidity = TimeSpan.FromHours(1)
-
-                        };
+                        profilePick.Source = "https://image.freepik.com/free-icon/female-student-silhouette_318-62252.jpg";
+                        
                     }
-                    else
-                    {
-                        profilePick.Source = new UriImageSource
-                        {
-
-                            Uri = new Uri(_users[0].ProfilePicture),
-                            CachingEnabled = false,
-                            CacheValidity = TimeSpan.FromHours(1)
-
-                        };
-                        profilePick.GestureRecognizers.Add(new TapGestureRecognizer(ProfileImageTap));
-                    }
-
-                
+                    
                    
-                    userName.Text = _users[0].Username;
-                    userDescription.Text = _users[0].ProfileDescription;
+
+
+                    
 
                 }
                
@@ -161,7 +153,7 @@ namespace Amiroh
                     string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL });
                     var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
-                    string new_url = url_user + MainUser.MainUserID.USERNAME;
+                    string new_url = url_user + MainUser.MainUserID.Username;
                     var response = _client.PutAsync(new_url, postdataString);
                     var responseString = response.Result.Content.ReadAsStringAsync().Result;
 

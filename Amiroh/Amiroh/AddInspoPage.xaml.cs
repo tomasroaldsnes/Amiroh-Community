@@ -46,7 +46,7 @@ namespace Amiroh
             {
                 try
                 {
-                    string postdataJson = JsonConvert.SerializeObject(new { title = titleEntry.Text, description = descriptionEntry.Text, URL = _URL, username = MainUser.MainUserID.USERNAME, points = 0, tags  = Tags.ToArray<string>() });
+                    string postdataJson = JsonConvert.SerializeObject(new {  description = descriptionEntry.Text, URL = _URL, username = MainUser.MainUserID.Username, points = 0, tags  = Tags.ToArray<string>() });
                     var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                     var response = _client.PostAsync(url_create_inspo, postdataString);

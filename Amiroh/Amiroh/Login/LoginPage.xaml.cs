@@ -74,7 +74,9 @@ namespace Amiroh.Login
             if (isValid)
             {
 
-                MainUser.MainUserID.USERNAME = _user[0].Username;
+                MainUser.MainUserID.Username = _user[0].Username;
+                MainUser.MainUserID.ProfileDescription = _user[0].ProfileDescription;
+                MainUser.MainUserID.ProfilePicture = _user[0].ProfilePicture;
                 App.IsUserLoggedIn = true;
                 Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
                 await Navigation.PopAsync();

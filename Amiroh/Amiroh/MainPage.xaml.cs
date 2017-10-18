@@ -7,14 +7,14 @@ using Xamarin.Forms;
 
 namespace Amiroh
 {
-    public partial class MainPage : CarouselPage
+    public partial class MainPage : TabbedPage
     {
        
         public MainPage()
         {
             InitializeComponent();
 
-            
+            Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

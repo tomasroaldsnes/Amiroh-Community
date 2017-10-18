@@ -17,7 +17,9 @@ public class MainUser
         public readonly static MainUser MainUserID = new MainUser();
 
         public string ID { get; set; }
-        public string USERNAME { get; set; }
+        public string Username { get; set; }
+        public string ProfileDescription { get; set; }
+        public string ProfilePicture { get; set; }
 
 
     }

@@ -44,6 +44,9 @@
     <Compile Include="Classes\Classes.cs" />
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\Test.cs" />
+    <Compile Include="DiscoverPage.xaml.cs">
+      <DependentUpon>DiscoverPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>
@@ -205,6 +208,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddInspoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DiscoverPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

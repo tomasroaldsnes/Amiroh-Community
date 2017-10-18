@@ -94,7 +94,7 @@ namespace Amiroh.Login
 
                         user_return = JsonConvert.DeserializeObject<User>(responseString);
 
-                        MainUser.MainUserID.USERNAME = user.Username;
+                        MainUser.MainUserID.Username = user.Username;
                         
 
 

@@ -30,6 +30,7 @@ namespace Amiroh
         public InspoPage()
         {
             InitializeComponent();
+            Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
         }
 
 

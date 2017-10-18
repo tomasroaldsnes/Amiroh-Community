@@ -4,7 +4,12 @@
              x:Class="Amiroh.App">
 	<Application.Resources>
 
-		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <OnPlatform x:Key="FontFamilyName" x:TypeArguments="x:String" Android="Lato-Regular.ttf#Lato-Regular" />
+            <Style x:Key="FontLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="{DynamicResource FontFamily}" />
+            </Style>
+        </ResourceDictionary>
 
-	</Application.Resources>
+    </Application.Resources>
 </Application>
