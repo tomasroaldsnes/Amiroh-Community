@@ -2,22 +2,61 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.ImagePage"
-             Title="ImagePage">
+             Title="ImagePage"
+             BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Image x:Name="bigImage" Source="{Binding URL}" Rotation="-90" Aspect="AspectFit" HeightRequest="400" WidthRequest="400"></Image>
-
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Like"></Label>
-                <Label Text="Comment"></Label>
-                <Label Text="Favorite"></Label>
-            </StackLayout>
-            
-            <Label x:Name="lblUser" Text="{Binding Username}"></Label>
-            <Label x:Name="bigTitle" Text="{Binding Title}" />
-            <Label x:Name="lblDescription" Text="{Binding Description}"></Label>
+        <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <!--<Label x:Name="userName" Text="{Binding Username}" FontSize="16" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black" ></Label>-->
+           
 
             
+
+            <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300" />
+                    <RowDefinition Height="40" />
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="bigImage" Source="{Binding URL}" Rotation="-90" HeightRequest="250" WidthRequest="300" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"></Image>
+
+                <Image x:Name="btnPoints" Source="points.png" Grid.Row="1" Grid.Column="1" Aspect="AspectFill"  >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Points_Tapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image x:Name="btnComment" Source="comment.png" Grid.Row="1" Grid.Column="1" Aspect="AspectFill" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Comment_Tapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image x:Name="btnCollect" Source="collectionoff.png" Grid.Row="1" Grid.Column="2" Aspect="AspectFill" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Collection_Tapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image x:Name="btnProducts" Source="feed.png" Grid.Row="1" Grid.Column="3" Aspect="AspectFill" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Products_Tapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+           </Grid>
+
 
         </StackLayout>
     </ContentPage.Content>

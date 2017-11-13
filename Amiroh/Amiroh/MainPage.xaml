@@ -7,11 +7,11 @@
             BarTextColor="Black">
 
 
-    <local:InspoPage Title="Feed" ></local:InspoPage>
+    <local:InspoPage Icon="feed.png"></local:InspoPage>
     
-    <local:DiscoverPage Title="Discover"></local:DiscoverPage>
+    <local:DiscoverPage  Icon ="discover.png"></local:DiscoverPage>
 
-    <local:ProfilePage Title="Profile"></local:ProfilePage>
+    <local:ProfilePage  Icon="profile.png"></local:ProfilePage>
     <!--<local:WishlistPage Title="WishlistPage"></local:WishlistPage>-->
 
 </TabbedPage>

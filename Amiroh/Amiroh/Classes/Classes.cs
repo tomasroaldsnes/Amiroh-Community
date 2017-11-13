@@ -33,12 +33,13 @@ public class MainUser
         public string ProfilePicture { get; set; }
         public string Password { get; set; }
         public string[] Inspos { get; set; }
+        public string Salt { get; set; }
 
 
-       
+
     }
 
-    public class Inspo
+    public class Inspo : IComparable
     {
         public string Id { get; set; }
         public string Username { get; set; }
@@ -47,10 +48,19 @@ public class MainUser
         public string URL { get; set; }
         public string UserId { get; set; }
         public string[] Comments { get; set; }
-        public int Points { get; set; }
+        public int Claps { get; set; }
         public string[] Tags { get; set; } 
         public string[] ProductsUsed { get; set; }
 
+        public int CompareTo(object obj)
+        {
+            Inspo inspo = obj as Inspo;
+            if (inspo == null)
+            {
+                throw new ArgumentException("Object is not Inspo");
+            }
+            return this.Claps.CompareTo(inspo.Claps);
+        }
     }
 
     public class ImageUpload

@@ -20,8 +20,8 @@ namespace Amiroh.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewAccountPage : ContentPage
     {
-        private const string url_user = "http://192.168.1.7:3050/AmirohAPI/users/";
-        private const string url_create_user = "http://192.168.1.7:3050/AmirohAPI/users";
+        private const string url_user = "http://10.5.50.138:3050/AmirohAPI/users/";
+        private const string url_create_user = "http://10.5.50.138:3050/AmirohAPI/users";
 
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private ObservableCollection<User> _users;
@@ -52,25 +52,36 @@ namespace Amiroh.Login
                 }
                 catch (Exception ex)
                 {
-
-                    Insights.Report(ex);
-
+                    try
+                    {
+                        Insights.Report(ex);
+                    }
+                    catch
+                    {
+                        await DisplayAlert("Heeeelp!", "Something went wrong. I have failed. I am useless.", "Yes, you are.");
+                    }
                 }
             }
         }
 
         private async void SignupButton_Clicked(object sender, EventArgs e)
         {
-           
+
+            var salt = Crypto.CreateSalt(16);
+            
+            string stringSalt = Convert.ToBase64String(salt);
+
+            string securePassword = Crypto.EncryptAes(passwordEntry.Text, salt);
+
             var user = new User
             {
                 Username = usernameEntry.Text,
-                Password = passwordEntry.Text,
+                Password = securePassword, //securepswd
                 Name = nameEntry.Text,
                 ProfileDescription = profileDescriptionEntry.Text,
                 ProfilePicture = ProfilePictureURL,
                 Email = emailEntry.Text,
-                
+                Salt = stringSalt
                 
             };
 
@@ -82,7 +93,7 @@ namespace Amiroh.Login
 
                     User user_return;
                     //sjekk plassering av stuff
-                    string postdataJson = JsonConvert.SerializeObject(new { username = user.Username, password = user.Password, name = user.Name, profileDescription = profileDescriptionEntry.Text, profilePicture = "", email = user.Email });
+                    string postdataJson = JsonConvert.SerializeObject(new { username = user.Username, password = user.Password, name = user.Name, profileDescription = profileDescriptionEntry.Text, profilePicture = "", email = user.Email, salt = user.Salt });
                     var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                     var response = _client.PostAsync(url_create_user, postdataString);
@@ -123,6 +134,7 @@ namespace Amiroh.Login
         }
         bool AreCredentialsAvailable(User user, ObservableCollection<User> _users)
         {
+
             //her må brukerinformasjon sjekkes opp mot database
             foreach (var _user in _users)
             {

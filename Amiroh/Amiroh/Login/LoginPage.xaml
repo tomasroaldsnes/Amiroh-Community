@@ -13,6 +13,7 @@
 
             <Entry x:Name="passwordEntry" Placeholder="Password" PlaceholderColor="White" TextColor="White" IsPassword="True"></Entry>
             <Label x:Name="errorLabel" Font="" FontFamily=""></Label>
+            <Label x:Name="errorLabel2" Font="" FontFamily=""></Label>
             
                 <Button Text="Login" Clicked="LoginButton_Clicked" ></Button>
             <Button Text="Sign up" Clicked="OnSignUpButtonClicked" ></Button>

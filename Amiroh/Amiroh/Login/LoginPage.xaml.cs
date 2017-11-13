@@ -19,7 +19,7 @@ namespace Amiroh.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        private const string url_user = "http://192.168.1.7:3050/AmirohAPI/users/username/";
+        private const string url_user = "http://10.5.50.138:3050/AmirohAPI/users/username/";
 
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private ObservableCollection<User> _user;
@@ -53,10 +53,18 @@ namespace Amiroh.Login
                 }
 
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
+                try
+                {
+                    Insights.Report(ex);
+                    errorLabel.Text = "Connection failed. Are you connected to the internet?";
+                }
+                catch
+                {
+                    await DisplayAlert("Fuck.", "I failed to do what you wanted me to do.", "You are useless.");
+                }
 
-                Insights.Report(ex);
-                errorLabel.Text = "Connection failed. Are you connected to the internet?";
 
             }
             finally
@@ -64,30 +72,45 @@ namespace Amiroh.Login
                 this.IsBusy = false;
             }
 
-            var userLogin = new User
-            {
-                Username = usernameEntry.Text,
-                Password = passwordEntry.Text
-            };
-
-            var isValid = AreCredentialsCorrect(userLogin, _user);
-            if (isValid)
+            try
             {
 
-                MainUser.MainUserID.Username = _user[0].Username;
-                MainUser.MainUserID.ProfileDescription = _user[0].ProfileDescription;
-                MainUser.MainUserID.ProfilePicture = _user[0].ProfilePicture;
-                App.IsUserLoggedIn = true;
-                Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
-                await Navigation.PopAsync();
-                //errorLabel.Text = "This is username: " + MainUser.MainUserID.USERNAME;
+                var userLogin = new User
+                {
+                    Username = usernameEntry.Text,
+                    Password = passwordEntry.Text
+                };
+
+                var isValid = AreCredentialsCorrect(userLogin, _user);
+                if (isValid) //isValid
+                {
+
+                    MainUser.MainUserID.Username = _user[0].Username;
+                    MainUser.MainUserID.ProfileDescription = _user[0].ProfileDescription;
+                    MainUser.MainUserID.ProfilePicture = _user[0].ProfilePicture;
+                    App.IsUserLoggedIn = true;
+                    Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    errorLabel.Text = "Username or password is incorrect";
+                    passwordEntry.Text = string.Empty;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                errorLabel.Text = "Username or password is incorrect";
-                passwordEntry.Text = string.Empty;
-            }
+                try
+                {
+                    Insights.Report(ex);
+                    errorLabel.Text = "Connection failed. Are you connected to the internet?";
+                }
+                catch
+                {
+                    await DisplayAlert("Ooops.", "I failed to do what you wanted me to do.", "You are useless.");
+                }
 
+            }
         }
         private async void OnSignUpButtonClicked(object sender, EventArgs e)
         {
@@ -97,7 +120,11 @@ namespace Amiroh.Login
         {
             //check user credentials against DB
 
-            return userLogin.Username == _user[0].Username && userLogin.Password == _user[0].Password;
+            string decryptedPassword = Crypto.DecryptAes(_user[0].Password, Convert.FromBase64String(_user[0].Salt));
+
+            return userLogin.Username == _user[0].Username && userLogin.Password == decryptedPassword;
+            
+            
             
         }
 

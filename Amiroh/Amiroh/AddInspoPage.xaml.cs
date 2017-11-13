@@ -19,7 +19,7 @@ namespace Amiroh
     public partial class AddInspoPage : ContentPage
     {
         private string _URL = "";
-        private string url_create_inspo = "http://192.168.1.7:3050/AmirohAPI/inspos/";
+        private string url_create_inspo = "http://10.5.50.138:3050/AmirohAPI/inspos/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private List<string> Tags = new List<string>();
 
