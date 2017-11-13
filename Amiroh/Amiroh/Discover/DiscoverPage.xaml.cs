@@ -15,14 +15,14 @@ namespace Amiroh
         public DiscoverPage()
         {
             InitializeComponent();
-            category1.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_1));
-            category2.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_2));
-            category3.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_3));
-            category4.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_4));
-            category5.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_5));
-            category6.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_6));
-            category7.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_7));
-            category8.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_8));
+            //category1.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_1));
+            //category2.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_2));
+            //category3.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_3));
+            //category4.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_4));
+            //category5.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_5));
+            //category6.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_6));
+            //category7.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_7));
+            //category8.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_8));
         }
 
         private async void CategoryTapped_1(View arg1, object arg2)

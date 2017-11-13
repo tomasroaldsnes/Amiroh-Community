@@ -52,8 +52,8 @@ namespace Amiroh
             string postdataJson = JsonConvert.SerializeObject(Obj);
             var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
-            var response = await _client.PutAsync(url_inspo_update + Obj.Id, postdataString);
-            //var responseString = response.Result.Content.ReadAsStringAsync().Result;
+            var response =  _client.PutAsync(url_inspo_update + Obj.Id, postdataString);
+            var responseString = response.Result.Content.ReadAsStringAsync().Result;
         }
 
     }

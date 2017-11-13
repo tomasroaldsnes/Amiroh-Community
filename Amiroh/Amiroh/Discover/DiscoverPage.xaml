@@ -8,8 +8,8 @@
                 <SearchBar x:Name="searchContent" Placeholder="Search">
                     
                 </SearchBar>
-
-                <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+                <Image Source="discoverpage.png" Aspect="AspectFill" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"></Image>
+                <!--<Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -31,7 +31,7 @@
                     <Image x:Name="category7" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="3" Grid.Column="0" Aspect="Fill"></Image>
                     <Image x:Name="category8" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="3" Grid.Column="1" Aspect="Fill"></Image>
 
-                </Grid>
+                </Grid>-->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
