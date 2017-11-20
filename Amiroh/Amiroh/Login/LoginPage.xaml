@@ -3,20 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.Login.LoginPage"
              BackgroundColor="#203E4A"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             Padding="20, 10, 20, 20">
     
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                     BackgroundColor="#203E4A">
-            
-            <Entry x:Name="usernameEntry" Placeholder="Username" PlaceholderColor="White"  TextColor="White"></Entry>
+                     BackgroundColor="#203E4A"
+                     >
+            <Image Source="logowhite.png" HorizontalOptions="Center"></Image>
+            <Label></Label>
+            <Label></Label>
+            <Entry x:Name="usernameEntry" Placeholder="USERNAME" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White"  TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
 
-            <Entry x:Name="passwordEntry" Placeholder="Password" PlaceholderColor="White" TextColor="White" IsPassword="True"></Entry>
-            <Label x:Name="errorLabel" Font="" FontFamily=""></Label>
-            <Label x:Name="errorLabel2" Font="" FontFamily=""></Label>
-            
-                <Button Text="Login" Clicked="LoginButton_Clicked" ></Button>
-            <Button Text="Sign up" Clicked="OnSignUpButtonClicked" ></Button>
+            <Entry x:Name="passwordEntry" Placeholder="PASSWORD" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White" TextColor="White" IsPassword="True" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
+            <Label x:Name="errorLabel" FontFamily="Lato-Bold.ttf#Lato-Bold"></Label>
+            <Label x:Name="errorLabel2" FontFamily="Lato-Bold.ttf#Lato-Bold"></Label>
+
+            <Button Text="LOGIN" Clicked="LoginButton_Clicked" BackgroundColor="White" FontFamily="Lato-Bold.ttf#Lato-Bold" BorderRadius="10" BorderColor="Black" TextColor="Black" BorderWidth="3"></Button>
+
+            <Label Text="Sign up" FontFamily="Lato-Regular.ttf#Lato-Regular" TextColor="White" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="OnSignUpButtonClicked"
+                            NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

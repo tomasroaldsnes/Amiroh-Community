@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Amiroh.ImagePage"
+             Title=" "
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="True"
+             Padding="10,20,10,10">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" BackgroundColor="White">
+            <!--<Label x:Name="userName" Text="{Binding Username}" FontSize="16" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black" ></Label>-->
+           
+
+            
+
+            <Grid BackgroundColor="White" ColumnSpacing="5" RowSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    
+                </Grid.ColumnDefinitions>
+
+                <!--<Image x:Name="btnBack" Source="backarrow.png" Grid.Row="0" Grid.Column="0"  Aspect="AspectFit" HeightRequest="30" WidthRequest="30">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Backarrow_Tapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>-->
+                
+                <Image x:Name="bigImage" Source="{Binding URL}" Aspect="AspectFill" Grid.RowSpan="6" Grid.ColumnSpan="9"></Image>
+
+                <Image x:Name="btnPoints" Source="points.png" Grid.Row="7" Grid.Column="0" Aspect="AspectFit" WidthRequest="50" HeightRequest="50" VerticalOptions="Start" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Points_Tapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image x:Name="btnComment" Source="comment.png" Grid.Row="7" Grid.Column="1" Aspect="AspectFit" WidthRequest="50" HeightRequest="50" VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Comment_Tapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image x:Name="btnCollect" Source="collectionoff.png" Grid.Row="7" Grid.Column="2" Aspect="AspectFit" WidthRequest="50" HeightRequest="50" VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Collection_Tapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image x:Name="btnProducts" Source="feed.png" Grid.Row="7" Grid.Column="8" Aspect="AspectFit" WidthRequest="50" HeightRequest="50" VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="Products_Tapped"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+           </Grid>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -35,7 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AddInspoPage.xaml.cs">
+    <Compile Include="Feed\CommentsPage.xaml.cs">
+      <DependentUpon>CommentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\AddInspoPage.xaml.cs">
       <DependentUpon>AddInspoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -51,19 +54,19 @@
     <Compile Include="Discover\DiscoverPageCategoryOverview.xaml.cs">
       <DependentUpon>DiscoverPageCategoryOverview.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditProfilePage.xaml.cs">
+    <Compile Include="Profile\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="FavoritePage.xaml.cs">
       <DependentUpon>FavoritePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImagePage.xaml.cs">
+    <Compile Include="Feed\ImagePage.xaml.cs">
       <DependentUpon>ImagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Discover\DiscoverPageCategory.xaml.cs">
       <DependentUpon>DiscoverPageCategory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InspoPage.xaml.cs">
+    <Compile Include="Feed\InspoPage.xaml.cs">
       <DependentUpon>InspoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login\LoginPage.xaml.cs">
@@ -78,7 +81,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProfilePage.xaml.cs">
+    <Compile Include="Profile\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,13 +169,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="InspoPage.xaml">
+    <EmbeddedResource Include="Feed\InspoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ProfilePage.xaml">
+    <EmbeddedResource Include="Profile\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -190,7 +193,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ImagePage.xaml">
+    <EmbeddedResource Include="Feed\ImagePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -208,7 +211,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EditProfilePage.xaml">
+    <EmbeddedResource Include="Profile\EditProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -220,7 +223,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AddInspoPage.xaml">
+    <EmbeddedResource Include="Profile\AddInspoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -239,6 +242,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Discover\DiscoverPageCategoryOverview.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Feed\CommentsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

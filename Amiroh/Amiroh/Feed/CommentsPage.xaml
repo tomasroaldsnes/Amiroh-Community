@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Amiroh.Feed.CommentsPage"
+             BackgroundColor="White"
+             >
+    <StackLayout x:Name="layout">
+        <ListView x:Name="listviewComments" BackgroundColor="White" HasUnevenRows="False"
+               SeparatorVisibility="None" >
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="{Binding ProfilePicture}"></Image>
+                            <Label Text="{Binding Username}" TextColor="Black" FontSize="Large" FontFamily="Lato-Bold.ttf#Lato-Bold" ></Label>
+                            <Label Text="{Binding Text}" TextColor="Black" FontSize="Large" FontFamily="Lato-Light.ttf#Lato-Light"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Entry x:Name="commentEntry" Placeholder="Write a comment..." FontFamily="Lato-Light.ttf#Lato-Light" ></Entry>
+        <Button x:Name="btnComment" Text="Comment" FontFamily="Lato-Light.ttf#Lato-Light" BackgroundColor="#203E4A" TextColor="White" Clicked="btnComment_Clicked"></Button>
+
+    </StackLayout>
+</ContentPage>

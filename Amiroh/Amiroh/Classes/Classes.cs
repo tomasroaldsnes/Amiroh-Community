@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin;
+using Xamarin.Forms;
 
 namespace Amiroh.Classes
 {
@@ -25,7 +26,7 @@ public class MainUser
     }
     public class User
     {
-        public string Id { get; set; }
+        public string _Id { get; set; }
         public string Name { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
@@ -39,16 +40,23 @@ public class MainUser
 
     }
 
+    public class Comment
+    {
+        public string Username { get; set; }
+        public string Text { get; set; }
+        public string ProfilePicture { get; set; }
+    }
+
     public class Inspo : IComparable
     {
-        public string Id { get; set; }
+        public string _Id { get; set; }
         public string Username { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string URL { get; set; }
         public string UserId { get; set; }
-        public string[] Comments { get; set; }
-        public int Claps { get; set; }
+        public Comment[] Comments { get; set; }
+        public int Points { get; set; }
         public string[] Tags { get; set; } 
         public string[] ProductsUsed { get; set; }
 
@@ -59,9 +67,11 @@ public class MainUser
             {
                 throw new ArgumentException("Object is not Inspo");
             }
-            return this.Claps.CompareTo(inspo.Claps);
+            return this.Points.CompareTo(inspo.Points);
         }
     }
+
+    
 
     public class ImageUpload
     {
@@ -88,7 +98,7 @@ public class MainUser
                 //    return;
                 //}
 
-                var imageName = await Controller.UploadFileAsync("mycontainer", _image.GetStream());
+                var imageName = await Controller.UploadFileAsync("inspo", _image.GetStream());
 
                 InspoURL = imageName.ToString();
 
@@ -130,7 +140,7 @@ public class MainUser
                 //    return;
                 //}
 
-                var imageName = await Controller.UploadFileAsync("mycontainer", _image.GetStream());
+                var imageName = await Controller.UploadFileAsync("profilepicture", _image.GetStream());
 
                 ProfilePictureURL = imageName.ToString();
 
@@ -152,5 +162,6 @@ public class MainUser
 
             //send PUT request to database with imageID(url) to User.ProfilePicture
         }
+        
     }
 }

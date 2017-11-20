@@ -16,7 +16,7 @@ namespace Amiroh.Controllers
         static CloudBlobContainer GetContainer(string containerType)
         {
             // Retrieve storage account from connection string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=amiroh;AccountKey=j8F4jJbnIjvgV1pRJXtc6TSb6AyAfOHa5Bu163iggCBGogRjLmRQRoAHrM4t2Q67FFlWAue/lfEtYQiT8C/ceA==");
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=amiroh;AccountKey=sKhFLe5YMxxGGUlD9kgZJYgxymqDLS3laBkTcROnRXinsn5sC6yJtwxl9uenMpJc97R4M5+IGraTEzC5yIe3JQ==;EndpointSuffix=core.windows.net");
 
             // Create the blob client.
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();

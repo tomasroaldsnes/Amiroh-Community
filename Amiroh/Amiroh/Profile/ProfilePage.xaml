@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             x:Class="Amiroh.ProfilePage"
+             BackgroundColor="#FFFFFF"
+             Padding="10,10,10,10">
+
+    
+    <ScrollView>
+        <!--start of user information grid-->
+        <Grid BackgroundColor="White" ColumnSpacing="20" RowSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+            <!--content for user information-->
+   <!--............................................................................................................-->
+            <!--FIRST ROW START-->
+            <StackLayout x:Name="lblPoints" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions ="Center">
+                <Label x:Name="pointslbl" Text="Points" FontSize="Default" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black"></Label>
+                <Label x:Name="numberOfPoints" Text="354" FontSize="Default" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
+            </StackLayout>
+            <!--...............................................................................-->
+            <Image x:Name="btnNotifications" Source="notificationnull.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="1">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="Notifications_Tapped"
+                            NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <!--...............................................................................-->
+            <Image x:Name="btnX" Source="notificationnull.png"  Aspect="AspectFit"  Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="x_Tapped"
+                            NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            <!--...............................................................................-->
+            <Image x:Name="btnAddInspo" Source="addinspo.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="1">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="AddInspo_Clicked"
+                            NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+            
+            <!--FIRST ROW END-->
+     <!--............................................................................................................-->
+            <!--SECOND ROW START-->
+            <Image x:Name="imgProfilePicture" Source="{Binding ProfilePicture}" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="0" HeightRequest="80" WidthRequest="60" Aspect="AspectFill" VerticalOptions="Start"></Image>
+
+            <StackLayout x:Name="usernameAndDescription" Orientation="Vertical" Grid.Row="1" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="6" VerticalOptions="Start">
+                <Label x:Name="lblUsername" Text="{Binding Username}" FontSize="24" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black"></Label>
+                <Label x:Name="lblDescription" Text="{Binding ProfileDescription}" FontSize="12" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
+            </StackLayout>
+            
+            
+            <!--SECOND ROW END-->
+     <!--...........................................................................................................................................-->
+            <!--THRID ROW START-->
+            <StackLayout Grid.Row="4" Grid.ColumnSpan="9" Orientation="Horizontal" VerticalOptions="StartAndExpand">
+            <Label FontSize="14" FontFamily="Lato-Bold.ttf#Lato-Bold" Text="INSPO"  TextColor="Black" HorizontalOptions="Start">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="InspoGrid_Clicked"
+                            NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+            
+            <!--...............................................................................-->
+
+            <Label FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Text="PRODUCTS" TextColor="Black" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="ProductPage_Clicked"
+                            NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+                
+           <!--...............................................................................-->
+            
+            </Label>
+            <Label FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Text="COLLECTION" TextColor="Black" HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="Collection_Clicked"
+                            NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+            <!--THIRD ROW END-->
+
+        </Grid>
+        <!--//start of userpicture grid-->
+        <!--<Grid x:Name="UserPicturesGrid">
+           
+        </Grid>-->
+   
+    </ScrollView>
+</ContentPage>

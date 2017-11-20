@@ -32,14 +32,16 @@ namespace Amiroh.Login
         public NewAccountPage()
         {
             InitializeComponent();
+
+            var navigationPage = Application.Current.MainPage as NavigationPage;
+            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
         }
 
         
 
         protected override async void OnAppearing()
         {
-            if (CrossConnectivity.Current.IsConnected)
-            {
+            
                 try
                 {
 
@@ -61,7 +63,7 @@ namespace Amiroh.Login
                         await DisplayAlert("Heeeelp!", "Something went wrong. I have failed. I am useless.", "Yes, you are.");
                     }
                 }
-            }
+            
         }
 
         private async void SignupButton_Clicked(object sender, EventArgs e)

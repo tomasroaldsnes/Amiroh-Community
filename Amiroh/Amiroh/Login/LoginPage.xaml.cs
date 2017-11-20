@@ -17,27 +17,36 @@ using Plugin.Connectivity;
 namespace Amiroh.Login
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    [assembly: ExportRenderer(typeof(Xamarin.Forms.Button), typeof(GenericButtonRenderer))]
+
+    
+
     public partial class LoginPage : ContentPage
     {
         private const string url_user = "http://10.5.50.138:3050/AmirohAPI/users/username/";
 
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private ObservableCollection<User> _user;
-        
-       
+
+        public class GenericButtonRenderer : Xamarin.Forms.Button
+        {
+        }
+
 
         public LoginPage()
         {
             InitializeComponent();
         }
 
-        private async void LoginButton_Clicked(object sender, EventArgs e)
+       
+
+
+    private async void LoginButton_Clicked(object sender, EventArgs e)
         {
             this.IsBusy = true;
             try
             {
-                if (CrossConnectivity.Current.IsConnected)
-                {
+                
                     //check is device is connected to the internet
 
                     string url = url_user + usernameEntry.Text;
@@ -46,11 +55,7 @@ namespace Amiroh.Login
 
 
                     _user = new ObservableCollection<User>(userobj);
-                }
-                else
-                {
-                    await DisplayAlert("Network Error", "Are you connected to the internet?", "OK");
-                }
+                
 
             }
             catch (Exception ex)
@@ -62,7 +67,7 @@ namespace Amiroh.Login
                 }
                 catch
                 {
-                    await DisplayAlert("Fuck.", "I failed to do what you wanted me to do.", "You are useless.");
+                   //
                 }
 
 
