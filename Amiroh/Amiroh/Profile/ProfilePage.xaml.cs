@@ -25,8 +25,8 @@ namespace Amiroh
     public partial class ProfilePage : ContentPage
     {
         
-        private string url_photo = "http://10.5.50.138:3050/AmirohAPI/inspos/user/";
-        private string url_create_inspo = "http://10.5.50.138.10:3050/AmirohAPI/inspos";
+        private string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/user/";
+        private string url_create_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos";
       
         private const string url_user = "http://10.5.50.138:3050/AmirohAPI/users/username/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
@@ -147,7 +147,7 @@ namespace Amiroh
 
                     if (response.Result.IsSuccessStatusCode)
                     {
-                        //var inspo_return = JsonConvert.DeserializeObject<User>(responseString);
+                        //this should be changed to...something
                         await Navigation.PushModalAsync(new MainPage());
                     }
                     else
@@ -213,17 +213,10 @@ namespace Amiroh
 
         //        //set row and columns => column to 1 since AddInspoBtn should always be at position 0,0
         //        int row = 0;
-        //        int column = 1;
+        //        int column = 0;
 
-        //        //create button for uploading a inspo post and set its position to 0,0 in the grid
-        //        Button AddInspoBtn = new Button { Text = "+", TextColor = Color.White, BackgroundColor = Color.FromHex("#555659"), FontAttributes = FontAttributes.Bold, HeightRequest = 115, WidthRequest = 115 };
-        //        AddInspoBtn.Clicked += AddInspo_Clicked;
-        //        UserPicturesGrid.Children.Add(AddInspoBtn, 0, row);
-            
+                
 
-           
-
-            
         //        for (int i = 0; i < _userPhotos.Count(); i++)
         //        {
 

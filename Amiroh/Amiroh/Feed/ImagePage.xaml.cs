@@ -18,7 +18,7 @@ namespace Amiroh
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ImagePage : ContentPage
     {
-        private const string url_inspo_update = "http://10.5.50.138:3050/AmirohAPI/inspos/";
+        private const string url_inspo_update = "http://138.68.137.52:3000/AmirohAPI/inspos/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         Inspo Obj = new Inspo();
         
@@ -32,7 +32,8 @@ namespace Amiroh
             Obj = obj;
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
 
         }
 

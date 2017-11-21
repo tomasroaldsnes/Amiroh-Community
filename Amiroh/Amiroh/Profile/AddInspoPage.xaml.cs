@@ -19,7 +19,7 @@ namespace Amiroh
     public partial class AddInspoPage : ContentPage
     {
         private string _URL = "";
-        private string url_create_inspo = "http://10.5.50.138:3050/AmirohAPI/inspos/";
+        private string url_create_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private List<string> Tags = new List<string>();
 
@@ -30,6 +30,8 @@ namespace Amiroh
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
             navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
+            navigationPage.BarTextColor = Color.White;
+            
 
         }
 

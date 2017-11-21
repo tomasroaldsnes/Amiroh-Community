@@ -22,8 +22,8 @@ namespace Amiroh
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditProfilePage : ContentPage
     {
-        private const string url_user = "http://192.168.1.7:3050/AmirohAPI/users/";
-        private const string url_username = "http://192.168.1.7:3050/AmirohAPI/users/username/";
+        private const string url_user = "http://138.68.137.52:3000/AmirohAPI/users/";
+        private const string url_username = "http://138.68.137.52:3000/AmirohAPI/users/username/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         
         private ObservableCollection<User> _user;

@@ -20,8 +20,8 @@ namespace Amiroh.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewAccountPage : ContentPage
     {
-        private const string url_user = "http://10.5.50.138:3050/AmirohAPI/users/";
-        private const string url_create_user = "http://10.5.50.138:3050/AmirohAPI/users";
+        private const string url_user = "http://138.68.137.52:3000/AmirohAPI/users/";
+        private const string url_create_user = "http://138.68.137.52:3000/AmirohAPI/users";
 
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private ObservableCollection<User> _users;
@@ -35,6 +35,7 @@ namespace Amiroh.Login
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
             navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
+            navigationPage.BarTextColor = Color.White;
         }
 
         
@@ -121,7 +122,7 @@ namespace Amiroh.Login
                 catch
                 {
 
-                    whatsmyid.Text = "nope2";
+                    //
                 }
 
                

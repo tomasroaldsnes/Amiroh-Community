@@ -4,7 +4,7 @@
              x:Class="Amiroh.InspoPage"
              BackgroundColor="#FFFFFF"
              
-             Padding="15,10,15,10">
+             Padding="15,20,15,10">
     <StackLayout x:Name="layout">
         
 

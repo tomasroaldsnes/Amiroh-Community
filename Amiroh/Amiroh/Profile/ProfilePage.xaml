@@ -41,7 +41,7 @@
                 <Label x:Name="numberOfPoints" Text="354" FontSize="Default" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
             </StackLayout>
             <!--...............................................................................-->
-            <Image x:Name="btnNotifications" Source="notificationnull.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="1">
+            <Image x:Name="btnNotifications" Source="notificationnull.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="4" >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="Notifications_Tapped"
@@ -49,7 +49,7 @@
                 </Image.GestureRecognizers>
             </Image>
             <!--...............................................................................-->
-            <Image x:Name="btnX" Source="notificationnull.png"  Aspect="AspectFit"  Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="1">
+            <Image x:Name="btnX" Source="notificationnull.png"  Aspect="AspectFit"  Grid.Row="0" Grid.Column="6" >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="x_Tapped"
@@ -57,7 +57,7 @@
                 </Image.GestureRecognizers>
             </Image>
             <!--...............................................................................-->
-            <Image x:Name="btnAddInspo" Source="addinspo.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="1">
+            <Image x:Name="btnAddInspo" Source="addinspo.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="8" >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="AddInspo_Clicked"
@@ -70,7 +70,7 @@
             <!--SECOND ROW START-->
             <Image x:Name="imgProfilePicture" Source="{Binding ProfilePicture}" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="0" HeightRequest="80" WidthRequest="60" Aspect="AspectFill" VerticalOptions="Start"></Image>
 
-            <StackLayout x:Name="usernameAndDescription" Orientation="Vertical" Grid.Row="1" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="6" VerticalOptions="Start">
+            <StackLayout x:Name="usernameAndDescription" Orientation="Vertical" Grid.Row="1" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="7" VerticalOptions="Start">
                 <Label x:Name="lblUsername" Text="{Binding Username}" FontSize="24" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black"></Label>
                 <Label x:Name="lblDescription" Text="{Binding ProfileDescription}" FontSize="12" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
             </StackLayout>
@@ -79,8 +79,8 @@
             <!--SECOND ROW END-->
      <!--...........................................................................................................................................-->
             <!--THRID ROW START-->
-            <StackLayout Grid.Row="4" Grid.ColumnSpan="9" Orientation="Horizontal" VerticalOptions="StartAndExpand">
-            <Label FontSize="14" FontFamily="Lato-Bold.ttf#Lato-Bold" Text="INSPO"  TextColor="Black" HorizontalOptions="Start">
+            <StackLayout Grid.Row="3" Grid.ColumnSpan="10" Orientation="Horizontal" VerticalOptions="StartAndExpand">
+            <Label FontSize="14" FontFamily="Lato-Bold.ttf#Lato-Bold" Text="INSPO"  TextColor="Black" HorizontalOptions="StartAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="InspoGrid_Clicked"
@@ -90,7 +90,7 @@
             
             <!--...............................................................................-->
 
-            <Label FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Text="PRODUCTS" TextColor="Black" HorizontalOptions="Center">
+            <Label FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Text="PRODUCTS" TextColor="Black" HorizontalOptions="CenterAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="ProductPage_Clicked"
@@ -100,7 +100,7 @@
            <!--...............................................................................-->
             
             </Label>
-            <Label FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Text="COLLECTION" TextColor="Black" HorizontalOptions="End">
+            <Label FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Text="COLLECTION" TextColor="Black" HorizontalOptions="EndAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="Collection_Clicked"

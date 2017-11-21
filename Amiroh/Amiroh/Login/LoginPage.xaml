@@ -13,9 +13,9 @@
             <Image Source="logowhite.png" HorizontalOptions="Center"></Image>
             <Label></Label>
             <Label></Label>
-            <Entry x:Name="usernameEntry" Placeholder="USERNAME" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White"  TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
+            <Entry x:Name="usernameEntry" Placeholder="USERNAME" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White" BackgroundColor="#203E4A" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
 
-            <Entry x:Name="passwordEntry" Placeholder="PASSWORD" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White" TextColor="White" IsPassword="True" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
+            <Entry x:Name="passwordEntry" Placeholder="PASSWORD" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White" BackgroundColor="#203E4A"  TextColor="White" IsPassword="True" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
             <Label x:Name="errorLabel" FontFamily="Lato-Bold.ttf#Lato-Bold"></Label>
             <Label x:Name="errorLabel2" FontFamily="Lato-Bold.ttf#Lato-Bold"></Label>
 

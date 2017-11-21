@@ -20,7 +20,7 @@ namespace Amiroh.Feed
         Inspo _obj = new Inspo();
         private ObservableCollection<Comment> _comments;
 
-        private string url_update_inspo = "http://10.5.50.138:3050/AmirohAPI/inspos/";
+        private string url_update_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
 
         public CommentsPage (Inspo obj)
@@ -29,7 +29,8 @@ namespace Amiroh.Feed
 			InitializeComponent ();
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
 
 
             _obj = obj;

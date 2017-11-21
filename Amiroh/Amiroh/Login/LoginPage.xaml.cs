@@ -23,7 +23,7 @@ namespace Amiroh.Login
 
     public partial class LoginPage : ContentPage
     {
-        private const string url_user = "http://10.5.50.138:3050/AmirohAPI/users/username/";
+        private const string url_user = "http://138.68.137.52:3000/AmirohAPI/users/username/";
 
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private ObservableCollection<User> _user;

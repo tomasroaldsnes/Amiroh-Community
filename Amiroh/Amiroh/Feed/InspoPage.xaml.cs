@@ -23,7 +23,7 @@ namespace Amiroh
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InspoPage : ContentPage
     {
-        private const string url_photo = "http://10.5.50.138:3050/AmirohAPI/inspos/";
+        private const string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/";
         
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private ObservableCollection<Inspo> _posts;

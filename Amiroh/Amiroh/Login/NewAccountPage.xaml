@@ -2,18 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.Login.NewAccountPage"
-             Title=" ">
+             Title=" "
+             BackgroundColor="#203E4A">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Let's get you signed up!" />
-            <Entry x:Name="nameEntry" Placeholder="Name"></Entry>
-            <Entry x:Name="emailEntry" Placeholder="Email"></Entry>
-            <Entry x:Name="usernameEntry" Placeholder="Username"></Entry>
-            <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="True"></Entry>
-            <Entry x:Name="profileDescriptionEntry" Placeholder="Profile Description"></Entry>
-            <Button Text="Sign Up" Clicked="SignupButton_Clicked"></Button>
-            <Label x:Name="whatsmyid"></Label>
-            <Label x:Name="errorPick"></Label>
+        <StackLayout BackgroundColor="#203E4A">
+            <Label Text="Let's get you signed up!" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
+            <Entry x:Name="nameEntry" Placeholder="NAME" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="Black" BackgroundColor="White" ></Entry>
+            <Entry x:Name="emailEntry" Placeholder="EMAIL" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="Black" BackgroundColor="White"></Entry>
+            <Entry x:Name="usernameEntry" Placeholder="USERNAME" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="Black" BackgroundColor="White"></Entry>
+            <Entry x:Name="passwordEntry" Placeholder="PASSWORD" IsPassword="True" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="Black" BackgroundColor="White"></Entry>
+            <Label></Label>
+            <Entry x:Name="profileDescriptionEntry" Placeholder="Profile Description" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="Black" BackgroundColor="White"></Entry>
+            <Button Text="Sign Up" Clicked="SignupButton_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" BackgroundColor="White"></Button>
+            
             
 
         </StackLayout>
