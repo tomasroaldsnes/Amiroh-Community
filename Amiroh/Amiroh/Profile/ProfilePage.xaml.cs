@@ -15,6 +15,7 @@ using ImageCircle;
 using Amiroh.Classes;
 using Amiroh.Login;
 using Plugin.Connectivity;
+using FFImageLoading.Forms;
 
 namespace Amiroh
 {
@@ -33,7 +34,8 @@ namespace Amiroh
        // private ObservableCollection<Inspo> _profileImages;
         //private ObservableCollection<User> _users;
         private ObservableCollection<Inspo> _userPhotos;
-        
+        private bool IsInspoLoaded = false;
+        private bool NewInspoUploaded = false;
 
 
         public ProfilePage()
@@ -91,8 +93,11 @@ namespace Amiroh
 
             try
             {
-               
-             GridCreation();
+                if (!IsInspoLoaded)
+                {
+                    GridCreation();
+                }
+             
                 
             }
             catch(Exception e)
@@ -157,7 +162,9 @@ namespace Amiroh
         {
             try
             {
+                NewInspoUploaded = true;
                 await Navigation.PushAsync(new AddInspoPage());
+
             }
             catch (Exception ex)
             {
@@ -178,17 +185,23 @@ namespace Amiroh
             try
             {
 
-
-                for (int MyCount = 0; MyCount < _userPhotos.Count(); MyCount++)
+                if (!IsInspoLoaded)
                 {
+                    for (int MyCount = 0; MyCount < _userPhotos.Count(); MyCount++)
+                    {
 
-                    ProfileGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
-                    ProfileGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                        ProfileGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
 
+
+
+                    }
 
                 }
-
-
+                else if(NewInspoUploaded)
+                {
+                    ProfileGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
+                    NewInspoUploaded = false;
+                }
 
                 //set row and columns => column to 1 since AddInspoBtn should always be at position 0,0
                 int row = 4;
@@ -202,13 +215,13 @@ namespace Amiroh
 
                     if (column < 1)
                     {
-                        ProfileGrid.Children.Add(new Image { Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 145, VerticalOptions = LayoutOptions.StartAndExpand  }, 0, 5, row, row+2);
+                        ProfileGrid.Children.Add(new CachedImage{ Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 145, VerticalOptions = LayoutOptions.StartAndExpand, CacheDuration = TimeSpan.FromDays(7) }, 0, 5, row, row+2);
                         
                         column++;
                     }
                     else if (column == 1)
                     {
-                        ProfileGrid.Children.Add(new Image { Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 5 , 10, row, row+2);
+                        ProfileGrid.Children.Add(new CachedImage { Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 145, VerticalOptions = LayoutOptions.StartAndExpand, CacheDuration = TimeSpan.FromDays(7) }, 5 , 10, row, row+2);
                         column = 0;
                         row++;
                     }
@@ -217,6 +230,8 @@ namespace Amiroh
 
 
                 }
+                //Inspos are now loaded and grid does not need to update gridrows
+                IsInspoLoaded = true;
             }
             catch (Exception ex)
             {

@@ -19,15 +19,15 @@ namespace Amiroh.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-            //CachedImageRenderer.Init();
+            
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 
+            CachedImageRenderer.Init();
 
 
-            
         }
     }
 }

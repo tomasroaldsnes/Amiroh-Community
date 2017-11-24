@@ -11,14 +11,7 @@
             <Button Text="Choose a profile picture" Clicked="PictureButton_Clicked"></Button>
             <Label x:Name="errorPick"></Label>
             <Button Text="Save Profile" Clicked="Button_Clicked"></Button>
-            <Image x:Name="imageblub" Source="{Binding URL}" Aspect="AspectFit" HeightRequest="300" WidthRequest="200" >
-                <ActivityIndicator
-                    Color="White"
-                    IsRunning="{Binding
-                    Source={x:Reference imageblub},
-                    Path=IsLoading}" 
-                ></ActivityIndicator>
-            </Image>
+            <Image x:Name="imageblub" Source="{Binding URL}" Aspect="AspectFit" HeightRequest="300" WidthRequest="200" ></Image>
             
         </StackLayout>
     </ContentPage.Content>

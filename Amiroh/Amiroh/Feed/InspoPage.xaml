@@ -20,13 +20,14 @@
                         <ViewCell>
                         <StackLayout Orientation="Vertical">
                                
-                            <!--<Image x:Name="imageInspo" Source="{Binding URL}" HeightRequest="350" WidthRequest="410" Aspect="AspectFill"></Image>-->
-                            <ffimageloading:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
-			                    WidthRequest="300" HeightRequest="300"
-			                    DownsampleToViewSize="true"
+
+                            <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" VerticalOptions="Start"
+			                    DownsampleHeight="300"
+                                LoadingPriority="High"                      
+                                CacheDuration="0"
 			                    Source = "{Binding URL}" >       
                             </ffimageloading:CachedImage>
-                            <Label Text="{Binding Username}" TextColor="Black" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Small" VerticalOptions="End" HorizontalOptions="StartAndExpand" ></Label>
+                            <Label Text="{Binding Username}" TextColor="Black" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Small" VerticalOptions="Start" HorizontalOptions="StartAndExpand" ></Label>
                             
                             <Label></Label>
                             <Label></Label>

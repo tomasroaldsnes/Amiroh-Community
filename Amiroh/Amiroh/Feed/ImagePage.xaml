@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.ImagePage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Title=" "
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="True"
@@ -13,9 +14,14 @@
             <!--<Label x:Name="userName" Text="{Binding Username}" FontSize="16" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black" ></Label>-->
            
  
-                <Image x:Name="bigImage" Source="{Binding URL}" Aspect="AspectFit" Grid.Row="0" Grid.Column="0"></Image>
+                <!--<Image x:Name="bigImage" Source="{Binding URL}" Aspect="AspectFit" Grid.Row="0" Grid.Column="0"></Image>-->
+            <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" VerticalOptions="Start"
+                                LoadingPriority="High"                      
+                                CacheDuration="0"
+			                    Source = "{Binding URL}" >
+            </ffimageloading:CachedImage>
 
-                <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal">
                     <Image x:Name="btnPoints" Source="points.png" Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" >
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
