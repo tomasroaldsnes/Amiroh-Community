@@ -29,6 +29,8 @@ namespace Amiroh
         private ObservableCollection<Inspo> _posts;
         ObservableCollection<Inspo> sortedByPoints_posts;
 
+        private bool InspoListLoaded = false;
+
         public InspoPage()
         {
             InitializeComponent();
@@ -36,64 +38,71 @@ namespace Amiroh
             
         }
 
-        
-
-        protected async override void OnAppearing()
+        private async void LoadInspos()
         {
-            
+            try
+            {
 
-                this.IsBusy = true;
+                //check is device is connected to the internet
+
+                var content = await _client.GetStringAsync(url_photo);
+                var posts = JsonConvert.DeserializeObject<List<Inspo>>(content);
+
+                _posts = new ObservableCollection<Inspo>(posts);
+
+                sortedByPoints_posts = new ObservableCollection<Inspo>(
+                     _posts.OrderBy(inspo => inspo).Reverse<Inspo>()
+                     );
+
+
+                listviewInspo.ItemsSource = sortedByPoints_posts;
+
+                if(listviewInspo.IsRefreshing == true)
+                {
+                    listviewInspo.IsRefreshing = false;
+                }
+
+
+            }
+            catch (Exception e)
+            {
                 try
                 {
-
-                    //check is device is connected to the internet
-
-                    var content = await _client.GetStringAsync(url_photo);
-                    var posts = JsonConvert.DeserializeObject<List<Inspo>>(content);
-
-                    _posts = new ObservableCollection<Inspo>(posts);
-
-                    sortedByPoints_posts = new ObservableCollection<Inspo>(
-                         _posts.OrderBy(inspo => inspo)
-                         );
-
-                    listviewInspo.ItemsSource = sortedByPoints_posts;
-
-
-
-
+                    Insights.Report(e);
+                    await DisplayAlert("Useless", "I tried to load the inspos, but I failed. Horribly.", "Be better");
                 }
-                catch (Exception e)
+                catch
                 {
-                    try
-                    {
-                        Insights.Report(e);
-                        await DisplayAlert("Useless", "I tried to load the inspos, but I failed. Horribly.", "Be better");
-                    }
-                    catch
-                    {
-                        await DisplayAlert("Error", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
-                    }
+                    await DisplayAlert("Error", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
                 }
-                finally
-                {
-                    this.IsBusy = false;
-                }
+            }
+            finally
+            {
+                this.IsBusy = false;
+            }
 
-            
-            
-                //var errorNetwork = new Label { Text = "Are you sure you are connected to the internet? Please try again." , FontSize = 16, FontFamily = "Lato-Bold.ttf#Lato-Bold" };
-                //var btnError = new Button { Text = "Try Again" };
-                //btnError.Clicked += BtnError_Clicked;
-                //layout.Children.Add(errorNetwork);
-                //layout.Children.Add(btnError);
 
-            
-            
             base.OnAppearing();
         }
 
-        private async void BtnError_Clicked(object sender, EventArgs e)
+        protected override void OnAppearing()
+        {
+            //see if app needs to load new list of inspos
+            if (!InspoListLoaded)
+            {
+                LoadInspos();
+                InspoListLoaded = true;
+            }
+           
+               
+              
+        }
+        protected override void OnDisappearing()
+        {
+            InspoListLoaded = false;
+        }
+
+            private async void BtnError_Clicked(object sender, EventArgs e)
         {
             Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
             await Navigation.PopAsync();
@@ -128,6 +137,12 @@ namespace Amiroh
                     await DisplayAlert("Error", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
                 }
             }
+        }
+
+        private void listviewInspo_Refreshing(object sender, EventArgs e)
+        {
+            LoadInspos();
+            
         }
     }
 }

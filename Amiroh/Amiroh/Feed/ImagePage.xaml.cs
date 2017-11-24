@@ -42,7 +42,7 @@ namespace Amiroh
             //needs a ifUserHasLikedInspo function 
             //add a list of users that has liked 
             Obj.Points += 1;
-            btnPoints.Source = "pointson.png";
+            
 
             //HasBeenLiked = true;
 
@@ -57,8 +57,7 @@ namespace Amiroh
 
             if (response.Result.IsSuccessStatusCode)
             {
-                //var inspo_return = JsonConvert.DeserializeObject<User>(responseString);
-                await Navigation.PopAsync();
+                btnPoints.Source = "pointson.png";
             }
             else
             {

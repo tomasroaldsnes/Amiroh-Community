@@ -48,13 +48,14 @@ namespace Amiroh.Feed
 
             _obj.Comments.ToList().Add(obj);
             _obj.Comments.ToArray();
+            
 
-            _comments.Add(obj);
+            //_comments.Add(obj);
 
 
             try
             {
-                string postdataJson = JsonConvert.SerializeObject(new { title = _obj.Title, description = _obj.Description, URl = _obj.URL, username = _obj.Username, userId = _obj.UserId, productsUsed = _obj.ProductsUsed, points = _obj.Points, tags = _obj.Tags, comments = new { username = obj.Username, text = obj.Username, profilePicture = obj.ProfilePicture } } );
+                string postdataJson = JsonConvert.SerializeObject(_obj.Comments);
                 var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                 string url = url_update_inspo + _obj._Id.ToString();
@@ -64,8 +65,7 @@ namespace Amiroh.Feed
 
                 if (response.Result.IsSuccessStatusCode)
                 {
-                    
-                    await Navigation.PopAsync();
+                    _comments.Add(obj);
                 }
                 else
                 {

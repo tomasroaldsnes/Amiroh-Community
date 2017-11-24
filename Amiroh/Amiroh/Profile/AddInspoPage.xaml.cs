@@ -9,12 +9,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Amiroh
 {
+
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddInspoPage : ContentPage
     {
@@ -37,19 +39,21 @@ namespace Amiroh
 
         private async void AddImageButton_Clicked(object sender, EventArgs e)
         {
-            this.IsBusy = true;
-            _URL = await Classes.ImageUpload.InspoUploadAsync();
-            this.IsBusy = false;
-            btnUpload.IsEnabled = true;
-            // _URL = newInspoUrl;
+            
+                btnUpload.Text = "Uploading inspo...";
+                _URL = await Classes.ImageUpload.InspoUploadAsync();
+
+                btnUpload.IsEnabled = true;
+                btnUpload.Text = "Upload Inspo";
+
+
         }
 
         private async void UploadButton_Clicked(object sender, EventArgs e)
         {
             
-                try
-                {
-                    string postdataJson = JsonConvert.SerializeObject(new {  description = descriptionEntry.Text, URL = _URL, username = MainUser.MainUserID.Username, points = 0 }); /*, tags = Tags.ToArray<string>()*/
+                
+                    string postdataJson = JsonConvert.SerializeObject(new {  description = descriptionEntry.Text, URL = _URL, username = MainUser.MainUserID.Username }); /*, tags = Tags.ToArray<string>()*/
                     var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                     var response = _client.PostAsync(url_create_inspo, postdataString);
@@ -58,19 +62,16 @@ namespace Amiroh
 
                     if (response.Result.IsSuccessStatusCode)
                     {
-                        //var inspo_return = JsonConvert.DeserializeObject<User>(responseString);
-                        Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
-                        await Navigation.PopAsync();
+                        await DisplayAlert("Success!", "Your Inspo was uploaded.", "Woop Woop!");
+
+
+                        await Navigation.PushModalAsync(new MainPage());
                     }
                     else
                     {
                         await DisplayAlert("Upload Error", "No success", "OK");
                     }
-                }
-                catch
-                {
-                    await DisplayAlert("Upload Error 2", "No success", "OK");
-                }
+              
             
             
         }
@@ -105,6 +106,15 @@ namespace Amiroh
         {
             string t = "Tag 6";
             Tags.Add(t);
+        }
+
+        private void descriptionEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (e.NewTextValue.Length > 250)
+            {
+                descriptionEntry.Text = descriptionEntry.Text.Remove(descriptionEntry.Text.Length - 1);
+
+            }
         }
     }
 }

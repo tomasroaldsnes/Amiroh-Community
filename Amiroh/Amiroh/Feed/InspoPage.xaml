@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.InspoPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="#FFFFFF"
              
              Padding="15,20,15,10">
@@ -12,14 +13,19 @@
 
 
 <ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True"
-               SeparatorVisibility="None" ItemTapped="listviewInspo_ItemTapped">
+               SeparatorVisibility="None" ItemTapped="listviewInspo_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="listviewInspo_Refreshing">
            
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                         <StackLayout Orientation="Vertical">
                                
-                            <Image x:Name="imageInspo" Source="{Binding URL}" HeightRequest="350" WidthRequest="410" Aspect="AspectFill"></Image>
+                            <!--<Image x:Name="imageInspo" Source="{Binding URL}" HeightRequest="350" WidthRequest="410" Aspect="AspectFill"></Image>-->
+                            <ffimageloading:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+			                    WidthRequest="300" HeightRequest="300"
+			                    DownsampleToViewSize="true"
+			                    Source = "{Binding URL}" >       
+                            </ffimageloading:CachedImage>
                             <Label Text="{Binding Username}" TextColor="Black" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Small" VerticalOptions="End" HorizontalOptions="StartAndExpand" ></Label>
                             
                             <Label></Label>

@@ -26,12 +26,12 @@ namespace Amiroh
     {
         
         private string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/user/";
-        private string url_create_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos";
+       // private string url_create_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos";
       
         private const string url_user = "http://10.5.50.138:3050/AmirohAPI/users/username/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
        // private ObservableCollection<Inspo> _profileImages;
-        private ObservableCollection<User> _users;
+        //private ObservableCollection<User> _users;
         private ObservableCollection<Inspo> _userPhotos;
         
 
@@ -92,7 +92,7 @@ namespace Amiroh
             try
             {
                
-             //GridCreation();
+             GridCreation();
                 
             }
             catch(Exception e)
@@ -112,31 +112,13 @@ namespace Amiroh
 
         private async void ProfileImageTap(View arg1, object arg2)
         {
-            string profilePictureURL = "";
-            try
-            {
-                 profilePictureURL = await ImageUpload.ProfilePictureUploadAsync();
-                MainUser.MainUserID.ProfilePicture = profilePictureURL;
-            }
-            catch (Exception e)
-            {
-                try
-                {
-                    Insights.Report(e);
-                    await DisplayAlert("Oh God, not again", "I tried to upload your profile picture, but I failed. Miserably.", "*Takes a deep breath*");
-                }
-                catch
-                {
-                    await DisplayAlert("Oh God, not again", "I tried to load your profile, but I failed. Horribly.", "*Counting backwards from 10*");
-                }
-            }
-
-
-
             
-                try
+            try
                 {
-                    await Task.Delay(3000);
+                     string profilePictureURL = "";
+                     profilePictureURL = await ImageUpload.ProfilePictureUploadAsync();
+                   
+                
                     string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL });
                     var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
@@ -191,67 +173,65 @@ namespace Amiroh
             }
         }
 
-        //public void GridCreation()
-        //{
-        //    try
-        //    {
-        //        UserPicturesGrid.RowDefinitions = new RowDefinitionCollection();
-        //        UserPicturesGrid.ColumnDefinitions = new ColumnDefinitionCollection();
+        public void GridCreation()
+        {
+            try
+            {
 
-        //        UserPicturesGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
-        //        UserPicturesGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
-        //        UserPicturesGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
 
-        //        for (int MyCount = 0; MyCount < 3; MyCount++)
-        //        {
+                for (int MyCount = 0; MyCount < _userPhotos.Count(); MyCount++)
+                {
 
-        //            UserPicturesGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(115, GridUnitType.Absolute) });
+                    ProfileGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
+                    ProfileGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
-        //        }
+
+                }
 
 
 
-        //        //set row and columns => column to 1 since AddInspoBtn should always be at position 0,0
-        //        int row = 0;
-        //        int column = 0;
-
-                
-
-        //        for (int i = 0; i < _userPhotos.Count(); i++)
-        //        {
-
-
-        //            if (column < 2)
-        //            {
-        //                UserPicturesGrid.Children.Add(new Image { Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 115, WidthRequest = 115, Rotation = -90 }, column, row);
-        //                column++;
-        //            }
-        //            else if (column == 2)
-        //            {
-        //                UserPicturesGrid.Children.Add(new Image { Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 115, WidthRequest = 115, Rotation = -90 }, column, row);
-        //                column = 0;
-        //                row++;
-        //            }
-        //            else DisplayAlert("Error", "Something went wrong with loading userphotos", "OK");
+                //set row and columns => column to 1 since AddInspoBtn should always be at position 0,0
+                int row = 4;
+                int column = 0;
 
 
 
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        try
-        //        {
-        //            Insights.Report(ex);
-        //            DisplayAlert("Dammit", "I'm not ready to upload an inspo. Like, emotionally, you know?", "*Takes a deep breath*");
-        //        }
-        //        catch
-        //        {
-        //            DisplayAlert("Dammit", "I'm not ready to upload an inspo. Like, emotionally, you know?", "*Counting backwards from 10*");
-        //        }
-        //    }
+                for (int i = 0; i < _userPhotos.Count(); i++)
+                {
 
-        //}
+
+                    if (column < 1)
+                    {
+                        ProfileGrid.Children.Add(new Image { Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 145, VerticalOptions = LayoutOptions.StartAndExpand  }, 0, 5, row, row+2);
+                        
+                        column++;
+                    }
+                    else if (column == 1)
+                    {
+                        ProfileGrid.Children.Add(new Image { Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 5 , 10, row, row+2);
+                        column = 0;
+                        row++;
+                    }
+                    else DisplayAlert("Error", "Something went wrong with loading userphotos", "OK");
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    Insights.Report(ex);
+                    DisplayAlert("Dammit", "I'm not ready to upload an inspo. Like, emotionally, you know?", "*Takes a deep breath*");
+                }
+                catch
+                {
+                    DisplayAlert("Dammit", "I'm not ready to upload an inspo. Like, emotionally, you know?", "*Counting backwards from 10*");
+                }
+            }
+
+        }
 
         private void Notifications_Tapped(object sender, EventArgs e)
         {

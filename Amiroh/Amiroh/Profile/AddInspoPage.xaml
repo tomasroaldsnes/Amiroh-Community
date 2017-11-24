@@ -10,12 +10,14 @@
             <Label Text="Add an Inspo:" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
             <Button Text="Choose Image" Clicked="AddImageButton_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" BackgroundColor="White"></Button>
             <Label></Label>
-            <Label Text="Add a description for your Inspo:" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
-            <Editor x:Name="descriptionEntry" BackgroundColor="White" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="12" TextColor="White"></Editor>
+            <Label Text="Add a description for your Inspo 👇" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
+            <Editor x:Name="descriptionEntry" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" BackgroundColor="#203E4A" HeightRequest="50" TextChanged="descriptionEntry_TextChanged" >
+                
+            </Editor>
             <Label></Label>
             <ScrollView Orientation="Horizontal">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
+                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
                     <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
                     <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
                     <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />

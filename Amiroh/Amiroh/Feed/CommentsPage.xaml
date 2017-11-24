@@ -13,8 +13,8 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Image Source="{Binding ProfilePicture}"></Image>
-                            <Label Text="{Binding Username}" TextColor="Black" FontSize="Large" FontFamily="Lato-Bold.ttf#Lato-Bold" ></Label>
-                            <Label Text="{Binding Text}" TextColor="Black" FontSize="Large" FontFamily="Lato-Light.ttf#Lato-Light"></Label>
+                            <Label Text="{Binding Username}" TextColor="Black" FontSize="16" FontFamily="Lato-Bold.ttf#Lato-Bold" ></Label>
+                            <Label Text="{Binding Text}" TextColor="Black" FontSize="16" FontFamily="Lato-Light.ttf#Lato-Light"></Label>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

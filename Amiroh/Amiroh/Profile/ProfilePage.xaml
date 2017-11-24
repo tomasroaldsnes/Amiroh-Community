@@ -9,14 +9,12 @@
     
     <ScrollView>
         <!--start of user information grid-->
-        <Grid BackgroundColor="White" ColumnSpacing="20" RowSpacing="5">
+        <Grid x:Name="ProfileGrid" BackgroundColor="White" ColumnSpacing="10" RowSpacing="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
 
 
             </Grid.RowDefinitions>
@@ -25,11 +23,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                
 
             </Grid.ColumnDefinitions>
 
@@ -68,7 +62,7 @@
             <!--FIRST ROW END-->
      <!--............................................................................................................-->
             <!--SECOND ROW START-->
-            <Image x:Name="imgProfilePicture" Source="{Binding ProfilePicture}" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="0" HeightRequest="80" WidthRequest="60" Aspect="AspectFill" VerticalOptions="Start"></Image>
+            <Image x:Name="imgProfilePicture" Source="{Binding ProfilePicture}" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="0" HeightRequest="100" WidthRequest="80" Aspect="AspectFit" VerticalOptions="Start"></Image>
 
             <StackLayout x:Name="usernameAndDescription" Orientation="Vertical" Grid.Row="1" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="7" VerticalOptions="Start">
                 <Label x:Name="lblUsername" Text="{Binding Username}" FontSize="24" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black"></Label>
@@ -79,7 +73,7 @@
             <!--SECOND ROW END-->
      <!--...........................................................................................................................................-->
             <!--THRID ROW START-->
-            <StackLayout Grid.Row="3" Grid.ColumnSpan="10" Orientation="Horizontal" VerticalOptions="StartAndExpand">
+            <StackLayout Grid.Row="3" Grid.ColumnSpan="10" Orientation="Horizontal" VerticalOptions="StartAndExpand" HeightRequest="50">
             <Label FontSize="14" FontFamily="Lato-Bold.ttf#Lato-Bold" Text="INSPO"  TextColor="Black" HorizontalOptions="StartAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
@@ -111,10 +105,7 @@
             <!--THIRD ROW END-->
 
         </Grid>
-        <!--//start of userpicture grid-->
-        <!--<Grid x:Name="UserPicturesGrid">
-           
-        </Grid>-->
+       
    
     </ScrollView>
 </ContentPage>
