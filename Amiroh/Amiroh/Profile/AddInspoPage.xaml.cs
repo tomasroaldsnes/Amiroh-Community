@@ -33,8 +33,50 @@ namespace Amiroh
             var navigationPage = Application.Current.MainPage as NavigationPage;
             navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
             navigationPage.BarTextColor = Color.White;
-            
 
+            tagEyes.GestureRecognizers.Add(new TapGestureRecognizer(EyesTag_Tapped));
+            tagLips.GestureRecognizers.Add(new TapGestureRecognizer(LipsTag_Tapped));
+            tagEyebrows.GestureRecognizers.Add(new TapGestureRecognizer(EyebrowsTag_Tapped));
+            tagContouring.GestureRecognizers.Add(new TapGestureRecognizer(ContouringTag_Tapped));
+            tagDay.GestureRecognizers.Add(new TapGestureRecognizer(DayTag_Tapped));
+            tagNight.GestureRecognizers.Add(new TapGestureRecognizer(NightTag_Tapped));
+            
+        }
+
+        private async void EyesTag_Tapped(View arg1, object arg2)
+        {
+            Tags.Add("Eyes");
+            tagEyes.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+        }
+
+        private async void LipsTag_Tapped(View arg1, object arg2)
+        {
+            Tags.Add("Lips");
+            tagLips.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+        }
+
+        private async void EyebrowsTag_Tapped(View arg1, object arg2)
+        {
+            Tags.Add("Eyebrows");
+            tagEyebrows.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+        }
+
+        private async void ContouringTag_Tapped(View arg1, object arg2)
+        {
+            Tags.Add("Contouring");
+            tagContouring.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+        }
+
+        private async void DayTag_Tapped(View arg1, object arg2)
+        {
+            Tags.Add("Day");
+            tagDay.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+        }
+
+        private async void NightTag_Tapped(View arg1, object arg2)
+        {
+            Tags.Add("Night");
+            tagNight.FontFamily = "Lato-Bold.ttf#Lato-Bold";
         }
 
         private async void AddImageButton_Clicked(object sender, EventArgs e)
@@ -46,14 +88,13 @@ namespace Amiroh
                 btnUpload.IsEnabled = true;
                 btnUpload.Text = "Upload Inspo";
 
-
         }
 
         private async void UploadButton_Clicked(object sender, EventArgs e)
         {
             
                 
-                    string postdataJson = JsonConvert.SerializeObject(new {  description = descriptionEntry.Text, URL = _URL, username = MainUser.MainUserID.Username }); /*, tags = Tags.ToArray<string>()*/
+                    string postdataJson = JsonConvert.SerializeObject(new {  description = descriptionEntry.Text, URL = _URL, username = MainUser.MainUserID.Username,  tags = Tags.ToArray<string>() }); 
                     var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                     var response = _client.PostAsync(url_create_inspo, postdataString);
@@ -64,8 +105,7 @@ namespace Amiroh
                     {
                         await DisplayAlert("Success!", "Your Inspo was uploaded.", "Woop Woop!");
 
-
-                        await Navigation.PushModalAsync(new MainPage());
+                
                     }
                     else
                     {

@@ -1,8 +1,10 @@
 ﻿using Amiroh.Controllers;
+using IncrementalListView.FormsPlugin;
 using Newtonsoft.Json;
 using Plugin.Media;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +35,8 @@ public class MainUser
         public string ProfileDescription { get; set; }
         public string ProfilePicture { get; set; }
         public string Password { get; set; }
-        public string[] Inspos { get; set; }
+        public string[] LikedInspos { get; set; }
+        public string[] Notifications { get; set; }
         public string Salt { get; set; }
 
 
@@ -71,12 +74,14 @@ public class MainUser
         }
     }
 
-    
+  
+
 
     public class ImageUpload
     {
         public static async Task<string> InspoUploadAsync()
         {
+
             string errorMessage = "";
             string InspoURL = "";
             try
@@ -92,12 +97,7 @@ public class MainUser
 
                 var _image = await CrossMedia.Current.PickPhotoAsync();
 
-                //if (file == null)
-                //{
-                //    errorPick.Text = "Please pick a photo!";
-                //    return;
-                //}
-
+               
                 var imageName = await Controller.UploadFileAsync("inspo", _image.GetStream());
 
                 InspoURL = imageName.ToString();
@@ -134,19 +134,21 @@ public class MainUser
 
                 var _image = await CrossMedia.Current.PickPhotoAsync();
 
-                //if (file == null)
-                //{
-                //    errorPick.Text = "Please pick a photo!";
-                //    return;
-                //}
+                if (_image == null)
+                {
+                    errorMessage = "Please pick a photo!";
+                    return errorMessage;
+                }
+                else
+                {
 
-                var imageName = await Controller.UploadFileAsync("profilepicture", _image.GetStream());
+                    var imageName = await Controller.UploadFileAsync("profilepicture", _image.GetStream());
 
-                ProfilePictureURL = imageName.ToString();
+                    ProfilePictureURL = imageName.ToString();
 
-                return ProfilePictureURL;
+                    return ProfilePictureURL;
 
-
+                }
 
             }
             catch (Exception er)

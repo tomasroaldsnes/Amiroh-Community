@@ -20,6 +20,8 @@ namespace Amiroh.Feed
         Inspo _obj = new Inspo();
         private ObservableCollection<Comment> _comments;
 
+        private List<Comment> prevComments = new List<Comment>();
+
         private string url_update_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
 
@@ -34,43 +36,35 @@ namespace Amiroh.Feed
 
 
             _obj = obj;
+            
 
             _comments = new ObservableCollection<Comment>(_obj.Comments);
             listviewComments.ItemsSource = _comments;
 		}
 
+       
+
         private async void btnComment_Clicked(object sender, EventArgs e)
         {
-            Comment obj = new Comment();
-            obj.Text = commentEntry.Text;
-            obj.Username = MainUser.MainUserID.Username;
-            obj.ProfilePicture = MainUser.MainUserID.ProfilePicture;
-
-            _obj.Comments.ToList().Add(obj);
-            _obj.Comments.ToArray();
             
-
-            //_comments.Add(obj);
-
-
             try
             {
-                string postdataJson = JsonConvert.SerializeObject(_obj.Comments);
+                Comment obj = new Comment();
+                obj.Text = commentEntry.Text;
+                obj.Username = MainUser.MainUserID.Username;
+                obj.ProfilePicture = MainUser.MainUserID.ProfilePicture;
+
+                
+
+                string postdataJson = JsonConvert.SerializeObject(obj);
                 var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                 string url = url_update_inspo + _obj._Id.ToString();
-                var response = _client.PutAsync(url, postdataString);
-                var responseString = response.Result.Content.ReadAsStringAsync().Result;
+                var response = _client.PostAsync(url, postdataString);
+                var responseString = await response.Result.Content.ReadAsStringAsync();
 
+                _comments.Add(obj);
 
-                if (response.Result.IsSuccessStatusCode)
-                {
-                    _comments.Add(obj);
-                }
-                else
-                {
-                    await DisplayAlert("Upload Error", "No success", "OK");
-                }
             }
             catch
             {

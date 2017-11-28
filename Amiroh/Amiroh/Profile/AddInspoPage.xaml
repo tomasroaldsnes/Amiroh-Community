@@ -6,29 +6,29 @@
              BackgroundColor="#203E4A"
              >
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#203E4A" Orientation="Vertical">
+        <StackLayout BackgroundColor="#203E4A" Orientation="Vertical" Spacing="30">
             <Label Text="Add an Inspo:" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
             <Button Text="Choose Image" Clicked="AddImageButton_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" BackgroundColor="White"></Button>
-            <Label></Label>
+           
             <Label Text="Add a description for your Inspo 👇" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
             <Editor x:Name="descriptionEntry" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" BackgroundColor="#203E4A" HeightRequest="50" TextChanged="descriptionEntry_TextChanged" >
                 
             </Editor>
-            <Label></Label>
+            
             <ScrollView Orientation="Horizontal">
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Label x:Name="tagEyes" Text="Eyes" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
+                    <Label x:Name="tagLips" Text="Lips" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
+                    <Label x:Name="tagContouring" Text="Contouring" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
+                    <Label x:Name="tagEyebrows" Text="Eyebrows" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
+                    <Label x:Name="tagDay" Text="Day Makeup" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
+                    <Label x:Name="tagNight" Text="Night Makeup" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
+                    <!--<Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
                     <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" />
+                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />-->
                 </StackLayout>
             </ScrollView>
-            
+           
             <Button  x:Name= "btnUpload" Text = "UPLOAD" Clicked="UploadButton_Clicked" IsEnabled="False" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="Black" BackgroundColor="White"></Button>
         </StackLayout>
     </ContentPage.Content>

@@ -43,10 +43,10 @@
                 </Image.GestureRecognizers>
             </Image>
             <!--...............................................................................-->
-            <Image x:Name="btnX" Source="notificationnull.png"  Aspect="AspectFit"  Grid.Row="0" Grid.Column="6" >
+            <Image x:Name="btnSettings" Source="settings.png"  Aspect="AspectFit"  Grid.Row="0" Grid.Column="6" >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer
-                            Tapped="x_Tapped"
+                            Tapped="Settings_Tapped"
                             NumberOfTapsRequired="1" />
                 </Image.GestureRecognizers>
             </Image>

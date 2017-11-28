@@ -8,30 +8,32 @@
                 <SearchBar x:Name="searchContent" Placeholder="Search">
                     
                 </SearchBar>
-                <Image Source="discoverpage.png" Aspect="AspectFill" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"></Image>
-                <!--<Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
+                <!--<Image Source="discoverpage.png" Aspect="AspectFill" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"></Image>-->
+                <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="175" />
+                        <RowDefinition Height="175" />
+                        <RowDefinition Height="175" />
+                        <RowDefinition Height="175"/>
+                        <RowDefinition Height="175"/>
+                        <RowDefinition Height="175" />
+                        <RowDefinition Height="175" />
+                        
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="category1" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"  ></Image>
-                    <Image x:Name="category2" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="0" Grid.Column="1" Aspect="Fill" ></Image>
-                    <Image x:Name="category3" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="1" Grid.Column="0" Aspect="Fill" ></Image>
-                    <Image x:Name="category4" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="1" Grid.Column="1"  Aspect="Fill"></Image>
-                    <Image x:Name="category5" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="2" Grid.Column="0" Aspect="Fill"></Image>
-                    <Image x:Name="category6" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="2" Grid.Column="1" Aspect="Fill"></Image>
-                    <Image x:Name="category7" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="3" Grid.Column="0" Aspect="Fill"></Image>
-                    <Image x:Name="category8" Source="https://www.colorcombos.com/images/colors/FFCCCB.png" Grid.Row="3" Grid.Column="1" Aspect="Fill"></Image>
+                    <Image x:Name="ctgEyes" Source="eyes.png" Grid.Row="0" Grid.Column="0" Aspect="AspectFit" HeightRequest="176" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
+                    <Image x:Name="ctgLips" Source="lips.png" Grid.Row="0" Grid.Column="1" Aspect="AspectFit" HeightRequest="176"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  ></Image>
+                    <Image x:Name="ctgContouring" Source="contouring.png" Grid.Row="1" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
+                    <Image x:Name="ctgEyebrows" Source="eyebrows.png" Grid.Row="1" Grid.Column="1"  Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
+                    <Image x:Name="ctgNight" Source="nightmakeup.png" Grid.Row="2" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
+                    <Image x:Name="ctgDay" Source="daymakeup.png" Grid.Row="2" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
+                    <Image x:Name="ctgTrending" Source="trending.png" Grid.Row="3" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
+                    <Image x:Name="ctgEditor" Source="editorspick.png" Grid.Row="3" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
 
-                </Grid>-->
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

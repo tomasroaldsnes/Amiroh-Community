@@ -15,48 +15,50 @@ namespace Amiroh
         public DiscoverPage()
         {
             InitializeComponent();
-            //category1.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_1));
-            //category2.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_2));
-            //category3.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_3));
-            //category4.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_4));
-            //category5.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_5));
-            //category6.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_6));
-            //category7.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_7));
-            //category8.GestureRecognizers.Add(new TapGestureRecognizer(CategoryTapped_8));
-        }
+            ctgEyes.GestureRecognizers.Add(new TapGestureRecognizer(Eyes_Tapped));
+            ctgLips.GestureRecognizers.Add(new TapGestureRecognizer(Lips_Tapped));
+            ctgContouring.GestureRecognizers.Add(new TapGestureRecognizer(Contouring_Tapped));
+            ctgEyebrows.GestureRecognizers.Add(new TapGestureRecognizer(Eyebrows_Tapped));
+            ctgNight.GestureRecognizers.Add(new TapGestureRecognizer(Night_Tapped));
+            ctgDay.GestureRecognizers.Add(new TapGestureRecognizer(Day_Tapped));
+            ctgTrending.GestureRecognizers.Add(new TapGestureRecognizer(Trending_Tapped));
+            ctgEditor.GestureRecognizers.Add(new TapGestureRecognizer(EditorsPick_Tapped));
 
-        private async void CategoryTapped_1(View arg1, object arg2)
-        {
-            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Category 1"));
-        }
-        private async void CategoryTapped_2(View arg1, object arg2)
-        {
-            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Category 2"));
-        }
-        private async void CategoryTapped_3(View arg1, object arg2)
-        {
-            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Category 3"));
-        }
-        private async void CategoryTapped_4(View arg1, object arg2)
-        {
-            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Category 4"));
 
         }
-        private async void CategoryTapped_5(View arg1, object arg2)
+
+        private async void Eyes_Tapped(View arg1, object arg2)
         {
-            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Category 5"));
+            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Eyes"));
         }
-        private async void CategoryTapped_6(View arg1, object arg2)
+        private async void Lips_Tapped(View arg1, object arg2)
         {
-            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Category 6"));
+            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Lips"));
         }
-        private async void CategoryTapped_7(View arg1, object arg2)
+        private async void Contouring_Tapped(View arg1, object arg2)
         {
-            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Category 7"));
+            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Contouring"));
         }
-        private async void CategoryTapped_8(View arg1, object arg2)
+        private async void Eyebrows_Tapped(View arg1, object arg2)
         {
-            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Category 8"));
+            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Eyebrows"));
+
+        }
+        private async void Night_Tapped(View arg1, object arg2)
+        {
+            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Night"));
+        }
+        private async void Day_Tapped(View arg1, object arg2)
+        {
+            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Day"));
+        }
+        private async void Trending_Tapped(View arg1, object arg2)
+        {
+            await Navigation.PushAsync(new DiscoverPageCategoryOverview("Trending"));
+        }
+        private async void EditorsPick_Tapped(View arg1, object arg2)
+        {
+            await Navigation.PushAsync(new DiscoverPageCategoryOverview("EditorsPick"));
         }
 
     }

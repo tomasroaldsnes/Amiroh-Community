@@ -1,145 +1,168 @@
-﻿using Amiroh.Classes;
-using ModernHttpClient;
-using Newtonsoft.Json;
-using Plugin.Connectivity;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin;
+
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+using System.Net.Http;
+using ModernHttpClient;
+using Xamarin;
+using Amiroh.Classes;
+using Plugin.Connectivity;
 
 namespace Amiroh
 {
+    
+
+    
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiscoverPageCategoryOverview : ContentPage
     {
-        private string CategoryType = "";
-        private ObservableCollection<Inspo> _inspos;
-        private ObservableCollection<Inspo> _sortedInspos;
-        private string url_photo = "http://192.168.1.10:3050/AmirohAPI/inspos/";
+        private const string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/";
+        
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
+        private ObservableCollection<Inspo> _posts;
+        ObservableCollection<Inspo> sortedByPoints_posts;
+        private string _category = "";
+        private bool InspoListLoaded = false;
 
         public DiscoverPageCategoryOverview(string category)
         {
             InitializeComponent();
-            CategoryType = category;
-
-           
+            Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
+            _category = category;
+            
         }
 
-        protected async override void OnAppearing()
+        private async void LoadInspos()
         {
             try
             {
 
-                if (CrossConnectivity.Current.IsConnected)
+                //check is device is connected to the internet
+
+                var content = await _client.GetStringAsync(url_photo);
+                var posts = JsonConvert.DeserializeObject<List<Inspo>>(content);
+
+                
+
+
+                //Sort list after Categories if/else statement
+                if (_category == "Eyes")
                 {
-
-                    var content_p = await _client.GetStringAsync(url_photo);
-                    var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
-
-                    _inspos = new ObservableCollection<Inspo>(pI);
+                    posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Eyes"));
                     
-                    foreach (var inspo in _inspos)
-                    {
-                        if (inspo.Tags != null)
-                        {
-                            if (inspo.Tags.Contains<string>(CategoryType))
-                            {
-                                _sortedInspos.Add(inspo);
-                            }
-                        }
-                    }
+
                 }
+                else if(_category == "Lips")
+                {
+                    posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Lips"));
+                }
+                else if (_category == "Eyebrows")
+                {
+                    posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Eyebrows"));
+                }
+                else if (_category == "Contouring")
+                {
+                    posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Contouring"));
+                }
+                else if (_category == "Night")
+                {
+                    posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Night"));
+                }
+                else if (_category == "Day")
+                {
+                    posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Day"));
+                }
+                else if (_category == "Trending")
+                {
+                    posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Trending"));
+                }
+                else if (_category == "EditorsPick")
+                {
+                    posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("EditorsPick"));
+                }
+
+                _posts = new ObservableCollection<Inspo>(posts);
+                sortedByPoints_posts = new ObservableCollection<Inspo>(
+                         _posts.OrderBy(inspo => inspo).Reverse<Inspo>()
+                         );
+                listviewInspo.ItemsSource = sortedByPoints_posts;
+
+
+
+
+                if(listviewInspo.IsRefreshing == true)
+                {
+                    listviewInspo.IsRefreshing = false;
+                }
+
+
             }
             catch (Exception e)
             {
                 try
                 {
                     Insights.Report(e);
-                    await DisplayAlert("Useless", "I tried to load your inspos, but I failed. Horribly.", "Be better");
+                    await DisplayAlert("Useless", "I tried to load the inspos, but I failed. Horribly.", "Be better");
                 }
                 catch
                 {
-                    await DisplayAlert("Aww, maaaaan...", "I tried to load your inspos, but I failed. Horribly.", "Be better");
+                    await DisplayAlert("Error", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
                 }
             }
+            finally
+            {
+                this.IsBusy = false;
+            }
 
+
+            base.OnAppearing();
         }
 
-        private async void InspoTap(int position)
+        protected override void OnAppearing()
         {
-            await Navigation.PushAsync(new DiscoverPageCategory(CategoryType, position));
+            //see if app needs to load new list of inspos
+            if (!InspoListLoaded)
+            {
+                LoadInspos();
+                InspoListLoaded = true;
+            }
+           
+               
+              
+        }
+        protected override void OnDisappearing()
+        {
+            InspoListLoaded = false;
         }
 
-        public void GridCreation()
+            private async void BtnError_Clicked(object sender, EventArgs e)
         {
+            Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
+            await Navigation.PopAsync();
+        }
+
+        private async void listviewInspo_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
             try
             {
-                gridDiscoverCategoryType.RowDefinitions = new RowDefinitionCollection();
-                gridDiscoverCategoryType.ColumnDefinitions = new ColumnDefinitionCollection();
-
-                gridDiscoverCategoryType.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
-                gridDiscoverCategoryType.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
-                gridDiscoverCategoryType.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
-
-                for (int MyCount = 0; MyCount < 3; MyCount++)
+                if (listviewInspo.SelectedItem != null)
                 {
 
-                    gridDiscoverCategoryType.RowDefinitions.Add(new RowDefinition { Height = new GridLength(115, GridUnitType.Absolute) });
-
-                }
-
-
-
-                //set row and columns => column to 1 since AddInspoBtn should always be at position 0,0
-                int row = 0;
-                int column = 0;
-
-                
-
-                for (int i = 0; i < _inspos.Count(); i++)
-                {
+                    var obj = e.Item as Inspo;
+                    var page = new ImagePage(obj);
+                    page.BindingContext = obj;
 
 
-                    if (column < 2)
-                    {
-                        var tappedInspo = new TapGestureRecognizer();
-                        tappedInspo.Tapped += (s, e) =>
-                        {
-                            InspoTap(i);
-                        };
-
-
-                        Image inspo = new Image { Source = _inspos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 115, WidthRequest = 115, Rotation = -90 };
-                        inspo.GestureRecognizers.Add(tappedInspo);
-                        gridDiscoverCategoryType.Children.Add(inspo, column, row);
-                        column++;
-                    }
-                    else if (column == 2)
-                    {
-                        var tappedInspo = new TapGestureRecognizer();
-                        tappedInspo.Tapped += (s, e) =>
-                        {
-                            InspoTap(i);
-                        };
-
-
-                        Image inspo = new Image { Source = _inspos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 115, WidthRequest = 115, Rotation = -90 };
-                        inspo.GestureRecognizers.Add(tappedInspo);
-                        gridDiscoverCategoryType.Children.Add(inspo, column, row);
-                        column = 0;
-                        row++;
-                    }
-                    else DisplayAlert("Error", "Something went wrong with loading userphotos", "OK");
-
-
-
+                    await Navigation.PushAsync(page);
+                    //listviewInspo.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -147,14 +170,19 @@ namespace Amiroh
                 try
                 {
                     Insights.Report(ex);
-                    DisplayAlert("Dammit", "I'm not ready to upload an inspo. Like, emotionally, you know?", "*Takes a deep breath*");
+                    await DisplayAlert("Useless", "I tried to load the inspo, but I failed. Horribly.", "Be better");
                 }
                 catch
                 {
-                    DisplayAlert("Dammit", "I'm not ready to upload an inspo. Like, emotionally, you know?", "*Counting backwards from 10*");
+                    await DisplayAlert("Error", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
                 }
             }
+        }
 
+        private void listviewInspo_Refreshing(object sender, EventArgs e)
+        {
+            LoadInspos();
+            
         }
     }
 }

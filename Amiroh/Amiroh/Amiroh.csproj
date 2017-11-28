@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Discover\DiscoverPageCategoryOverview.xaml.cs">
+      <DependentUpon>DiscoverPageCategoryOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Feed\CommentsPage.xaml.cs">
       <DependentUpon>CommentsPage.xaml</DependentUpon>
     </Compile>
@@ -50,9 +53,6 @@
     <Compile Include="Controllers\Test.cs" />
     <Compile Include="Discover\DiscoverPage.xaml.cs">
       <DependentUpon>DiscoverPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Discover\DiscoverPageCategoryOverview.xaml.cs">
-      <DependentUpon>DiscoverPageCategoryOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Profile\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
@@ -111,6 +111,9 @@
     </Reference>
     <Reference Include="ImageCircle.Forms.Plugin.Abstractions, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xam.Plugins.Forms.ImageCircle.1.8.1\lib\portable-net45+wp80+win8+wpa81\ImageCircle.Forms.Plugin.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="IncrementalListView.FormsPlugin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\IncrementalListView.FormsPlugin.1.0.0\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10\IncrementalListView.FormsPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.Mobile, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Azure.Mobile.0.17.1\lib\portable-net45+win8+wpa81+wp8\Microsoft.Azure.Mobile.dll</HintPath>
@@ -253,13 +256,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Discover\DiscoverPageCategoryOverview.xaml">
+    <EmbeddedResource Include="Feed\CommentsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Feed\CommentsPage.xaml">
+    <EmbeddedResource Include="Discover\DiscoverPageCategoryOverview.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

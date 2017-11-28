@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
+using Plugin.Media;
 
 namespace Amiroh
 {
@@ -17,6 +18,7 @@ namespace Amiroh
         public App()
         {
             InitializeComponent();
+            CrossMedia.Current.Initialize();
 
             if (!IsUserLoggedIn)
             {

@@ -14,12 +14,33 @@ using ModernHttpClient;
 using Xamarin;
 using Amiroh.Classes;
 using Plugin.Connectivity;
+using FFImageLoading.Forms;
 
 namespace Amiroh
 {
-    
+    public class CustomCell : ViewCell
+    {
+        CachedImage image = null;
 
-    
+        public CustomCell()
+        {
+            image = new CachedImage();
+            View = image;
+        }
+
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+
+            var item = BindingContext as Inspo;
+            if (item != null)
+            {
+                image.Source = item.URL;
+            }
+        }
+    }
+
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InspoPage : ContentPage
     {
@@ -37,6 +58,7 @@ namespace Amiroh
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
             
         }
+       
 
         private async void LoadInspos()
         {
@@ -56,6 +78,7 @@ namespace Amiroh
 
 
                 listviewInspo.ItemsSource = sortedByPoints_posts;
+                
 
                 if(listviewInspo.IsRefreshing == true)
                 {

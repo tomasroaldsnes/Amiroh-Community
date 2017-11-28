@@ -29,7 +29,7 @@ namespace Amiroh
         private string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/user/";
        // private string url_create_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos";
       
-        private const string url_user = "http://10.5.50.138:3050/AmirohAPI/users/username/";
+        private const string url_user = "http://138.68.137.52:3000/AmirohAPI/users/username/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
        // private ObservableCollection<Inspo> _profileImages;
         //private ObservableCollection<User> _users;
@@ -45,7 +45,7 @@ namespace Amiroh
 
             if(MainUser.MainUserID.ProfilePicture == "" | MainUser.MainUserID.ProfilePicture == null)
             {
-                MainUser.MainUserID.ProfilePicture = "https://i.pinimg.com/736x/d9/ea/0d/d9ea0d78ace304f631df1fd6e679b31b--prom-makeup-looks-pretty-prom-makeup.jpg";
+                imgProfilePicture.Source = "profile.png";
             }
 
             if(MainUser.MainUserID.ProfileDescription == "" | MainUser.MainUserID.ProfileDescription == null)
@@ -66,7 +66,7 @@ namespace Amiroh
             try
             {
                 
-                var content_p = await _client.GetStringAsync(url_photo + MainUser.MainUserID.Username);
+              var content_p = await _client.GetStringAsync(url_photo + MainUser.MainUserID.Username);
              var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
 
              _userPhotos = new ObservableCollection<Inspo>(pI);
@@ -119,35 +119,69 @@ namespace Amiroh
         {
             
             try
-                {
-                     string profilePictureURL = "";
-                     profilePictureURL = await ImageUpload.ProfilePictureUploadAsync();
+              {
+                   string profilePictureURL = "";
+                   profilePictureURL = await ImageUpload.ProfilePictureUploadAsync();
                    
-                
-                    string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL });
+
+                   
+
+                if (profilePictureURL != "")
+                {
+                    string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL } );
                     var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                     string new_url = url_user + MainUser.MainUserID.Username;
                     var response = _client.PutAsync(new_url, postdataString);
                     var responseString = response.Result.Content.ReadAsStringAsync().Result;
-                   
+
 
                     if (response.Result.IsSuccessStatusCode)
                     {
-                        //this should be changed to...something
-                        await Navigation.PushModalAsync(new MainPage());
+
+                        imgProfilePicture.Source = profilePictureURL;
                     }
                     else
                     {
                         await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
                     }
                 }
-                catch (Exception e)
+                else
                 {
+                    bool IsPictureReady = false;
+                    while (!IsPictureReady)
+                    {
+                        if(profilePictureURL != "" | profilePictureURL != null)
+                        {
+                            IsPictureReady = true;
+                        }
+                    }
+                    string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL });
+                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+
+                    string new_url = url_user + MainUser.MainUserID.Username;
+                    var response = _client.PutAsync(new_url, postdataString);
+                    var responseString = response.Result.Content.ReadAsStringAsync().Result;
+
+
+                    if (response.Result.IsSuccessStatusCode)
+                    {
+                        imgProfilePicture.Source = profilePictureURL;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
+                    }
+
+                }
+                
+            }
+            catch (Exception e)
+            {
                     try
                     {
-                        Insights.Report(e);
-                        await DisplayAlert("Oh God, not again", "I tried to upload your profile picture, but I failed. Miserably.", "*Takes a deep breath*");
+                         Insights.Report(e);
+                         await DisplayAlert("Oh God, not again", "I tried to upload your profile picture, but I failed. Miserably.", "*Takes a deep breath*");
                     }
                     catch
                     {
@@ -187,7 +221,7 @@ namespace Amiroh
 
                 if (!IsInspoLoaded)
                 {
-                    for (int MyCount = 0; MyCount < _userPhotos.Count(); MyCount++)
+                    for (int MyCount = 0; MyCount < _userPhotos.Count()+2; MyCount++)
                     {
 
                         ProfileGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
@@ -215,18 +249,19 @@ namespace Amiroh
 
                     if (column < 1)
                     {
-                        ProfileGrid.Children.Add(new CachedImage{ Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 145, VerticalOptions = LayoutOptions.StartAndExpand, CacheDuration = TimeSpan.FromDays(7) }, 0, 5, row, row+2);
+                        ProfileGrid.Children.Add(new CachedImage{ Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 0, 5, row, row+1);
                         
                         column++;
                     }
                     else if (column == 1)
                     {
-                        ProfileGrid.Children.Add(new CachedImage { Source = _userPhotos[i].URL, Aspect = Aspect.AspectFill, HeightRequest = 145, VerticalOptions = LayoutOptions.StartAndExpand, CacheDuration = TimeSpan.FromDays(7) }, 5 , 10, row, row+2);
+                        ProfileGrid.Children.Add(new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand}, 5 , 10, row, row+1);
                         column = 0;
                         row++;
                     }
                     else DisplayAlert("Error", "Something went wrong with loading userphotos", "OK");
 
+                    
 
 
                 }
@@ -253,7 +288,7 @@ namespace Amiroh
             //
         }
 
-        private void x_Tapped(object sender, EventArgs e)
+        private void Settings_Tapped(object sender, EventArgs e)
         {
             //
         }

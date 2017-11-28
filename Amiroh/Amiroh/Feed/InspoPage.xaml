@@ -3,44 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.InspoPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:plugin="clr-namespace:IncrementalListView.FormsPlugin;assembly=IncrementalListView.FormsPlugin"
              BackgroundColor="#FFFFFF"
              
              Padding="15,20,15,10">
-    <StackLayout x:Name="layout">
-        
 
 
 
 
-<ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True"
-               SeparatorVisibility="None" ItemTapped="listviewInspo_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="listviewInspo_Refreshing">
-           
-                <ListView.ItemTemplate>
+
+
+    <ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RecycleElement"
+               SeparatorVisibility="None" ItemTapped="listviewInspo_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="listviewInspo_Refreshing" Margin="20">
+    
+        <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                        <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Vertical" Margin="0,20,0,20">
                                
 
                             <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" VerticalOptions="Start"
 			                    DownsampleHeight="300"
+                                FadeAnimationEnabled="True"
                                 LoadingPriority="High"                      
-                                CacheDuration="0"
+                                CacheDuration="1"
+                                DownsampleToViewSize ="True"
 			                    Source = "{Binding URL}" >       
                             </ffimageloading:CachedImage>
                             <Label Text="{Binding Username}" TextColor="Black" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Small" VerticalOptions="Start" HorizontalOptions="StartAndExpand" ></Label>
-                            
-                            <Label></Label>
-                            <Label></Label>
-                                
-                        
-                           
-                            
                         </StackLayout>
                     </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                </ListView>
+
+        
+
+    </ListView>
 
 
-    </StackLayout>
+    
 </ContentPage>

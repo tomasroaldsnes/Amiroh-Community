@@ -1,10 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Amiroh.DiscoverPageCategoryOverview">
-    <ContentPage.Content>
-        <ScrollView>
-            <Grid x:Name="gridDiscoverCategoryType" ></Grid>
-        </ScrollView>
-    </ContentPage.Content>
+             x:Class="Amiroh.DiscoverPageCategoryOverview"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             BackgroundColor="#FFFFFF"
+             Padding="15,20,15,10">
+    <StackLayout x:Name="layout">
+        
+
+
+
+
+<ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True"
+               SeparatorVisibility="None" ItemTapped="listviewInspo_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="listviewInspo_Refreshing">
+           
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                               
+
+                            <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" VerticalOptions="Start"
+			                    DownsampleHeight="300"
+                                LoadingPriority="High"                      
+                                CacheDuration="0"
+			                    Source = "{Binding URL}" >       
+                            </ffimageloading:CachedImage>
+                            <Label Text="{Binding Username}" TextColor="Black" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Small" VerticalOptions="Start" HorizontalOptions="StartAndExpand" ></Label>
+                            
+                            <Label></Label>
+                            <Label></Label>
+                                
+                        
+                           
+                            
+                        </StackLayout>
+                    </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                </ListView>
+
+
+    </StackLayout>
 </ContentPage>
