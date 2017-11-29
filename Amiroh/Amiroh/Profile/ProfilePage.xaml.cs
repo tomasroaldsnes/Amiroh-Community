@@ -70,6 +70,14 @@ namespace Amiroh
              var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
 
              _userPhotos = new ObservableCollection<Inspo>(pI);
+
+                //set the number of points to the correct amount
+                int userPoints = 0;
+                foreach (var image in _userPhotos)
+                {
+                    userPoints += image.Points;
+                }
+                numberOfPoints.Text = userPoints.ToString();
   
             }
             catch (Exception e)
@@ -225,8 +233,6 @@ namespace Amiroh
                     {
 
                         ProfileGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
-
-
 
                     }
 

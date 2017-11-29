@@ -6,15 +6,15 @@
              xmlns:plugin="clr-namespace:IncrementalListView.FormsPlugin;assembly=IncrementalListView.FormsPlugin"
              BackgroundColor="#FFFFFF"
              
-             Padding="15,20,15,10">
+             Padding="10,0,10,10">
 
 
+    
 
-
-
-
-    <ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RecycleElement"
-               SeparatorVisibility="None" ItemTapped="listviewInspo_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="listviewInspo_Refreshing" Margin="20">
+    <StackLayout>
+    <ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RecycleElement" VerticalOptions="FillAndExpand"
+               SeparatorVisibility="None" ItemTapped="listviewInspo_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="listviewInspo_Refreshing" Margin="20"
+               >
     
         <ListView.ItemTemplate>
                     <DataTemplate>
@@ -39,7 +39,28 @@
         
 
     </ListView>
-
-
     
+    
+    <AbsoluteLayout HorizontalOptions="Fill" HeightRequest="20" MinimumWidthRequest="300" BackgroundColor="Transparent">
+        
+        <Image x:Name="btnSocial" Source="feedfave.png" HeightRequest="25" WidthRequest="25"  Aspect="AspectFit" 
+               AbsoluteLayout.LayoutBounds="0,1,25,25" AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                            Tapped="Social_Tapped"
+                            NumberOfTapsRequired="1" />
+            </Image.GestureRecognizers>
+        </Image>
+     
+        <Image x:Name="btnAddInspo" Source="addinspo.png" HeightRequest="30" WidthRequest="30"  Aspect="AspectFit" 
+                AbsoluteLayout.LayoutBounds="1,1,30,30"
+               AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                            Tapped="AddInspo_Tapped"
+                            NumberOfTapsRequired="1" />
+            </Image.GestureRecognizers>
+        </Image>
+    </AbsoluteLayout>
+    </StackLayout>
 </ContentPage>

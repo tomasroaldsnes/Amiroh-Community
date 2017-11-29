@@ -167,5 +167,17 @@ namespace Amiroh
             LoadInspos();
             
         }
+
+        private async void AddInspo_Tapped(object sender, EventArgs e)
+        {
+
+            await Navigation.PushAsync(new AddInspoPage());
+        }
+
+        private void Social_Tapped(object sender, EventArgs e)
+        {
+            //
+
+        }
     }
 }

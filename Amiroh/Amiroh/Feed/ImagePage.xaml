@@ -25,6 +25,7 @@
                     <Image x:Name="btnPoints" Source="points.png" Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" >
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
+                                x:Name="PointsTappedHandler"
                                 Tapped="Points_Tapped"
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>

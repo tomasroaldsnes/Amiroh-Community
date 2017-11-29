@@ -36,11 +36,22 @@ public class MainUser
         public string ProfilePicture { get; set; }
         public string Password { get; set; }
         public string[] LikedInspos { get; set; }
-        public string[] Notifications { get; set; }
+        public string[] Collection { get; set; }
+        public Notification[] Notifications { get; set; }
         public string Salt { get; set; }
 
 
 
+    }
+
+    public class Notification
+    {
+        public string Username { get; set; }
+        public string Text { get; set; }
+        public string URL { get; set; }
+        public bool Point { get; set; }
+        public bool Fave { get; set; }
+        public bool Comment { get; set; }
     }
 
     public class Comment
@@ -58,7 +69,9 @@ public class MainUser
         public string Description { get; set; }
         public string URL { get; set; }
         public string UserId { get; set; }
+        public string[] HasBeenLikedBy{ get; set; }
         public Comment[] Comments { get; set; }
+        public Notification[] Notifications { get; set; }
         public int Points { get; set; }
         public string[] Tags { get; set; } 
         public string[] ProductsUsed { get; set; }
