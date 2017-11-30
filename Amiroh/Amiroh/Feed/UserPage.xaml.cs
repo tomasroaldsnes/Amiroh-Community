@@ -23,12 +23,12 @@ namespace Amiroh
     
     
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage
+    public partial class UserPage : ContentPage
     {
         
         private string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/user/";
         private string url_user_collection = "http://138.68.137.52:3000/AmirohAPI/users/collection/";
-      
+        private const string url_addFaved = "http://138.68.137.52:3000/AmirohAPI/users/faved/";
         private const string url_user = "http://138.68.137.52:3000/AmirohAPI/users/username/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
        // private ObservableCollection<Inspo> _profileImages;
@@ -39,25 +39,18 @@ namespace Amiroh
         private bool IsInspoLoaded = false;
         private bool NewInspoUploaded = false;
 
+        private string Username = "";
+        User userObj;
 
-        public ProfilePage()
+        public UserPage(string _username)
         {
             InitializeComponent();
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
+            Username = _username;
 
-            if(MainUser.MainUserID.ProfilePicture == "" | MainUser.MainUserID.ProfilePicture == null)
-            {
-                imgProfilePicture.Source = "profile.png";
-            }
+            
 
-            if(MainUser.MainUserID.ProfileDescription == "" | MainUser.MainUserID.ProfileDescription == null)
-            {
-                MainUser.MainUserID.ProfileDescription = "Welcome to Amiroh! This is your profile description. Write something catchy. You can edit me in Settings.";
-            }
-
-            this.BindingContext = MainUser.MainUserID;
-
-            imgProfilePicture.GestureRecognizers.Add(new TapGestureRecognizer(ProfileImageTap));
+          
 
         }
         
@@ -67,8 +60,14 @@ namespace Amiroh
             
             try
             {
-                
-             var content_p = await _client.GetStringAsync(url_photo + MainUser.MainUserID.Username);
+            var content_u = await _client.GetStringAsync(url_photo + Username);
+            var uObj = JsonConvert.DeserializeObject<User>(content_u);
+
+                this.BindingContext = uObj;
+                userObj = uObj;
+
+
+             var content_p = await _client.GetStringAsync(url_photo + Username);
              var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
 
              _userPhotos = new ObservableCollection<Inspo>(pI);
@@ -125,104 +124,9 @@ namespace Amiroh
            base.OnAppearing();
         }
 
-        private async void ProfileImageTap(View arg1, object arg2)
-        {
-            
-            try
-              {
-                   string profilePictureURL = "";
-                   profilePictureURL = await ImageUpload.ProfilePictureUploadAsync();
-                   
+       
 
-                   
-
-                if (profilePictureURL != "")
-                {
-                    string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL } );
-                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
-
-                    string new_url = url_user + MainUser.MainUserID.Username;
-                    var response = _client.PutAsync(new_url, postdataString);
-                    var responseString = response.Result.Content.ReadAsStringAsync().Result;
-
-
-                    if (response.Result.IsSuccessStatusCode)
-                    {
-
-                        imgProfilePicture.Source = profilePictureURL;
-                    }
-                    else
-                    {
-                        await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
-                    }
-                }
-                else
-                {
-                    bool IsPictureReady = false;
-                    while (!IsPictureReady)
-                    {
-                        if(profilePictureURL != "" | profilePictureURL != null)
-                        {
-                            IsPictureReady = true;
-                        }
-                    }
-                    string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL });
-                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
-
-                    string new_url = url_user + MainUser.MainUserID.Username;
-                    var response = _client.PutAsync(new_url, postdataString);
-                    var responseString = response.Result.Content.ReadAsStringAsync().Result;
-
-
-                    if (response.Result.IsSuccessStatusCode)
-                    {
-                        imgProfilePicture.Source = profilePictureURL;
-                    }
-                    else
-                    {
-                        await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
-                    }
-
-                }
-                
-            }
-            catch (Exception e)
-            {
-                    try
-                    {
-                         Insights.Report(e);
-                         await DisplayAlert("Oh God, not again", "I tried to upload your profile picture, but I failed. Miserably.", "*Takes a deep breath*");
-                    }
-                    catch
-                    {
-                        await DisplayAlert("Oh God, not again", "I tried to load your profile, but I failed. Horribly.", "*Counting backwards from 10*");
-                    }
-                }
-            
-           
-        }
-
-        private async void AddInspo_Clicked(object sender, EventArgs e)
-        {
-            try
-            {
-                NewInspoUploaded = true;
-                await Navigation.PushAsync(new AddInspoPage());
-
-            }
-            catch (Exception ex)
-            {
-                try
-                {
-                    Insights.Report(ex);
-                    await DisplayAlert("Dammit", "I'm not ready to upload an inspo. Like, emotionally, you know?", "*Takes a deep breath*");
-                }
-                catch
-                {
-                    await DisplayAlert("Dammit", "I'm not ready to upload an inspo. Like, emotionally, you know?", "*Counting backwards from 10*");
-                }
-            }
-        }
+       
 
         public void GridCreation()
         {
@@ -291,15 +195,7 @@ namespace Amiroh
 
         }
 
-        private void Notifications_Tapped(object sender, EventArgs e)
-        {
-            //
-        }
-
-        private void Settings_Tapped(object sender, EventArgs e)
-        {
-            //
-        }
+      
         private void InspoGrid_Clicked(object sender, EventArgs e)
         {
             btnInspoGrid.FontFamily = "Lato-Bold.ttf#Lato-Bold";
@@ -338,10 +234,29 @@ namespace Amiroh
 
             }
         }
-        private void ProductPage_Clicked(object sender, EventArgs e)
+
+        private async void Fave_Clicked(object sender, EventArgs e)
         {
-            //
+
+
+            string postdataJson = JsonConvert.SerializeObject(new { _id = userObj._Id });
+            var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+
+            string new_url = url_addFaved + MainUser.MainUserID.ID;
+            var response = _client.PostAsync(new_url, postdataString);
+            var responseString = response.Result.Content.ReadAsStringAsync().Result;
+
+            if (response.Result.IsSuccessStatusCode)
+            {
+                btnFave.Source = "faved.png";
+                btnFave.IsEnabled = false;
+            }
+            else
+            {
+                await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
+            }
         }
+
         private async void Collection_Clicked(object sender, EventArgs e)
         {
             for (int i = _userPhotos.Count()+6; i > 6; i--)

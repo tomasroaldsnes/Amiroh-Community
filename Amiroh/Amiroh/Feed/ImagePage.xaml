@@ -58,6 +58,13 @@
                     </Image>
                 </StackLayout>
 
+            <Label Text="{Binding Username}" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="18" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                                Tapped="User_Tapped"
+                                NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
             <Label Text="{Binding Description}" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
             
             

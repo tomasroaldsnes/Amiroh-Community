@@ -41,6 +41,9 @@
     <Compile Include="Feed\CommentsPage.xaml.cs">
       <DependentUpon>CommentsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Feed\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Profile\AddInspoPage.xaml.cs">
       <DependentUpon>AddInspoPage.xaml</DependentUpon>
     </Compile>
@@ -263,6 +266,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Discover\DiscoverPageCategoryOverview.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Feed\UserPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

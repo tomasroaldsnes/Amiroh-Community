@@ -38,6 +38,7 @@ public class MainUser
         public string[] LikedInspos { get; set; }
         public string[] Collection { get; set; }
         public Notification[] Notifications { get; set; }
+        public string[] FavedUsers { get; set; }
         public string Salt { get; set; }
 
 

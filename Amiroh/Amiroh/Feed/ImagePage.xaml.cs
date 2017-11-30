@@ -133,11 +133,11 @@ namespace Amiroh
         {
             //add to main users collection
             //add inspo._id to user collection
-            string postdataJson = JsonConvert.SerializeObject(new { collections = Obj._Id });
+            string postdataJson = JsonConvert.SerializeObject(new { _id = Obj._Id.ToString() });
 
             var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
-            string url = url_user_collection + MainUser.MainUserID.ID;
+            string url = url_user_collection + MainUser.MainUserID.ID.ToString();
             var response = _client.PostAsync(url, postdataString);
             var responseString = response.Result.Content.ReadAsStringAsync().Result;
 
@@ -159,7 +159,12 @@ namespace Amiroh
         {
             //push page with list of products
         }
-       
+
+        private async void User_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UserPage(Obj.Username));
+        }
+
 
         private async void Backarrow_Tapped(object sender, EventArgs e)
         {

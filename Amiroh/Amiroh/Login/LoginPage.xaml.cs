@@ -91,9 +91,13 @@ namespace Amiroh.Login
                 {
 
                     MainUser.MainUserID.Username = _user[0].Username;
+                    MainUser.MainUserID.ID = _user[0]._Id;
                     MainUser.MainUserID.ProfileDescription = _user[0].ProfileDescription;
                     MainUser.MainUserID.ProfilePicture = _user[0].ProfilePicture;
-                    App.IsUserLoggedIn = true;
+
+                    var app = Application.Current as App;
+                    app.IsUserLoggedIn = false;
+
                     Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
                     await Navigation.PopAsync();
                 }

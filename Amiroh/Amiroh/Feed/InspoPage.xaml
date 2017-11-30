@@ -43,7 +43,7 @@
     
     <AbsoluteLayout HorizontalOptions="Fill" HeightRequest="20" MinimumWidthRequest="300" BackgroundColor="Transparent">
         
-        <Image x:Name="btnSocial" Source="feedfave.png" HeightRequest="25" WidthRequest="25"  Aspect="AspectFit" 
+        <Image x:Name="btnSocial" Source="feedfave.png" HeightRequest="20" WidthRequest="20"  Aspect="AspectFit" 
                AbsoluteLayout.LayoutBounds="0,1,25,25" AbsoluteLayout.LayoutFlags="PositionProportional">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer
@@ -52,7 +52,7 @@
             </Image.GestureRecognizers>
         </Image>
      
-        <Image x:Name="btnAddInspo" Source="addinspo.png" HeightRequest="30" WidthRequest="30"  Aspect="AspectFit" 
+        <Image x:Name="btnAddInspo" Source="addinspo.png" HeightRequest="20" WidthRequest="20"  Aspect="AspectFit" 
                 AbsoluteLayout.LayoutBounds="1,1,30,30"
                AbsoluteLayout.LayoutFlags="PositionProportional">
             <Image.GestureRecognizers>

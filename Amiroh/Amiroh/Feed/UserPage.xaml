@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="Amiroh.ProfilePage"
+             x:Class="Amiroh.UserPage"
              BackgroundColor="#FFFFFF"
              Padding="10,10,10,10">
 
@@ -35,26 +35,12 @@
                 <Label x:Name="numberOfPoints" Text="354" FontSize="Default" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
             </StackLayout>
             <!--...............................................................................-->
-            <Image x:Name="btnNotifications" Source="notificationnull.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="4" >
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                            Tapped="Notifications_Tapped"
-                            NumberOfTapsRequired="1" />
-                </Image.GestureRecognizers>
-            </Image>
+           
             <!--...............................................................................-->
-            <Image x:Name="btnSettings" Source="settings.png"  Aspect="AspectFit"  Grid.Row="0" Grid.Column="6" >
+            <Image x:Name="btnFave" Source="fave.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="8" >
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer
-                            Tapped="Settings_Tapped"
-                            NumberOfTapsRequired="1" />
-                </Image.GestureRecognizers>
-            </Image>
-            <!--...............................................................................-->
-            <Image x:Name="btnAddInspo" Source="addinspo.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="8" >
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                            Tapped="AddInspo_Clicked"
+                            Tapped="Fave_Clicked"
                             NumberOfTapsRequired="1" />
                 </Image.GestureRecognizers>
             </Image>
