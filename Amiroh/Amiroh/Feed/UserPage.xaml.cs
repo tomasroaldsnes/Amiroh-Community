@@ -27,8 +27,11 @@ namespace Amiroh
     {
         
         private string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/user/";
+
         private string url_user_collection = "http://138.68.137.52:3000/AmirohAPI/users/collection/";
+
         private const string url_addFaved = "http://138.68.137.52:3000/AmirohAPI/users/faved/";
+
         private const string url_user = "http://138.68.137.52:3000/AmirohAPI/users/username/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
        // private ObservableCollection<Inspo> _profileImages;
@@ -40,7 +43,8 @@ namespace Amiroh
         private bool NewInspoUploaded = false;
 
         private string Username = "";
-        User userObj;
+        private ObservableCollection<User> _user;
+        
 
         public UserPage(string _username)
         {
@@ -50,7 +54,7 @@ namespace Amiroh
 
             
 
-          
+
 
         }
         
@@ -60,14 +64,18 @@ namespace Amiroh
             
             try
             {
-            var content_u = await _client.GetStringAsync(url_photo + Username);
-            var uObj = JsonConvert.DeserializeObject<User>(content_u);
+            var content_u = await _client.GetStringAsync(url_user + Username);
+            var uObj = JsonConvert.DeserializeObject<List<User>>(content_u);
 
-                this.BindingContext = uObj;
-                userObj = uObj;
+             _user = new ObservableCollection<User>(uObj);
+
+             this.BindingContext = _user[0];
+             lblUsername.Text = lblUsername.Text.ToUpper();
 
 
-             var content_p = await _client.GetStringAsync(url_photo + Username);
+
+
+                var content_p = await _client.GetStringAsync(url_photo + Username);
              var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
 
              _userPhotos = new ObservableCollection<Inspo>(pI);
@@ -206,7 +214,7 @@ namespace Amiroh
             int row = 4;
             int column = 0;
 
-            for (int i = _userCollection.Count()+6; i > 6; i--)
+            for (int i = _userCollection.Count()+4; i > 4; i--)
             {
                 ProfileGrid.Children.RemoveAt(i);
             }
@@ -239,7 +247,7 @@ namespace Amiroh
         {
 
 
-            string postdataJson = JsonConvert.SerializeObject(new { _id = userObj._Id });
+            string postdataJson = JsonConvert.SerializeObject(new { _id = _user[0]._Id });
             var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
             string new_url = url_addFaved + MainUser.MainUserID.ID;
@@ -250,16 +258,19 @@ namespace Amiroh
             {
                 btnFave.Source = "faved.png";
                 btnFave.IsEnabled = false;
+
+                var _o = new Notification();
+                _o.PushNotification("FAVE", "faved.png", MainUser.MainUserID.Username, _user[0]._Id);
             }
             else
             {
-                await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
+                await DisplayAlert("Fave Error", "I really tried my best here. Promise", "Try harder");
             }
         }
 
         private async void Collection_Clicked(object sender, EventArgs e)
         {
-            for (int i = _userPhotos.Count()+6; i > 6; i--)
+            for (int i = _userPhotos.Count()+4; i > 4; i--)
             {
                 ProfileGrid.Children.RemoveAt(i);
             }
@@ -272,28 +283,36 @@ namespace Amiroh
             btnInspoGrid.FontFamily = "Lato-Light.ttf#Lato-Light";
             btnCollection.FontFamily = "Lato-Bold.ttf#Lato-Bold";
 
-            int row = 4;
-            int column = 0;
-
-            for (int i = 0; i <_userCollection.Count() ; i++)
+            if (_userCollection.Count() != 0 | _userCollection != null)
             {
-                if (column < 1)
-                {
-                    ProfileGrid.Children.Add(new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 0, 5, row, row + 1);
 
-                    column++;
-                }
-                else if (column == 1)
-                {
-                    ProfileGrid.Children.Add(new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 5, 10, row, row + 1);
-                    column = 0;
-                    row++;
-                }
-                else
-                {
-                    await DisplayAlert("Error", "Something went wrong with loading Collection", "OK");
-                }
+                int row = 4;
+                int column = 0;
 
+                for (int i = 0; i < _userCollection.Count(); i++)
+                {
+                    if (column < 1)
+                    {
+                        ProfileGrid.Children.Add(new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 0, 5, row, row + 1);
+
+                        column++;
+                    }
+                    else if (column == 1)
+                    {
+                        ProfileGrid.Children.Add(new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 5, 10, row, row + 1);
+                        column = 0;
+                        row++;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Something went wrong with loading Collection", "OK");
+                    }
+
+                }
+            }
+            else
+            {
+                await DisplayAlert("Collection Error", "This user has no inspos collected.", "Dang.");
             }
             
         }

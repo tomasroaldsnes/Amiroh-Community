@@ -15,14 +15,15 @@
            
  
                 <!--<Image x:Name="bigImage" Source="{Binding URL}" Aspect="AspectFit" Grid.Row="0" Grid.Column="0"></Image>-->
-            <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" VerticalOptions="Start"
-                                LoadingPriority="High"                      
-                                CacheDuration="0"
+            <ffimageloading:CachedImage HorizontalOptions="Fill" 
+                                LoadingPriority="High"
+                                Aspect="AspectFit"        
+                                CacheDuration="1"
 			                    Source = "{Binding URL}" >
             </ffimageloading:CachedImage>
 
             <StackLayout Orientation="Horizontal">
-                    <Image x:Name="btnPoints" Source="points.png" Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" >
+                    <Image x:Name="btnPoints" Source="points.png" Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start"  HorizontalOptions="Fill">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 x:Name="PointsTappedHandler"
@@ -45,11 +46,8 @@
                         </Image.GestureRecognizers>
                     </Image>
                     
-                    <Label></Label>
-                    <Label></Label>
-                    <Label></Label>
                     
-                    <Image x:Name="btnProducts" Source="feed.png"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start">
+                    <Image x:Name="btnProducts" Source="feed.png"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" HorizontalOptions="End">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 Tapped="Products_Tapped"

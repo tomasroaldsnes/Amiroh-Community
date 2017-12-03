@@ -1,28 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Amiroh.Feed.CommentsPage"
+             x:Class="Amiroh.Profile.NotificationPage"
              BackgroundColor="White"
              >
     <StackLayout x:Name="layout">
-        <ListView x:Name="listviewComments" BackgroundColor="White" HasUnevenRows="False"
+        <Label x:Name="NoNewNotifications" TextColor="Black" FontSize="16" FontFamily="Lato-Bold.ttf#Lato-Bold"></Label>
+        <ListView x:Name="listviewNotifications" BackgroundColor="White" HasUnevenRows="False"
                SeparatorVisibility="None" >
 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" Margin="0,20,0,20">
-                            <Image Source="{Binding ProfilePicture}"></Image>
+                            
                             <Label Text="{Binding Username}" TextColor="Black" FontSize="16" FontFamily="Lato-Bold.ttf#Lato-Bold" ></Label>
                             <Label Text="{Binding Text}" TextColor="Black" FontSize="16" FontFamily="Lato-Light.ttf#Lato-Light"></Label>
+                            <Image Source="{Binding URL}" IsEnabled="{Binding Fave}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        x:Name="FaveTappedHandler"
+                                        Tapped="Fave_Tapped"
+                                        NumberOfTapsRequired="1" /> 
+                                </Image.GestureRecognizers>
+                            </Image>
+                            
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Entry x:Name="commentEntry" Placeholder="Write a comment..." FontFamily="Lato-Light.ttf#Lato-Light" ></Entry>
-        <Button x:Name="btnComment" Text="Comment" FontFamily="Lato-Light.ttf#Lato-Light" BackgroundColor="#203E4A" TextColor="White" Clicked="btnComment_Clicked"></Button>
+       
 
     </StackLayout>
 </ContentPage>

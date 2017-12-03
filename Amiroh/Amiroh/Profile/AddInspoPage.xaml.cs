@@ -94,7 +94,7 @@ namespace Amiroh
         {
             
                 
-                    string postdataJson = JsonConvert.SerializeObject(new {  description = descriptionEntry.Text, URL = _URL, username = MainUser.MainUserID.Username,  tags = Tags.ToArray<string>() }); 
+                    string postdataJson = JsonConvert.SerializeObject(new { _id = MainUser.MainUserID.ID, description = descriptionEntry.Text, URL = _URL, username = MainUser.MainUserID.Username,  tags = Tags.ToArray<string>() }); 
                     var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                     var response = _client.PostAsync(url_create_inspo, postdataString);
@@ -114,38 +114,6 @@ namespace Amiroh
               
             
             
-        }
-
-        private void Switch_Toggled_1(object sender, ToggledEventArgs e)
-        {
-            string t = "Tag 1";
-            Tags.Add(t);           
-            
-        }
-        private void Switch_Toggled_2(object sender, ToggledEventArgs e)
-        {
-            string t = "Tag 2";
-            Tags.Add(t);
-        }
-        private void Switch_Toggled_3(object sender, ToggledEventArgs e)
-        {
-            string t = "Tag 3";
-            Tags.Add(t);
-        }
-        private void Switch_Toggled_4(object sender, ToggledEventArgs e)
-        {
-            string t = "Tag 4";
-            Tags.Add(t);
-        }
-        private void Switch_Toggled_5(object sender, ToggledEventArgs e)
-        {
-            string t = "Tag 5";
-            Tags.Add(t);
-        }
-        private void Switch_Toggled_6(object sender, ToggledEventArgs e)
-        {
-            string t = "Tag 6";
-            Tags.Add(t);
         }
 
         private void descriptionEntry_TextChanged(object sender, TextChangedEventArgs e)

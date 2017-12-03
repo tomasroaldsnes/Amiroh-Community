@@ -12,22 +12,24 @@
     
 
     <StackLayout>
-    <ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RecycleElement" VerticalOptions="FillAndExpand"
+        <ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RetainElement" VerticalOptions="FillAndExpand"
                SeparatorVisibility="None" ItemTapped="listviewInspo_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="listviewInspo_Refreshing" Margin="20"
                >
     
         <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                        <StackLayout Orientation="Vertical" Margin="0,20,0,20">
+                        <StackLayout Orientation="Vertical" HeightRequest="300" WidthRequest="500" HorizontalOptions="Fill" Margin="0,20,0,20">
                                
 
-                            <ffimageloading:CachedImage HorizontalOptions="StartAndExpand" VerticalOptions="Start"
-			                    DownsampleHeight="300"
+                            <ffimageloading:CachedImage x:Name="imgInspo" HorizontalOptions="Center" VerticalOptions="Start"
+			                    DownsampleHeight="250"
+                                HeightRequest="250"
+                                WidthRequest="500"
                                 FadeAnimationEnabled="True"
                                 LoadingPriority="High"                      
-                                CacheDuration="1"
-                                DownsampleToViewSize ="True"
+                                CacheDuration="7"
+                                DownsampleToViewSize = "True"
 			                    Source = "{Binding URL}" >       
                             </ffimageloading:CachedImage>
                             <Label Text="{Binding Username}" TextColor="Black" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Small" VerticalOptions="Start" HorizontalOptions="StartAndExpand" ></Label>

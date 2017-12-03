@@ -49,21 +49,25 @@ namespace Amiroh.Feed
             
             try
             {
-                Comment obj = new Comment();
-                obj.Text = commentEntry.Text;
-                obj.Username = MainUser.MainUserID.Username;
-                obj.ProfilePicture = MainUser.MainUserID.ProfilePicture;
-
-                
-
-                string postdataJson = JsonConvert.SerializeObject(obj);
+                string postdataJson = JsonConvert.SerializeObject(new Comment { Username = MainUser.MainUserID.Username, Text = commentEntry.Text, ProfilePicture = MainUser.MainUserID.ProfilePicture } ); //her kan det feile
                 var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                 string url = url_update_inspo + _obj._Id.ToString();
                 var response = _client.PostAsync(url, postdataString);
-                var responseString = await response.Result.Content.ReadAsStringAsync();
+                var responseString = response.Result.Content.ReadAsStringAsync().Result;
 
-                _comments.Add(obj);
+
+                if (response.Result.IsSuccessStatusCode)
+                {
+                     var _o = new Notification();
+                    _o.PushNotification("POINT", _obj.URL, MainUser.MainUserID.Username, _obj.UserId);
+                }
+                else
+                {
+                    await DisplayAlert("Comment Error", "I really tried my best here. Promise", "Try harder");
+                }
+
+               
 
             }
             catch

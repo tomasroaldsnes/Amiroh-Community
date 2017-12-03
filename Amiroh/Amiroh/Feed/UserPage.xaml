@@ -32,12 +32,12 @@
             <!--FIRST ROW START-->
             <StackLayout x:Name="lblPoints" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions ="Center">
                 <Label x:Name="pointslbl" Text="Points" FontSize="Default" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black"></Label>
-                <Label x:Name="numberOfPoints" Text="354" FontSize="Default" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
+                <Label x:Name="numberOfPoints" FontSize="Default" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
             </StackLayout>
             <!--...............................................................................-->
            
             <!--...............................................................................-->
-            <Image x:Name="btnFave" Source="fave.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="8" >
+            <Image x:Name="btnFave" Source="fave.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="2" Grid.RowSpan="2" HeightRequest="50" WidthRequest="70">
                 <Image.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="Fave_Clicked"
@@ -54,14 +54,14 @@
                 <Label x:Name="lblUsername" Text="{Binding Username}" FontSize="24" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black"></Label>
                 <Label x:Name="lblDescription" Text="{Binding ProfileDescription}" FontSize="12" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
             </StackLayout>
-            
-            
+
+
             <!--SECOND ROW END-->
      <!--...........................................................................................................................................-->
             <!--THRID ROW START-->
             <StackLayout Grid.Row="3" Grid.ColumnSpan="10" Orientation="Horizontal" VerticalOptions="StartAndExpand" HeightRequest="50">
                 
-            <Label x:Name="btnInspoGrid" FontSize="16" FontFamily="Lato-Bold.ttf#Lato-Bold" Text="INSPO" HorizontalTextAlignment="Center" TextColor="Black" HorizontalOptions="StartAndExpand">
+            <Label x:Name="btnInspoGrid" FontSize="14" FontFamily="Lato-Bold.ttf#Lato-Bold" Margin="20,0,0,0" Text="INSPO" HorizontalTextAlignment="Center" TextColor="Black" HorizontalOptions="StartAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="InspoGrid_Clicked"
@@ -72,7 +72,7 @@
             <!--...............................................................................-->
 
             
-            <Label x:Name="btnCollection" FontSize="16" FontFamily="Lato-Light.ttf#Lato-Light" Text="COLLECTION" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand">
+            <Label x:Name="btnCollection" FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Margin="0,0,20,0" Text="COLLECTION" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="Collection_Clicked"

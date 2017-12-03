@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -51,6 +51,7 @@ namespace Amiroh
             }
 
         }
+        
 
         private async void Points_Tapped(object sender, EventArgs e)
         {
@@ -77,6 +78,8 @@ namespace Amiroh
                     btnPoints.Source = "pointson.png";
                     PointsAreTapped = true;
 
+                    var _o = new Notification();
+                   _o.PushNotification("POINT", Obj.URL, MainUser.MainUserID.Username, Obj.UserId);
 
                 }
                 else
@@ -104,7 +107,6 @@ namespace Amiroh
 
             //string postdataJson = JsonConvert.SerializeObject(new { title = Obj.Title, description = Obj.Description, URl = Obj.URL, username = Obj.Username, userId = Obj.UserId, productsUsed = Obj.ProductsUsed, points = Obj.Points, tags = Obj.Tags, comments = Obj.Comments });
             string postdataJson = JsonConvert.SerializeObject(new { points = Obj.Points, hasBeenLikedBy = hasbeenliked.ToArray<string>() });
-
             var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
             string url = url_inspo_update + Obj._Id.ToString();

@@ -18,27 +18,28 @@ using FFImageLoading.Forms;
 
 namespace Amiroh
 {
-    public class CustomCell : ViewCell
-    {
-        CachedImage image = null;
+    //public class CustomCell : ViewCell
+    //{
+    //    CachedImage image = null;
 
-        public CustomCell()
-        {
-            image = new CachedImage();
-            View = image;
-        }
+    //    public CustomCell()
+    //    {
+    //        image = new CachedImage();
+    //        View = image;
+    //    }
 
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
+    //    protected override void OnBindingContextChanged()
+    //    {
+    //        image.Source = null;
+    //        base.OnBindingContextChanged();
 
-            var item = BindingContext as Inspo;
-            if (item != null)
-            {
-                image.Source = item.URL;
-            }
-        }
-    }
+    //        var item = BindingContext as Inspo;
+    //        if (item != null)
+    //        {
+    //            image.Source = item.URL;
+    //        }
+    //    }
+    //}
 
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -47,44 +48,81 @@ namespace Amiroh
         private const string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/";
         
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
-        private ObservableCollection<Inspo> _posts;
-        ObservableCollection<Inspo> sortedByPoints_posts;
+        private ObservableCollection<Inspo> _posts_All;
+        ObservableCollection<Inspo> sortedByPoints_First = new ObservableCollection<Inspo>();
 
-        private bool InspoListLoaded = false;
+        private bool isLoading;
 
         public InspoPage()
         {
             InitializeComponent();
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
-            
+
+            listviewInspo.ItemsSource = sortedByPoints_First;
+
+            listviewInspo.ItemAppearing += (sender, e) =>
+            {
+                if (isLoading || sortedByPoints_First.Count == 0)
+                    return;
+
+                //hit bottom!
+                if (e.Item == sortedByPoints_First[sortedByPoints_First.Count - 1])
+                {
+                    LoadMoreInspos();
+                }
+            };
+
+
+            if (listviewInspo.IsRefreshing == true)
+            {
+                listviewInspo.IsRefreshing = false;
+            }
+
         }
-       
 
         private async void LoadInspos()
+        {
+
+            //check is device is connected to the internet
+
+            var content = await _client.GetStringAsync(url_photo);
+            var posts = JsonConvert.DeserializeObject<List<Inspo>>(content);
+
+            _posts_All = new ObservableCollection<Inspo>(
+                posts.OrderBy(inspo => inspo).Reverse<Inspo>());
+
+            for (int i = 0; i < 7; i++)
+            {
+                sortedByPoints_First.Add(_posts_All[i]);
+            }
+            
+
+        }
+
+        private async Task LoadMoreInspos()
+        {
+            isLoading = true;
+
+            //simulator delayed load
+            Device.StartTimer(TimeSpan.FromSeconds(2), () => {
+                for (int i = 0; i < 5; i++)
+                {
+                    sortedByPoints_First.Add(_posts_All[sortedByPoints_First.Count]);
+                }
+                isLoading = false;
+                //stop timer
+                return false;
+            });
+
+
+        }
+
+        protected async override void OnAppearing()
         {
             try
             {
 
-                //check is device is connected to the internet
-
-                var content = await _client.GetStringAsync(url_photo);
-                var posts = JsonConvert.DeserializeObject<List<Inspo>>(content);
-
-                _posts = new ObservableCollection<Inspo>(posts);
-
-                sortedByPoints_posts = new ObservableCollection<Inspo>(
-                     _posts.OrderBy(inspo => inspo).Reverse<Inspo>()
-                     );
-
-
-                listviewInspo.ItemsSource = sortedByPoints_posts;
-                
-
-                if(listviewInspo.IsRefreshing == true)
-                {
-                    listviewInspo.IsRefreshing = false;
-                }
-
+                LoadInspos();
 
             }
             catch (Exception e)
@@ -99,33 +137,13 @@ namespace Amiroh
                     await DisplayAlert("Error", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
                 }
             }
-            finally
-            {
-                this.IsBusy = false;
-            }
-
 
             base.OnAppearing();
-        }
 
-        protected override void OnAppearing()
-        {
-            //see if app needs to load new list of inspos
-            if (!InspoListLoaded)
-            {
-                LoadInspos();
-                InspoListLoaded = true;
-            }
-           
-               
-              
         }
-        protected override void OnDisappearing()
-        {
-            InspoListLoaded = false;
-        }
+        
 
-            private async void BtnError_Clicked(object sender, EventArgs e)
+       private async void BtnError_Clicked(object sender, EventArgs e)
         {
             Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
             await Navigation.PopAsync();

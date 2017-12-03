@@ -13,6 +13,7 @@ using Xamarin.Forms.Xaml;
 using ImageCircle.Forms.Plugin.Abstractions;
 using ImageCircle;
 using Amiroh.Classes;
+using Amiroh.Profile;
 using Amiroh.Login;
 using Plugin.Connectivity;
 using FFImageLoading.Forms;
@@ -36,6 +37,8 @@ namespace Amiroh
         private ObservableCollection<Inspo> _userPhotos;
         private ObservableCollection<Inspo> _userCollection;
 
+        private List<Notification> notificationList = new List<Notification>();
+
         private bool IsInspoLoaded = false;
         private bool NewInspoUploaded = false;
 
@@ -45,7 +48,7 @@ namespace Amiroh
             InitializeComponent();
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
 
-            if(MainUser.MainUserID.ProfilePicture == "" | MainUser.MainUserID.ProfilePicture == null)
+            if(MainUser.MainUserID.ProfilePicture == "" | MainUser.MainUserID.ProfilePicture == null | MainUser.MainUserID.ProfilePicture == "Please pick a photo!")
             {
                 imgProfilePicture.Source = "profile.png";
             }
@@ -55,7 +58,13 @@ namespace Amiroh
                 MainUser.MainUserID.ProfileDescription = "Welcome to Amiroh! This is your profile description. Write something catchy. You can edit me in Settings.";
             }
 
+            if (MainUser.MainUserID.HasNotifications == true)
+            {
+                btnNotifications.Source = "notifications.png";
+            }
+
             this.BindingContext = MainUser.MainUserID;
+            lblUsername.Text = lblUsername.Text.ToUpper();
 
             imgProfilePicture.GestureRecognizers.Add(new TapGestureRecognizer(ProfileImageTap));
 
@@ -75,9 +84,18 @@ namespace Amiroh
 
                 //set the number of points to the correct amount
                 int userPoints = 0;
+                
                 foreach (var image in _userPhotos)
                 {
                     userPoints += image.Points;
+
+                    if(image.Notifications != null)
+                    {
+                        foreach (var notification in image.Notifications)
+                        {
+                            notificationList.Add(notification);
+                        }
+                    }
                 }
                 numberOfPoints.Text = userPoints.ToString();
   
@@ -291,9 +309,11 @@ namespace Amiroh
 
         }
 
-        private void Notifications_Tapped(object sender, EventArgs e)
+        private async void Notifications_Tapped(object sender, EventArgs e)
         {
-            //
+            
+            await Navigation.PushAsync(new NotificationPage());
+            btnNotifications.Source = "notificationsnull.png";
         }
 
         private void Settings_Tapped(object sender, EventArgs e)

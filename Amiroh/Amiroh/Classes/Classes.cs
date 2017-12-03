@@ -1,11 +1,13 @@
 ﻿using Amiroh.Controllers;
 using IncrementalListView.FormsPlugin;
+using ModernHttpClient;
 using Newtonsoft.Json;
 using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin;
@@ -23,23 +25,26 @@ public class MainUser
         public string Username { get; set; }
         public string ProfileDescription { get; set; }
         public string ProfilePicture { get; set; }
+        public bool HasNotifications { get; set; }
 
 
     }
     public class User
     {
         public string _Id { get; set; }
-        public string Name { get; set; }
         public string Username { get; set; }
-        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Name { get; set; }
         public string ProfileDescription { get; set; }
         public string ProfilePicture { get; set; }
-        public string Password { get; set; }
-        public string[] LikedInspos { get; set; }
-        public string[] Collection { get; set; }
-        public Notification[] Notifications { get; set; }
-        public string[] FavedUsers { get; set; }
+        public string Email { get; set; }
         public string Salt { get; set; }
+        public string[] FavedUsers { get; set; }
+        public Notification[] Notifications { get; set; }
+        public string[] Collections { get; set; }
+        public string[] Inspos { get; set; }
+
+
 
 
 
@@ -50,9 +55,62 @@ public class MainUser
         public string Username { get; set; }
         public string Text { get; set; }
         public string URL { get; set; }
-        public bool Point { get; set; }
         public bool Fave { get; set; }
-        public bool Comment { get; set; }
+
+        public async void PushNotification(string type, string url, string username, string userID)
+        {
+            try
+            {
+                string url_user_notification = "http://138.68.137.52:3000/AmirohAPI/users/notification/";
+                HttpClient _client = new HttpClient(new NativeMessageHandler());
+                
+                if (type == "COMMENT")
+                {
+                     string postdataJson = JsonConvert.SerializeObject(new
+                    {
+                        username = username,
+                        text = "HAS COMMENTED ON YOUR INSPO",
+                        URL = url,
+                        fave = false
+                    });
+                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+
+                    string _url = url_user_notification + userID;
+                    var response = await _client.PostAsync(_url, postdataString);
+                }
+                else if (type == "POINT")
+                {
+                   string postdataJson = JsonConvert.SerializeObject(new {
+                        username = username,
+                        text = "HAS AWARED A POINT FOR YOUR INSPO",
+                        URL = url,
+                        fave = false
+                    });
+                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+
+                    string _url = url_user_notification + userID;
+                    var response = await _client.PostAsync(_url, postdataString);
+                }
+                else if (type == "FAVE")
+                {
+                    string postdataJson = JsonConvert.SerializeObject(new
+                    {
+                        username = username,
+                        text = "HAS FAVED YOU",
+                        URL = url,
+                        fave = true
+                    });
+                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+
+                    string _url = url_user_notification + userID;
+                    var response = await _client.PostAsync(_url, postdataString);
+                }
+            }
+            catch (Exception e)
+            {
+                Insights.Report(e);
+            }
+        }
     }
 
     public class Comment
@@ -89,7 +147,7 @@ public class MainUser
     }
 
   
-
+  
 
     public class ImageUpload
     {

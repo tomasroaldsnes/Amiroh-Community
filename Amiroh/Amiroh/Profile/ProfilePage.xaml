@@ -62,7 +62,7 @@
             <!--FIRST ROW END-->
      <!--............................................................................................................-->
             <!--SECOND ROW START-->
-            <Image x:Name="imgProfilePicture" Source="{Binding ProfilePicture}" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="0" HeightRequest="100" WidthRequest="80" Aspect="AspectFit" VerticalOptions="Start"></Image>
+            <Image x:Name="imgProfilePicture" Source="{Binding ProfilePicture}" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" Grid.Column="0" HeightRequest="100" WidthRequest="80" Aspect="AspectFill" VerticalOptions="Start"></Image>
 
             <StackLayout x:Name="usernameAndDescription" Orientation="Vertical" Grid.Row="1" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="7" VerticalOptions="Start">
                 <Label x:Name="lblUsername" Text="{Binding Username}" FontSize="24" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black"></Label>
@@ -75,7 +75,7 @@
             <!--THRID ROW START-->
             <StackLayout Grid.Row="3" Grid.ColumnSpan="10" Orientation="Horizontal" VerticalOptions="StartAndExpand" HeightRequest="50">
                 
-            <Label x:Name="btnInspoGrid" FontSize="16" FontFamily="Lato-Bold.ttf#Lato-Bold" Text="INSPO" HorizontalTextAlignment="Center" TextColor="Black" HorizontalOptions="StartAndExpand">
+            <Label x:Name="btnInspoGrid" FontSize="14" FontFamily="Lato-Bold.ttf#Lato-Bold" Margin="20,0,0,0" Text="INSPO" HorizontalTextAlignment="Center" TextColor="Black" HorizontalOptions="StartAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="InspoGrid_Clicked"
@@ -86,7 +86,7 @@
             <!--...............................................................................-->
 
             
-            <Label x:Name="btnCollection" FontSize="16" FontFamily="Lato-Light.ttf#Lato-Light" Text="COLLECTION" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand">
+            <Label x:Name="btnCollection" FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Margin="0,0,20,0" Text="COLLECTION" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="Collection_Clicked"

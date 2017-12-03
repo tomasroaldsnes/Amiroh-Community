@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Amiroh.Login.NewAccountPageUP"
+             Title=" "
+             BackgroundColor="#203E4A" Padding="10, 20, 10, 20"
+             >
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Transparent" VerticalOptions="Fill">
+            <Label Text="ALMOST THERE! CHOOSE AN USERNAME AND A SUPER-SECURE PASSWORD." FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="16"
+                   TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center" Margin="0,40,0,0" />
+
+            <Entry x:Name="usernameEntry" Placeholder="USERNAME" FontFamily="Lato-Light.ttf#Lato-Light"
+                   FontSize="16" PlaceholderColor="WhiteSmoke" TextColor="White" BackgroundColor="Transparent" HeightRequest="50" 
+                   WidthRequest="200" HorizontalTextAlignment="Center" Margin="30,60,30,15" ></Entry>
+            <Entry x:Name="passwordEntry" Placeholder="PASSWORD" FontFamily="Lato-Light.ttf#Lato-Light"
+                   FontSize="16" PlaceholderColor="WhiteSmoke" TextColor="White" BackgroundColor="Transparent" HeightRequest="50" 
+                   WidthRequest="200" HorizontalTextAlignment="Center" Margin="30,0,30,30" IsPassword="True"></Entry>
+           
+            
+            <Button Text="SIGNUP" Clicked="Next_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
+                    TextColor="Black" BackgroundColor="White" BorderRadius="30" WidthRequest="200"
+                    HorizontalOptions="Center" Margin="30,0,30,40"></Button>
+
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

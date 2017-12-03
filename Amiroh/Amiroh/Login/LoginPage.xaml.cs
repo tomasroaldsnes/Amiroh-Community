@@ -95,6 +95,11 @@ namespace Amiroh.Login
                     MainUser.MainUserID.ProfileDescription = _user[0].ProfileDescription;
                     MainUser.MainUserID.ProfilePicture = _user[0].ProfilePicture;
 
+                    if(_user[0].Notifications != null)
+                    {
+                        MainUser.MainUserID.HasNotifications = true;
+                    }
+
                     var app = Application.Current as App;
                     app.IsUserLoggedIn = false;
 
@@ -123,7 +128,7 @@ namespace Amiroh.Login
         }
         private async void OnSignUpButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewAccountPage());
+            await Navigation.PushAsync(new NewAccountPageName());
         }
         bool AreCredentialsCorrect(User userLogin, ObservableCollection<User> _user)
         {
