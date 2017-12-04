@@ -17,7 +17,7 @@ namespace Amiroh.Classes
 {
     
 
-public class MainUser
+    public class MainUser
     {
         public readonly static MainUser MainUserID = new MainUser();
 

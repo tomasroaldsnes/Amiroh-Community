@@ -76,9 +76,9 @@ namespace Amiroh
 
 
                 var content_p = await _client.GetStringAsync(url_photo + Username);
-             var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
+                var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
 
-             _userPhotos = new ObservableCollection<Inspo>(pI);
+                 _userPhotos = new ObservableCollection<Inspo>(pI);
 
                 //set the number of points to the correct amount
                 int userPoints = 0;

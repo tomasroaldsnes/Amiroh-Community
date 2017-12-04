@@ -1,7 +1,9 @@
 ﻿using Amiroh.Classes;
+using Amiroh.Controllers;
 using ModernHttpClient;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using Plugin.Media;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,22 +15,18 @@ using Xamarin;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Amiroh
+namespace Amiroh.Profile
 {
-
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddInspoPage : ContentPage
+    public partial class EditInspoPage : ContentPage
     {
-        private string _URL = "";
-        private string url_create_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/";
-        private HttpClient _client = new HttpClient(new NativeMessageHandler());
+        private string _id;
         private List<string> Tags = new List<string>();
 
-
-        public AddInspoPage()
+        public EditInspoPage(string id)
         {
             InitializeComponent();
+            _id = id;
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
             navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
@@ -40,7 +38,8 @@ namespace Amiroh
             tagContouring.GestureRecognizers.Add(new TapGestureRecognizer(ContouringTag_Tapped));
             tagDay.GestureRecognizers.Add(new TapGestureRecognizer(DayTag_Tapped));
             tagNight.GestureRecognizers.Add(new TapGestureRecognizer(NightTag_Tapped));
-            
+
+
         }
 
         private async void EyesTag_Tapped(View arg1, object arg2)
@@ -79,54 +78,43 @@ namespace Amiroh
             tagNight.FontFamily = "Lato-Bold.ttf#Lato-Bold";
         }
 
-        private async void AddImageButton_Clicked(object sender, EventArgs e)
+        protected async override void OnAppearing()
         {
-            
-                btnUpload.Text = "Uploading inspo...";
-                _URL = await Classes.ImageUpload.InspoUploadAsync();
 
-                btnUpload.IsEnabled = true;
-                btnUpload.Text = "Upload Inspo";
+            await DisplayAlert("User ID", _id, "YEEESS");
+
+           
+        }
+
+        
+
+        private async void Publish_Clicked(object sender, EventArgs e)
+        {
+            string url_edit_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/" + _id;
+            HttpClient _client = new HttpClient(new NativeMessageHandler());
+
+            string postdataJson = JsonConvert.SerializeObject(new {  title = titleEntry.Text, description = descriptionEntry.Text, tags = Tags.ToArray() }); //<-------
+            var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+            
+
+            var response = await _client.PutAsync(url_edit_inspo, postdataString);
+
+            await Navigation.PushModalAsync(new MainPage());
 
         }
 
-        private async void UploadButton_Clicked(object sender, EventArgs e)
+        private void Editor_TextChanged(object sender, TextChangedEventArgs e)
         {
-           if(Tags.Count == 0)
-            {
-                Tags.Add("No Tags Selected");
-            }
-
-            string postdataJson = JsonConvert.SerializeObject(new { userId = MainUser.MainUserID.ID, description = descriptionEntry.Text, URL = _URL, username = MainUser.MainUserID.Username,  tags = Tags.ToArray<string>()
-            }); 
-                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
-
-                    var response = _client.PostAsync(url_create_inspo, postdataString);
-                    var responseString = response.Result.Content.ReadAsStringAsync().Result;
-
-
-                    if (response.Result.IsSuccessStatusCode)
-                    {
-                        await DisplayAlert("Success!", "Your Inspo was uploaded.", "Woop Woop!");
-
-                
-                    }
-                    else
-                    {
-                        await DisplayAlert("Upload Error", "No success", "OK");
-                    }
-              
-            
-            
-        }
-
-        private void descriptionEntry_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (e.NewTextValue.Length > 250)
+            if (e.NewTextValue.Length > 150)
             {
                 descriptionEntry.Text = descriptionEntry.Text.Remove(descriptionEntry.Text.Length - 1);
 
             }
         }
+
     }
+
+
+
+
 }

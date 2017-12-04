@@ -225,7 +225,7 @@ namespace Amiroh
             try
             {
                 NewInspoUploaded = true;
-                await Navigation.PushAsync(new AddInspoPage());
+                await Navigation.PushModalAsync(new ChooseInspoPage());
 
             }
             catch (Exception ex)

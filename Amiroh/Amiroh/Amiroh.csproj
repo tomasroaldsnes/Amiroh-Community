@@ -66,8 +66,14 @@
     <Compile Include="Discover\DiscoverPage.xaml.cs">
       <DependentUpon>DiscoverPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Profile\EditInspoPage.xaml.cs">
+      <DependentUpon>EditInspoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Profile\EditDescriptionPage.xaml.cs">
       <DependentUpon>EditDescriptionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\ChooseInspoPage.xaml.cs">
+      <DependentUpon>ChooseInspoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Profile\EditProfilePicPage.xaml.cs">
       <DependentUpon>EditProfilePicPage.xaml</DependentUpon>
@@ -100,6 +106,7 @@
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ViewClass.cs" />
     <Compile Include="WishlistPage.xaml.cs">
       <DependentUpon>WishlistPage.xaml</DependentUpon>
     </Compile>
@@ -308,6 +315,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Profile\EditDescriptionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Profile\ChooseInspoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Profile\EditInspoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
