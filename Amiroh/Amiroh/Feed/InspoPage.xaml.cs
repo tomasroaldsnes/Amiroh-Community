@@ -56,6 +56,8 @@ namespace Amiroh
 
             listviewInspo.ItemsSource = _posts_All;
 
+            
+
             if (listviewInspo.IsRefreshing == true)
             {
                 listviewInspo.IsRefreshing = false;

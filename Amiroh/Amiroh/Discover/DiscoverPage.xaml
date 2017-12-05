@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="Amiroh.DiscoverPage">
     <ContentPage.Content>
         <ScrollView>
@@ -24,14 +25,14 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="ctgEyes" Source="eyes.png" Grid.Row="0" Grid.Column="0" Aspect="AspectFit" HeightRequest="176" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
-                    <Image x:Name="ctgLips" Source="lips.png" Grid.Row="0" Grid.Column="1" Aspect="AspectFit" HeightRequest="176"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  ></Image>
-                    <Image x:Name="ctgContouring" Source="contouring.png" Grid.Row="1" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
-                    <Image x:Name="ctgEyebrows" Source="eyebrows.png" Grid.Row="1" Grid.Column="1"  Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
-                    <Image x:Name="ctgNight" Source="nightmakeup.png" Grid.Row="2" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
-                    <Image x:Name="ctgDay" Source="daymakeup.png" Grid.Row="2" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
-                    <Image x:Name="ctgTrending" Source="trending.png" Grid.Row="3" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
-                    <Image x:Name="ctgEditor" Source="editorspick.png" Grid.Row="3" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></Image>
+                    <ffimageloading:CachedImage x:Name="ctgEyes" CacheDuration="7" Source="eyes.png" Grid.Row="0" Grid.Column="0" Aspect="AspectFit" HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgLips" CacheDuration="7" Source="lips.png" Grid.Row="0" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgContouring" CacheDuration="7" Source="contouring.png" Grid.Row="1" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgEyebrows" CacheDuration="7" Source="eyebrows.png" Grid.Row="1" Grid.Column="1"  Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgNight" CacheDuration="7" Source="nightmakeup.png" Grid.Row="2" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgDay" CacheDuration="7" Source="daymakeup.png" Grid.Row="2" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgTrending" CacheDuration="7" Source="trending.png" Grid.Row="3" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgEditor" CacheDuration="7" Source="editorspick.png" Grid.Row="3" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
 
                 </Grid>
             </StackLayout>

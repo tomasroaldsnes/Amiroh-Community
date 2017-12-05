@@ -16,8 +16,7 @@
             <Entry x:Name="usernameEntry" Placeholder="USERNAME" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White" BackgroundColor="#203E4A" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
 
             <Entry x:Name="passwordEntry" Placeholder="PASSWORD" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White" BackgroundColor="#203E4A"  TextColor="White" IsPassword="True" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
-            <Label x:Name="errorLabel" FontFamily="Lato-Bold.ttf#Lato-Bold"></Label>
-            <Label x:Name="errorLabel2" FontFamily="Lato-Bold.ttf#Lato-Bold"></Label>
+            <Label x:Name="errorLabel" FontFamily="Lato-Bold.ttf#Lato-Bold" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"></Label>
 
             <Button Text="LOGIN" Clicked="LoginButton_Clicked" BackgroundColor="White" FontFamily="Lato-Bold.ttf#Lato-Bold" BorderRadius="10" BorderColor="Black" TextColor="Black" BorderWidth="3"></Button>
 

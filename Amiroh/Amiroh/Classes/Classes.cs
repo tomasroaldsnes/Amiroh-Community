@@ -26,7 +26,7 @@ namespace Amiroh.Classes
         public string ProfileDescription { get; set; }
         public string ProfilePicture { get; set; }
         public bool HasNotifications { get; set; }
-
+        
 
     }
     public class User
