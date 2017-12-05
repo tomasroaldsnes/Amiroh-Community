@@ -53,9 +53,6 @@
     <Compile Include="Login\NewAccountPageName.xaml.cs">
       <DependentUpon>NewAccountPageName.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Profile\AddInspoPage.xaml.cs">
-      <DependentUpon>AddInspoPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -243,12 +240,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Login\TutorialPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Profile\AddInspoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

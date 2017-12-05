@@ -5,7 +5,7 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="#FFFFFF"
              
-             Padding="10,0,10,10">
+             Padding="20,20,20,10">
 
 
     
@@ -17,25 +17,27 @@
     
         <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell Height="350">
-                        <StackLayout Orientation="Vertical" HorizontalOptions="Fill" HeightRequest="350" Margin="0,20,0,20">
+                    <ViewCell Height="380">
+                        <!--<StackLayout Orientation="Vertical" HorizontalOptions="Fill" HeightRequest="350" Margin="0,20,0,20">-->
                               
                             <ffimageloading:CachedImage x:Name="imgInspo"
                                 DownsampleHeight="300"
                                 DownsampleWidth="300"
                                 Aspect="AspectFill"
+                                Margin="0,40,0,40"
                                 HorizontalOptions="StartAndExpand"
                                 MinimumWidthRequest="300"
 			                    LoadingPriority="High"                      
                                 CacheDuration="1"
-			                    Source = "{Binding URL}" >       
+			                    Source = "{Binding URL}" >    
+                                
                             </ffimageloading:CachedImage>
                            
-                            <Label Text="{Binding Username}" TextColor="Black" 
+                            <!--<Label Text="{Binding Username}" TextColor="Black" 
                                    FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Small"
                                    VerticalOptions="Start" HorizontalOptions="StartAndExpand" ></Label>
                         
-                        </StackLayout>
+                        </StackLayout>-->
                     </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

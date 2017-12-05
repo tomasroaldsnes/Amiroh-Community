@@ -95,7 +95,7 @@ namespace Amiroh.Login
                     MainUser.MainUserID.ProfileDescription = _user[0].ProfileDescription;
                     MainUser.MainUserID.ProfilePicture = _user[0].ProfilePicture;
 
-                    if(_user[0].Notifications != null)
+                    if(_user[0].Notifications.Length > 0)
                     {
                         MainUser.MainUserID.HasNotifications = true;
                     }

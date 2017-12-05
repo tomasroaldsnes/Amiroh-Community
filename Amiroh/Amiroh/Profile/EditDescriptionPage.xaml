@@ -3,24 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.Profile.EditDescriptionPage"
              Title=" "
-             BackgroundColor="#203E4A" Padding="10, 20, 10, 20"
+             BackgroundColor="White" Padding="10, 20, 10, 20"
              >
     <ContentPage.Content>
         <StackLayout BackgroundColor="Transparent" VerticalOptions="Fill">
             <Label Text="WRITE A CATCHY PROFILE DESCRIPTION." FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="16"
-                   TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center" Margin="0,40,0,0" />
+                   TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" HorizontalTextAlignment="Center" Margin="0,40,0,0" />
 
-           <Editor  x:Name="entryDescription" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="14"
-                    TextColor="Black" BackgroundColor="White" WidthRequest="250" HeightRequest="120"
-                    HorizontalOptions="Center" Margin="30,60,30,20"
+            <Editor x:Name="entryDescription" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="14"
+                    TextColor="Black" BackgroundColor="WhiteSmoke" HeightRequest="120"
+                    HorizontalOptions="Fill" Margin="30,60,30,20"
                     TextChanged="Editor_TextChanged"></Editor>
             
             <Button Text="CONTINUE" Clicked="Continue_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
-                    TextColor="Black" BackgroundColor="White" BorderRadius="30" WidthRequest="200"
-                    HorizontalOptions="Center" Margin="30,20,30,20"></Button>
+                    TextColor="White" BackgroundColor="Black" BorderRadius="30" WidthRequest="200"
+                    HorizontalOptions="Center" Margin="30,20,30,60"></Button>
 
             <Label Text="Nah, later." FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="12"
-                   TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center">
+                   TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer
                                     Tapped="Later_Clicked"

@@ -3,40 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.Profile.EditInspoPage"
              Title=" "
-             BackgroundColor="#203E4A" Padding="40, 20, 40, 20"
+             BackgroundColor="White" Padding="40, 20, 40, 20"
              >
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Transparent" VerticalOptions="Fill">
-            <Entry x:Name="titleEntry" Placeholder="ADD A CATCHY TITLE TO YOUR INSPO" FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="14" WidthRequest="350"
-                   TextColor="White" PlaceholderColor="WhiteSmoke" HorizontalOptions="StartAndExpand" VerticalOptions="Start" HorizontalTextAlignment="Start" Margin="0,40,0,40" />
+        <StackLayout BackgroundColor="White" VerticalOptions="Fill">
+            <Entry x:Name="titleEntry" Placeholder="ADD A CATCHY TITLE TO YOUR INSPO" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14" WidthRequest="350"
+                   TextColor="Black" PlaceholderColor="DarkGray" HorizontalOptions="StartAndExpand" VerticalOptions="Start" HorizontalTextAlignment="Start" Margin="0,40,0,40" />
 
-            <Label Text="TELL US HOW YOU ARCHIEVED PERFECTION:" FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="12"
-                   TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center"></Label>
+            <Label Text="TELL US HOW YOU ARCHIEVED PERFECTION:" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="12"
+                   TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="End" ></Label>
 
-            <Editor  x:Name="descriptionEntry" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="14"
-                    TextColor="Black" BackgroundColor="White" WidthRequest="250" HeightRequest="120"
-                    HorizontalOptions="Center" Margin="0,20,0,60"
+            <Editor  x:Name="descriptionEntry" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                    TextColor="Black" BackgroundColor="WhiteSmoke" HeightRequest="120"
+                    HorizontalOptions="Fill" Margin="0,5,0,45"
                     TextChanged="Editor_TextChanged"></Editor>
 
-            <Label Text="ADD SOME TAGS TO YOUR INSPO: " FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="12"
-                   TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center"></Label>
+            <Label Text="ADD SOME TAGS TO YOUR INSPO: " 
+                   FontFamily="Lato-Regular.ttf#Lato-Regular" 
+                   FontSize="12" Margin="0,0,0,20"
+                   TextColor="Black" HorizontalOptions="Center" 
+                   VerticalOptions="Start" HorizontalTextAlignment="Center"></Label>
 
             <ScrollView Orientation="Horizontal">
-                    <StackLayout Orientation="Horizontal" Spacing="15">
-                        <Label x:Name="tagEyes" Text="Eyes" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
-                        <Label x:Name="tagLips" Text="Lips" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
-                        <Label x:Name="tagContouring" Text="Contouring" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
-                        <Label x:Name="tagEyebrows" Text="Eyebrows" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
-                        <Label x:Name="tagDay" Text="Day Makeup" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
-                        <Label x:Name="tagNight" Text="Night Makeup" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="White" />
+                    <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="Fill" HeightRequest="70">
+                        <Label x:Name="tagEyes" Text="Eyes" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" />
+                        <Label x:Name="tagLips" Text="Lips" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" />
+                        <Label x:Name="tagContouring" Text="Contouring" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" />
+                        <Label x:Name="tagEyebrows" Text="Eyebrows" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" />
+                        <Label x:Name="tagDay" Text="Day Makeup" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" />
+                        <Label x:Name="tagNight" Text="Night Makeup" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" />
                         <!--<Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
-                    <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />-->
+                        <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
+                        <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />-->
                     </StackLayout>
             </ScrollView>
 
-            <Button Text="PUBLISH" Clicked="Publish_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
-                    TextColor="Black" BackgroundColor="White" BorderRadius="30" WidthRequest="200"
+            <Button Text="PUBLISH" Clicked="Publish_Clicked" 
+                    FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
+                    TextColor="White" BackgroundColor="Black"
+                    BorderRadius="30" WidthRequest="200"
                     HorizontalOptions="Center" Margin="30,40,30,20"></Button>
 
             

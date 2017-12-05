@@ -29,15 +29,17 @@ namespace Amiroh.Profile
             navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
             navigationPage.BarTextColor = Color.White;
 
-           
+            btnChoose.GestureRecognizers.Add(new TapGestureRecognizer(ChooseImage_Tapped));
+
+
         }
 
-        private async void ChooseImage_Clicked(object sender, EventArgs e)
+        private async void ChooseImage_Tapped(View arg1, object arg2)
         {
 
             try
             {
-                btnChoose.Text = "Uploading, give me a minute...";
+                lblImageText.Text = "Uploading, give me a minute...";
                 btnChoose.IsEnabled = false;
 
                  string url_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/";

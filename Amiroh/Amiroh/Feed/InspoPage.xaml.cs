@@ -15,6 +15,7 @@ using Xamarin;
 using Amiroh.Classes;
 using Plugin.Connectivity;
 using FFImageLoading.Forms;
+using Amiroh.Profile;
 
 namespace Amiroh
 {
@@ -30,7 +31,7 @@ namespace Amiroh
         private ObservableCollection<Inspo> _posts_All;
         ObservableCollection<Inspo> sortedByPoints_First = new ObservableCollection<Inspo>();
 
-        private bool isLoading;
+        
 
         public InspoPage()
         {
@@ -95,11 +96,7 @@ namespace Amiroh
         }
         
 
-       private async void BtnError_Clicked(object sender, EventArgs e)
-        {
-            Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
-            await Navigation.PopAsync();
-        }
+       
 
         private async void listviewInspo_ItemTapped(object sender, ItemTappedEventArgs e)
         {
@@ -114,8 +111,12 @@ namespace Amiroh
                     page.BindingContext = obj;
 
 
-                    await Navigation.PushAsync(page);
+                    await Navigation.PushModalAsync(page);
                     //listviewInspo.SelectedItem = null;
+                }
+                else
+                {
+                    LoadInspos();
                 }
             }
             catch (Exception ex)
@@ -141,7 +142,7 @@ namespace Amiroh
         private async void AddInspo_Tapped(object sender, EventArgs e)
         {
 
-            await Navigation.PushAsync(new AddInspoPage());
+            await Navigation.PushModalAsync(new ChooseInspoPage());
         }
 
         private void Social_Tapped(object sender, EventArgs e)

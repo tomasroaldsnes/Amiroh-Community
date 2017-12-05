@@ -2,18 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.Profile.ChooseInspoPage"
-             Title=" "
-             BackgroundColor="#203E4A" Padding="10, 20, 10, 20"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             BackgroundColor="White" Padding="10, 20, 10, 20"
              >
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Transparent" VerticalOptions="Fill">
-            <Label Text="YOUR ARE THE BEST KIND OF PERSON. LET'S CREATE SOME INSPIRATION FOR OTHERS!" FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="16"
-                   TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center" Margin="0,40,0,0" />
+        <StackLayout BackgroundColor="White" VerticalOptions="Fill">
+            
 
-           <Button x:Name="btnChoose" Text="CHOOSE IMAGE FROM GALLERY" Clicked="ChooseImage_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
-                    TextColor="Black" BackgroundColor="White" BorderRadius="30" WidthRequest="250"
-                    HorizontalOptions="Center" Margin="30,60,30,20"></Button>
+           <ffimageloading:CachedImage x:Name="btnChoose" Source="addinspo.png" 
+                                       WidthRequest="75"
+                                       HeightRequest="75"
+                                       Aspect="AspectFit"
+                                       HorizontalOptions="Center" Margin="30,80,30,40"></ffimageloading:CachedImage>
 
+            <Label x:Name="lblImageText" Text="CHOOSE IMAGE FROM GALLERY" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16"
+                   TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center"  />
             
 
 

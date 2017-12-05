@@ -64,7 +64,7 @@ namespace Amiroh.Profile
 
                     if (response.Result.IsSuccessStatusCode)
                     {
-
+                        MainUser.MainUserID.ProfilePicture = profilePictureURL;
                         await Navigation.PushModalAsync(new EditDescriptionPage(true));
                     }
                     else

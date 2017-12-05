@@ -311,9 +311,13 @@ namespace Amiroh
 
         private async void Notifications_Tapped(object sender, EventArgs e)
         {
-            
+            if (MainUser.MainUserID.HasNotifications == true)
+            {
+                MainUser.MainUserID.HasNotifications = false;
+            }
+            btnNotifications.Source = "notificationnull.png";
             await Navigation.PushAsync(new NotificationPage());
-            btnNotifications.Source = "notificationsnull.png";
+            
         }
 
         private void Settings_Tapped(object sender, EventArgs e)
