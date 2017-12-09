@@ -4,6 +4,8 @@
              x:Class="Amiroh.Profile.ChooseInspoPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White" Padding="10, 20, 10, 20"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True"
              >
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" VerticalOptions="Fill">

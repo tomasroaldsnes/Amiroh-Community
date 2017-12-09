@@ -46,10 +46,11 @@ namespace Amiroh.Feed
 
         private async void btnComment_Clicked(object sender, EventArgs e)
         {
+            commentEntry.Text = "";
             
             try
             {
-                string postdataJson = JsonConvert.SerializeObject(new Comment { Username = MainUser.MainUserID.Username, Text = commentEntry.Text, ProfilePicture = MainUser.MainUserID.ProfilePicture } ); //her kan det feile
+                string postdataJson = JsonConvert.SerializeObject(new Comment { Username = MainUser.MainUserID.Username, Text = commentEntry.Text, ProfilePicture = MainUser.MainUserID.ProfilePicture } ); 
                 var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                 string url = url_update_inspo + _obj._Id.ToString();
@@ -61,6 +62,8 @@ namespace Amiroh.Feed
                 {
                      var _o = new Notification();
                     _o.PushNotification("POINT", _obj.URL, MainUser.MainUserID.Username, _obj.UserId);
+
+                    _comments.Add(new Comment { Username = MainUser.MainUserID.Username, Text = commentEntry.Text, ProfilePicture = MainUser.MainUserID.ProfilePicture });
                 }
                 else
                 {

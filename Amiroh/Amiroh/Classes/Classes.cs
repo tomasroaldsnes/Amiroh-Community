@@ -50,6 +50,8 @@ namespace Amiroh.Classes
 
     }
 
+    
+
     public class Notification
     {
         public string Username { get; set; }

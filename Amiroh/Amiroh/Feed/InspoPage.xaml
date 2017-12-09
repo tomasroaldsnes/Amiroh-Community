@@ -18,8 +18,7 @@
         <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell Height="380">
-                        <!--<StackLayout Orientation="Vertical" HorizontalOptions="Fill" HeightRequest="350" Margin="0,20,0,20">-->
-                              
+                            
                             <ffimageloading:CachedImage x:Name="imgInspo"
                                 DownsampleHeight="300"
                                 DownsampleWidth="300"
@@ -33,11 +32,7 @@
                                 
                             </ffimageloading:CachedImage>
                            
-                            <!--<Label Text="{Binding Username}" TextColor="Black" 
-                                   FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="Small"
-                                   VerticalOptions="Start" HorizontalOptions="StartAndExpand" ></Label>
-                        
-                        </StackLayout>-->
+                           
                     </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

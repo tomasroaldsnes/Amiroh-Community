@@ -10,6 +10,8 @@ using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using Plugin.Permissions;
+using Xamarin.Forms.Platform.Android;
+using Android.Graphics;
 
 namespace Amiroh.Droid
 {
@@ -25,7 +27,9 @@ namespace Amiroh.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
             
+
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);

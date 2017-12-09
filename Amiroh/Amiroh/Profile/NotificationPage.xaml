@@ -5,7 +5,9 @@
              BackgroundColor="White"
              >
     <StackLayout x:Name="layout">
-        <Label x:Name="NoNewNotifications" TextColor="Black" FontSize="16" FontFamily="Lato-Bold.ttf#Lato-Bold"></Label>
+        
+        <Label x:Name="NoNewNotifications" HorizontalOptions="Center" TextColor="Black" FontSize="16" FontFamily="Lato-Bold.ttf#Lato-Bold"></Label>
+        
         <ListView x:Name="listviewNotifications" BackgroundColor="White" HasUnevenRows="False"
                SeparatorVisibility="None" >
 

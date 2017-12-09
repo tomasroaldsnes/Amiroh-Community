@@ -15,6 +15,7 @@ using ImageCircle;
 using Amiroh.Classes;
 using Amiroh.Profile;
 using Amiroh.Login;
+using Amiroh.Feed;
 using Plugin.Connectivity;
 using FFImageLoading.Forms;
 
@@ -48,15 +49,7 @@ namespace Amiroh
             InitializeComponent();
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
 
-            if(MainUser.MainUserID.ProfilePicture == "" | MainUser.MainUserID.ProfilePicture == null | MainUser.MainUserID.ProfilePicture == "Please pick a photo!")
-            {
-                imgProfilePicture.Source = "profile.png";
-            }
-
-            if(MainUser.MainUserID.ProfileDescription == "" | MainUser.MainUserID.ProfileDescription == null)
-            {
-                MainUser.MainUserID.ProfileDescription = "Welcome to Amiroh! This is your profile description. Write something catchy. You can edit me in Settings.";
-            }
+            
 
             if (MainUser.MainUserID.HasNotifications == true)
             {
@@ -69,7 +62,16 @@ namespace Amiroh
             imgProfilePicture.GestureRecognizers.Add(new TapGestureRecognizer(ProfileImageTap));
 
         }
-        
+
+        private async void UserInspoImageTapped(Inspo i)
+        {
+            
+            await Navigation.PushAsync(new ImagePage(i));
+        }
+
+
+
+
 
         protected async override void OnAppearing()
         {
@@ -225,7 +227,8 @@ namespace Amiroh
             try
             {
                 NewInspoUploaded = true;
-                await Navigation.PushModalAsync(new ChooseInspoPage());
+                await Navigation.PushAsync(new ChooseInspoPage());
+                
 
             }
             catch (Exception ex)
@@ -275,13 +278,32 @@ namespace Amiroh
 
                     if (column < 1)
                     {
-                        ProfileGrid.Children.Add(new CachedImage{ Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 0, 5, row, row+1);
-                        
+                        var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+
+                        Inspo obj = _userPhotos[i];
+                        var tappedInspo = new TapGestureRecognizer();
+                        tappedInspo.Tapped += (s, e) =>
+                        {
+                            UserInspoImageTapped(obj);
+                        };
+                        userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                        ProfileGrid.Children.Add(userInspoObject, 0, 5, row, row+1);
                         column++;
                     }
                     else if (column == 1)
                     {
-                        ProfileGrid.Children.Add(new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand}, 5 , 10, row, row+1);
+                        var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+
+                        Inspo obj = _userPhotos[i];
+                        var tappedInspo = new TapGestureRecognizer();
+                        tappedInspo.Tapped += (s, e) =>
+                        {
+                            UserInspoImageTapped(obj);
+                        };
+                        userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                        ProfileGrid.Children.Add(userInspoObject, 5 , 10, row, row+1);
                         column = 0;
                         row++;
                     }

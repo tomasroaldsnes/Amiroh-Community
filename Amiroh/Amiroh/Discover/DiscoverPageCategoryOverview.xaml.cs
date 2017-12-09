@@ -142,12 +142,7 @@ namespace Amiroh
             InspoListLoaded = false;
         }
 
-            private async void BtnError_Clicked(object sender, EventArgs e)
-        {
-            Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
-            await Navigation.PopAsync();
-        }
-
+        
         private async void listviewInspo_ItemTapped(object sender, ItemTappedEventArgs e)
         {
 

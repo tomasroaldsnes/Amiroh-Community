@@ -84,9 +84,6 @@
     <Compile Include="Feed\ImagePage.xaml.cs">
       <DependentUpon>ImagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Discover\DiscoverPageCategory.xaml.cs">
-      <DependentUpon>DiscoverPageCategory.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Feed\InspoPage.xaml.cs">
       <DependentUpon>InspoPage.xaml</DependentUpon>
     </Compile>
@@ -246,12 +243,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Discover\DiscoverPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Discover\DiscoverPageCategory.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

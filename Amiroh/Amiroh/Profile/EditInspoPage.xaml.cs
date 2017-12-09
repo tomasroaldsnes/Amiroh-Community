@@ -78,14 +78,6 @@ namespace Amiroh.Profile
             tagNight.FontFamily = "Lato-Bold.ttf#Lato-Bold";
         }
 
-        protected async override void OnAppearing()
-        {
-
-            await DisplayAlert("User ID", _id, "YEEESS");
-
-           
-        }
-
         
 
         private async void Publish_Clicked(object sender, EventArgs e)

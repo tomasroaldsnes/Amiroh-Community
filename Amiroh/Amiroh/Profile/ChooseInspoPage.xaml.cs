@@ -26,8 +26,8 @@ namespace Amiroh.Profile
             InitializeComponent();
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
-            navigationPage.BarTextColor = Color.White;
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
 
             btnChoose.GestureRecognizers.Add(new TapGestureRecognizer(ChooseImage_Tapped));
 

@@ -60,9 +60,11 @@ namespace Amiroh.Profile
 
             string postdataJson = JsonConvert.SerializeObject(new { profileDescription = entryDescription.Text });
             var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
-            
+
+            MainUser.MainUserID.ProfileDescription = entryDescription.Text;
 
             var response = await _client.PutAsync(url_user, postdataString);
+            
 
             await Navigation.PushModalAsync(new MainPage());
 

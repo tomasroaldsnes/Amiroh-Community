@@ -16,11 +16,15 @@
             <Entry x:Name="usernameEntry" Placeholder="USERNAME" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White" BackgroundColor="#203E4A" TextColor="White" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
 
             <Entry x:Name="passwordEntry" Placeholder="PASSWORD" FontFamily="Lato-Light.ttf#Lato-Light" PlaceholderColor="White" BackgroundColor="#203E4A"  TextColor="White" IsPassword="True" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="300"></Entry>
-            <Label x:Name="errorLabel" FontFamily="Lato-Bold.ttf#Lato-Bold" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"></Label>
+            <Label x:Name="errorLabel" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="WhiteSmoke" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"></Label>
 
             <Button Text="LOGIN" Clicked="LoginButton_Clicked" BackgroundColor="White" FontFamily="Lato-Bold.ttf#Lato-Bold" BorderRadius="10" BorderColor="Black" TextColor="Black" BorderWidth="3"></Button>
 
-            <Label Text="Sign up" FontFamily="Lato-Regular.ttf#Lato-Regular" TextColor="White" HorizontalOptions="Center">
+            <Label Text="SIGN UP" FontFamily="Lato-Light.ttf#Lato-Light" 
+                   TextColor="White" 
+                   FontSize="12"
+                   Margin="0,10,0,0"
+                   HorizontalOptions="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="OnSignUpButtonClicked"

@@ -107,12 +107,9 @@ namespace Amiroh
                 {
 
                     var obj = e.Item as Inspo;
-                    var page = new ImagePage(obj);
-                    page.BindingContext = obj;
 
-
-                    await Navigation.PushModalAsync(page);
-                    //listviewInspo.SelectedItem = null;
+                    await Navigation.PushAsync(new ImagePage(obj));
+                    listviewInspo.SelectedItem = null;
                 }
                 else
                 {
@@ -125,10 +122,12 @@ namespace Amiroh
                 {
                     Insights.Report(ex);
                     await DisplayAlert("Useless", "I tried to load the inspo, but I failed. Horribly.", "Be better");
+                    
                 }
                 catch
                 {
                     await DisplayAlert("Error", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
+                    
                 }
             }
         }
@@ -142,7 +141,7 @@ namespace Amiroh
         private async void AddInspo_Tapped(object sender, EventArgs e)
         {
 
-            await Navigation.PushModalAsync(new ChooseInspoPage());
+            await Navigation.PushAsync(new ChooseInspoPage());
         }
 
         private void Social_Tapped(object sender, EventArgs e)

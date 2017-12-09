@@ -2,19 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.Feed.CommentsPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White"
+             Padding="20,20,20,0"
              >
     <StackLayout x:Name="layout">
         <ListView x:Name="listviewComments" BackgroundColor="White" HasUnevenRows="False"
-               SeparatorVisibility="None" >
+               SeparatorVisibility="None">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" Margin="0,20,0,20">
-                            <Image Source="{Binding ProfilePicture}"></Image>
-                            <Label Text="{Binding Username}" TextColor="Black" FontSize="16" FontFamily="Lato-Bold.ttf#Lato-Bold" ></Label>
-                            <Label Text="{Binding Text}" TextColor="Black" FontSize="16" FontFamily="Lato-Light.ttf#Lato-Light"></Label>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Spacing="7" Margin="0,10,0,10">
+                            
+                            <ffimageloading:CachedImage Source="{Binding ProfilePicture}" HeightRequest="30" WidthRequest="30"
+                                   HorizontalOptions="Start" CacheDuration="1" Aspect="AspectFill" ></ffimageloading:CachedImage>
+                            
+                            <Label Text="{Binding Username}" TextColor="Black" FontSize="16" 
+                                   FontFamily="Lato-Bold.ttf#Lato-Bold" 
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Center"></Label>
+                            
+                            <Label Text="{Binding Text}" TextColor="Black" FontSize="16" 
+                                   FontFamily="Lato-Light.ttf#Lato-Light" HorizontalOptions="StartAndExpand" 
+                                   VerticalOptions="Center"></Label>
+                            
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

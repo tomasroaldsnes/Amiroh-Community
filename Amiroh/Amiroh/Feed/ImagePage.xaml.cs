@@ -19,7 +19,6 @@ namespace Amiroh
     public partial class ImagePage : ContentPage
     {
         private const string url_inspo_update = "http://138.68.137.52:3000/AmirohAPI/inspos/";
-        private const string url_user_collection = "http://138.68.137.52:3000/AmirohAPI/users/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         Inspo Obj = new Inspo();
 
@@ -37,7 +36,7 @@ namespace Amiroh
             navigationPage.BarBackgroundColor = Color.White;
             navigationPage.BarTextColor = Color.Black;
 
-            
+            this.BindingContext = Obj;
 
 
         }
@@ -128,19 +127,21 @@ namespace Amiroh
 
         private async void Comment_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CommentsPage(Obj));
+            await Navigation.PushModalAsync(new CommentsPage(Obj));
         }
 
         private async void Collection_Tapped(object sender, EventArgs e)
         {
             //add to main users collection
             //add inspo._id to user collection
-            string postdataJson = JsonConvert.SerializeObject(new { _id = Obj._Id.ToString() });
+            string url_user_collection = "http://138.68.137.52:3000/AmirohAPI/users/collection/" + MainUser.MainUserID.ID;
+
+            string postdataJson = JsonConvert.SerializeObject(new { _id = Obj._Id });
 
             var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
-            string url = url_user_collection + MainUser.MainUserID.ID.ToString();
-            var response = _client.PostAsync(url, postdataString);
+            
+            var response = _client.PostAsync(url_user_collection, postdataString);
             var responseString = response.Result.Content.ReadAsStringAsync().Result;
 
             if (response.Result.IsSuccessStatusCode)
