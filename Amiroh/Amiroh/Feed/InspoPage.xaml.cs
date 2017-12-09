@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+using Amiroh.Feed;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
@@ -38,10 +38,7 @@ namespace Amiroh
             InitializeComponent();
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
 
-
-           
-
-
+            
         }
 
         private async void LoadInspos()
@@ -144,9 +141,9 @@ namespace Amiroh
             await Navigation.PushAsync(new ChooseInspoPage());
         }
 
-        private void Social_Tapped(object sender, EventArgs e)
+        private async void Social_Tapped(object sender, EventArgs e)
         {
-            //
+            await Navigation.PushAsync(new FavedUsersPage());
 
         }
     }

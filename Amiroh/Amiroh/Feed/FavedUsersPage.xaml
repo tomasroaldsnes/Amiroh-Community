@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Amiroh.Feed.CommentsPage"
+             x:Class="Amiroh.Feed.FavedUsersPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White"
              Padding="20,20,20,0"
              >
-    <StackLayout x:Name="layout">
-        <ListView x:Name="listviewComments" BackgroundColor="White" HasUnevenRows="False"
+  
+        <ListView x:Name="listviewFavedUsers" BackgroundColor="White" HasUnevenRows="False"
                SeparatorVisibility="None">
 
             <ListView.ItemTemplate>
@@ -15,16 +15,14 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Spacing="7" Margin="0,10,0,10">
                             
-                            
+                            <ffimageloading:CachedImage Source="{Binding ProfilePicture}" HeightRequest="30" WidthRequest="30"
+                                   HorizontalOptions="Start" CacheDuration="1" Aspect="AspectFill" ></ffimageloading:CachedImage>
                             
                             <Label Text="{Binding Username}" TextColor="Black" FontSize="16" 
                                    FontFamily="Lato-Bold.ttf#Lato-Bold" 
                                    HorizontalOptions="StartAndExpand"
                                    VerticalOptions="Center"></Label>
                             
-                            <Label Text="{Binding Text}" TextColor="Black" FontSize="16" 
-                                   FontFamily="Lato-Light.ttf#Lato-Light" HorizontalOptions="StartAndExpand" 
-                                   VerticalOptions="Center"></Label>
                             
                             
                         </StackLayout>
@@ -33,17 +31,4 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" HeightRequest="50">
-            <Entry x:Name="commentEntry" Placeholder="Write a comment..."
-                   FontFamily="Lato-Light.ttf#Lato-Light" HorizontalOptions="Fill" 
-                   MinimumWidthRequest="300"></Entry>
-            <Button x:Name="btnComment" Text=">" 
-                    FontFamily="Lato-Light.ttf#Lato-Light" 
-                    HorizontalOptions="StartAndExpand"
-                    WidthRequest="50"
-                    HeightRequest="50"
-                    BackgroundColor="Black" TextColor="White" 
-                    FontSize="20" Clicked="btnComment_Clicked"></Button>
-        </StackLayout>
-    </StackLayout>
 </ContentPage>

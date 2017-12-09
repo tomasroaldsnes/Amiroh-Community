@@ -47,10 +47,12 @@ namespace Amiroh.Feed
         private async void btnComment_Clicked(object sender, EventArgs e)
         {
             commentEntry.Text = "";
+            commentEntry.IsEnabled = false;
+            btnComment.IsEnabled = false;
             
             try
             {
-                string postdataJson = JsonConvert.SerializeObject(new Comment { Username = MainUser.MainUserID.Username, Text = commentEntry.Text, ProfilePicture = MainUser.MainUserID.ProfilePicture } ); 
+                string postdataJson = JsonConvert.SerializeObject(new Comment { Username = MainUser.MainUserID.Username, Text = commentEntry.Text} ); 
                 var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                 string url = url_update_inspo + _obj._Id.ToString();
@@ -64,6 +66,8 @@ namespace Amiroh.Feed
                     _o.PushNotification("POINT", _obj.URL, MainUser.MainUserID.Username, _obj.UserId);
 
                     _comments.Add(new Comment { Username = MainUser.MainUserID.Username, Text = commentEntry.Text, ProfilePicture = MainUser.MainUserID.ProfilePicture });
+                    btnComment.IsEnabled = true;
+                    commentEntry.IsEnabled = true;
                 }
                 else
                 {

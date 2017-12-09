@@ -34,6 +34,12 @@ namespace Amiroh
         public DiscoverPageCategoryOverview(string category)
         {
             InitializeComponent();
+
+            var navigationPage = Application.Current.MainPage as NavigationPage;
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
+
+
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
             _category = category;
             
@@ -56,36 +62,44 @@ namespace Amiroh
                 if (_category == "Eyes")
                 {
                     posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Eyes"));
+                    this.Title = "EYES";
                     
 
                 }
                 else if(_category == "Lips")
                 {
                     posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Lips"));
+                    this.Title = "LIPS";
                 }
                 else if (_category == "Eyebrows")
                 {
                     posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Eyebrows"));
+                    this.Title = "EYEBROWS";
                 }
                 else if (_category == "Contouring")
                 {
                     posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Contouring"));
+                    this.Title = "COUNTOURING";
                 }
                 else if (_category == "Night")
                 {
                     posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Night"));
+                    this.Title = "NIGHT";
                 }
                 else if (_category == "Day")
                 {
                     posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Day"));
+                    this.Title = "DAY";
                 }
                 else if (_category == "Trending")
                 {
                     posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("Trending"));
+                    this.Title = "TRENDING";
                 }
                 else if (_category == "EditorsPick")
                 {
                     posts.RemoveAll(inspo => !inspo.Tags.Contains<string>("EditorsPick"));
+                    this.Title = "EDITOR's PICK";
                 }
 
                 _posts = new ObservableCollection<Inspo>(posts);

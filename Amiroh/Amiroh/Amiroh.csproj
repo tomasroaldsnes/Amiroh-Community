@@ -38,6 +38,9 @@
     <Compile Include="Discover\DiscoverPageCategoryOverview.xaml.cs">
       <DependentUpon>DiscoverPageCategoryOverview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Feed\FavedUsersPage.xaml.cs">
+      <DependentUpon>FavedUsersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Feed\CommentsPage.xaml.cs">
       <DependentUpon>CommentsPage.xaml</DependentUpon>
     </Compile>
@@ -309,6 +312,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Profile\EditInspoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Feed\FavedUsersPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

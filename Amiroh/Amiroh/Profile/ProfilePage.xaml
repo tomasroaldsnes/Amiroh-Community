@@ -86,7 +86,12 @@
             <!--...............................................................................-->
 
             
-            <Label x:Name="btnCollection" FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Margin="0,0,20,0" Text="COLLECTION" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand">
+            <Label x:Name="btnCollection" FontSize="14" 
+                   FontFamily="Lato-Light.ttf#Lato-Light"
+                   Margin="0,0,20,0" Text="COLLECTION" 
+                   TextColor="Black" 
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="StartAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="Collection_Clicked"

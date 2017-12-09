@@ -29,8 +29,8 @@ namespace Amiroh.Profile
             _id = id;
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
-            navigationPage.BarTextColor = Color.White;
+            navigationPage.BarBackgroundColor = Color.FromHex("White");
+            navigationPage.BarTextColor = Color.Black;
 
             tagEyes.GestureRecognizers.Add(new TapGestureRecognizer(EyesTag_Tapped));
             tagLips.GestureRecognizers.Add(new TapGestureRecognizer(LipsTag_Tapped));

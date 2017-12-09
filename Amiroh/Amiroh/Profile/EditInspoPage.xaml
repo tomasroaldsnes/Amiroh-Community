@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.Profile.EditInspoPage"
              Title=" "
-             BackgroundColor="White" Padding="40, 20, 40, 20"
+             BackgroundColor="White"
+             Padding="40, 20, 40, 20"
              >
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" VerticalOptions="Fill">
