@@ -38,6 +38,8 @@ namespace Amiroh
 
             this.BindingContext = Obj;
 
+            lblUsernameText.Text = lblUsernameText.Text.ToUpper();
+
 
         }
 
@@ -127,7 +129,7 @@ namespace Amiroh
 
         private async void Comment_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new CommentsPage(Obj));
+            await Navigation.PushAsync(new CommentsPage(Obj));
         }
 
         private async void Collection_Tapped(object sender, EventArgs e)

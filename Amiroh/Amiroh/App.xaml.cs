@@ -13,32 +13,20 @@ namespace Amiroh
 {
     public partial class App : Application
     {
-        //public static bool IsUserLoggedIn { get; set; }
+        public static bool IsUserLoggedIn { get; set; }
 
-        private const string LoginStatus = "Key";
+        //private const string LoginStatus = "Key";
 
-        public bool IsUserLoggedIn
-        {
-            get
-            {
-                if (Properties.ContainsKey(LoginStatus))
-                {
-                    return (bool)Properties[LoginStatus];
-                }
-                return false;
-            }
-            set { Properties[LoginStatus] = value; }
-        }
+        
 
         public App()
         {
             InitializeComponent();
             CrossMedia.Current.Initialize();
 
-            var app = Application.Current as App;
-            var login = app.IsUserLoggedIn;
+            
 
-            if (!login)
+            if (!IsUserLoggedIn)
             {
                 MainPage = new NavigationPage(new Amiroh.Login.LoginPage());
             }

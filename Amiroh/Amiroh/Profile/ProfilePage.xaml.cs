@@ -65,8 +65,7 @@ namespace Amiroh
 
         private async void UserInspoImageTapped(Inspo i)
         {
-            
-            await Navigation.PushAsync(new ImagePage(i));
+             await Navigation.PushAsync(new ImagePage(i));
         }
 
 
@@ -91,13 +90,7 @@ namespace Amiroh
                 {
                     userPoints += image.Points;
 
-                    if(image.Notifications != null)
-                    {
-                        foreach (var notification in image.Notifications)
-                        {
-                            notificationList.Add(notification);
-                        }
-                    }
+                   
                 }
                 numberOfPoints.Text = userPoints.ToString();
   
@@ -147,78 +140,16 @@ namespace Amiroh
 
         private async void ProfileImageTap(View arg1, object arg2)
         {
-            
+
             try
-              {
-                   string profilePictureURL = "";
-                   profilePictureURL = await ImageUpload.ProfilePictureUploadAsync();
-                   
-
-                   
-
-                if (profilePictureURL != "")
-                {
-                    string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL } );
-                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
-
-                    string new_url = url_user + MainUser.MainUserID.Username;
-                    var response = _client.PutAsync(new_url, postdataString);
-                    var responseString = response.Result.Content.ReadAsStringAsync().Result;
-
-
-                    if (response.Result.IsSuccessStatusCode)
-                    {
-
-                        imgProfilePicture.Source = profilePictureURL;
-                    }
-                    else
-                    {
-                        await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
-                    }
-                }
-                else
-                {
-                    bool IsPictureReady = false;
-                    while (!IsPictureReady)
-                    {
-                        if(profilePictureURL != "" | profilePictureURL != null)
-                        {
-                            IsPictureReady = true;
-                        }
-                    }
-                    string postdataJson = JsonConvert.SerializeObject(new { profilePicture = profilePictureURL });
-                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
-
-                    string new_url = url_user + MainUser.MainUserID.Username;
-                    var response = _client.PutAsync(new_url, postdataString);
-                    var responseString = response.Result.Content.ReadAsStringAsync().Result;
-
-
-                    if (response.Result.IsSuccessStatusCode)
-                    {
-                        imgProfilePicture.Source = profilePictureURL;
-                    }
-                    else
-                    {
-                        await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
-                    }
-
-                }
-                
-            }
-            catch (Exception e)
             {
-                    try
-                    {
-                         Insights.Report(e);
-                         await DisplayAlert("Oh God, not again", "I tried to upload your profile picture, but I failed. Miserably.", "*Takes a deep breath*");
-                    }
-                    catch
-                    {
-                        await DisplayAlert("Oh God, not again", "I tried to load your profile, but I failed. Horribly.", "*Counting backwards from 10*");
-                    }
-                }
-            
+                await Navigation.PushAsync(new EditProfilePicPage());
+            }
+            catch(Exception e)
+            {
+                Insights.Report(e);
+                await DisplayAlert("Dammit", "I'm not ready to upload your profile picture. Like, emotionally, you know?", "*Takes a deep breath*");
+            }
            
         }
 
@@ -303,7 +234,7 @@ namespace Amiroh
                         };
                         userInspoObject.GestureRecognizers.Add(tappedInspo);
 
-                        ProfileGrid.Children.Add(userInspoObject, 5 , 10, row, row+1);
+                        ProfileGrid.Children.Add(userInspoObject, 5, 10, row, row+1);
                         column = 0;
                         row++;
                     }
@@ -367,13 +298,32 @@ namespace Amiroh
 
                 if (column < 1)
                 {
-                    ProfileGrid.Children.Add(new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 0, 5, row, row + 1);
+                    var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
 
+                    Inspo obj = _userPhotos[i];
+                    var tappedInspo = new TapGestureRecognizer();
+                    tappedInspo.Tapped += (s, ex) =>
+                    {
+                        UserInspoImageTapped(obj);
+                    };
+                    userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                    ProfileGrid.Children.Add(userInspoObject, 0, 5, row, row + 1);
                     column++;
                 }
                 else if (column == 1)
                 {
-                    ProfileGrid.Children.Add(new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 5, 10, row, row + 1);
+                    var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+
+                    Inspo obj = _userPhotos[i];
+                    var tappedInspo = new TapGestureRecognizer();
+                    tappedInspo.Tapped += (s, ex) =>
+                    {
+                        UserInspoImageTapped(obj);
+                    };
+                    userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                    ProfileGrid.Children.Add(userInspoObject, 5, 10, row, row + 1);
                     column = 0;
                     row++;
                 }
@@ -410,13 +360,32 @@ namespace Amiroh
             {
                 if (column < 1)
                 {
-                    ProfileGrid.Children.Add(new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 0, 5, row, row + 1);
+                    var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
 
+                    Inspo obj = _userPhotos[i];
+                    var tappedInspo = new TapGestureRecognizer();
+                    tappedInspo.Tapped += (s, ex) =>
+                    {
+                        UserInspoImageTapped(obj);
+                    };
+                    userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                    ProfileGrid.Children.Add(userInspoObject, 0, 5, row, row + 1);
                     column++;
                 }
                 else if (column == 1)
                 {
-                    ProfileGrid.Children.Add(new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 5, 10, row, row + 1);
+                    var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+
+                    Inspo obj = _userPhotos[i];
+                    var tappedInspo = new TapGestureRecognizer();
+                    tappedInspo.Tapped += (s, ex) =>
+                    {
+                        UserInspoImageTapped(obj);
+                    };
+                    userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                    ProfileGrid.Children.Add(userInspoObject, 5, 10, row, row + 1);
                     column = 0;
                     row++;
                 }

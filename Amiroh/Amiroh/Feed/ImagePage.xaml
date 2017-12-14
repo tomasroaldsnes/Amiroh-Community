@@ -18,13 +18,17 @@
                 <!--<Image x:Name="bigImage" Source="{Binding URL}" Aspect="AspectFit" Grid.Row="0" Grid.Column="0"></Image>-->
             <ffimageloading:CachedImage HorizontalOptions="Fill" VerticalOptions="Start"
                                 LoadingPriority="High"
-                                Aspect="AspectFit"  
+                                Aspect="AspectFit"
+                                LoadingPlaceholder="placeholder.png"
                                 MinimumWidthRequest="300"                   
                                 CacheDuration="1"
 			                    Source = "{Binding URL}" >
             </ffimageloading:CachedImage>
 
-            <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Fill" HeightRequest="50">
+            <StackLayout Orientation="Horizontal" Spacing="10"
+                         HorizontalOptions="Fill"
+                         Margin="5,0,0,0"
+                         HeightRequest="50">
                     <Image x:Name="btnPoints" Source="points.png" Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start"  HorizontalOptions="Fill">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
@@ -58,8 +62,9 @@
                     </Image>
                 </StackLayout>
 
-            <Label Text="{Binding Username}" FontFamily="Lato-Bold.ttf#Lato-Bold"
-                   FontSize="20" TextColor="Black" 
+            <Label x:Name="lblUsernameText"
+                   Text="{Binding Username}" FontFamily="Lato-Regular.ttf#Lato-Regular"
+                   FontSize="16" TextColor="#203E4A"
                    HorizontalOptions="StartAndExpand"
                    VerticalOptions="Center"
                    Margin="0,0,0,5">

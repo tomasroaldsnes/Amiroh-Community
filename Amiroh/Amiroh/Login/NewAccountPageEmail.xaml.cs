@@ -32,8 +32,8 @@ namespace Amiroh.Login
             InitializeComponent();
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
-            navigationPage.BarTextColor = Color.White;
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
 
             _users = list;
             mainUserObj = o;
@@ -43,25 +43,31 @@ namespace Amiroh.Login
 
         private async void Next_Clicked(object sender, EventArgs e)
         {
-
+            btnNext.IsEnabled = false;
             if (emailEntry.Text == "")
             {
                 await DisplayAlert("Oops!", "Please type in your email in the field-thingy.", "OK");
+                btnNext.IsEnabled = true;
             }
             else if (!emailEntry.Text.Contains("@") | !emailEntry.Text.Contains("."))
             {
                 await DisplayAlert("Oops!", "Please type in a valid email in the field-thingy.", "OK");
+                btnNext.IsEnabled = true;
             }
             else
             {
                 if (AreCredentialsAvailable(emailEntry.Text, _users))
                 {
                     mainUserObj.Email = emailEntry.Text;
-                    await Navigation.PushModalAsync(new NewAccountPageUP(mainUserObj, _users));
+                    
+                    await Navigation.PushAsync(new NewAccountPageUP(mainUserObj, _users));
+
+                    btnNext.IsEnabled = true;
                 }
                 else
                 {
                     await DisplayAlert("Oops!", "This email is already connected to a user", "OK");
+                    btnNext.IsEnabled = true;
                 }
             }
 

@@ -5,6 +5,8 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White"
              Padding="20,20,20,0"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.HasNavigationBar="True"
              >
     <StackLayout x:Name="layout">
         <ListView x:Name="listviewComments" BackgroundColor="White" HasUnevenRows="False"
@@ -19,7 +21,7 @@
                             
                             <Label Text="{Binding Username}" TextColor="Black" FontSize="16" 
                                    FontFamily="Lato-Bold.ttf#Lato-Bold" 
-                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalOptions="Start"
                                    VerticalOptions="Center"></Label>
                             
                             <Label Text="{Binding Text}" TextColor="Black" FontSize="16" 
@@ -36,10 +38,11 @@
         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" HeightRequest="50">
             <Entry x:Name="commentEntry" Placeholder="Write a comment..."
                    FontFamily="Lato-Light.ttf#Lato-Light" HorizontalOptions="Fill" 
-                   MinimumWidthRequest="300"></Entry>
+                   MinimumWidthRequest="350"></Entry>
+            
             <Button x:Name="btnComment" Text=">" 
                     FontFamily="Lato-Light.ttf#Lato-Light" 
-                    HorizontalOptions="StartAndExpand"
+                    HorizontalOptions="EndAndExpand"
                     WidthRequest="50"
                     HeightRequest="50"
                     BackgroundColor="Black" TextColor="White" 

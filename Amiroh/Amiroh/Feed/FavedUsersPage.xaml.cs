@@ -22,18 +22,22 @@ namespace Amiroh.Feed
         
         private string url_get_faved_users = "http://138.68.137.52:3000/AmirohAPI/users/faved/" + MainUser.MainUserID.ID;
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
+        
 
         public FavedUsersPage ()
 		{
 
-			InitializeComponent ();
+			InitializeComponent();
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
             navigationPage.BarBackgroundColor = Color.White;
             navigationPage.BarTextColor = Color.Black;
 
+            
+            
 
-		}
+
+        }
 
         protected override async void OnAppearing()
         {
@@ -43,6 +47,7 @@ namespace Amiroh.Feed
             favedUsers = new ObservableCollection<User>(posts);
 
             listviewFavedUsers.ItemsSource = favedUsers;
+            
         }
 
        

@@ -32,7 +32,7 @@
             <!--FIRST ROW START-->
             <StackLayout x:Name="lblPoints" Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions ="Center">
                 <Label x:Name="pointslbl" Text="Points" FontSize="Default" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black"></Label>
-                <Label x:Name="numberOfPoints" Text="354" FontSize="Default" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
+                <Label x:Name="numberOfPoints" FontSize="Default" FontFamily="Lato-Light.ttf#Lato-Light" TextColor="Black"></Label>
             </StackLayout>
             <!--...............................................................................-->
             <Image x:Name="btnNotifications" Source="notificationnull.png"  Aspect="AspectFit" Grid.Row="0" Grid.Column="4" >
@@ -75,7 +75,12 @@
             <!--THRID ROW START-->
             <StackLayout Grid.Row="3" Grid.ColumnSpan="10" Orientation="Horizontal" VerticalOptions="StartAndExpand" HeightRequest="50">
                 
-            <Label x:Name="btnInspoGrid" FontSize="14" FontFamily="Lato-Bold.ttf#Lato-Bold" Margin="20,0,0,0" Text="INSPO" HorizontalTextAlignment="Center" TextColor="Black" HorizontalOptions="StartAndExpand">
+            <Label x:Name="btnInspoGrid" FontSize="14" 
+                   FontFamily="Lato-Bold.ttf#Lato-Bold"
+                   Margin="20,0,0,0" Text="INSPO" 
+                   HorizontalTextAlignment="Center" 
+                   TextColor="Black" HorizontalOptions="StartAndExpand"
+                   MinimumWidthRequest="200">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="InspoGrid_Clicked"
@@ -91,7 +96,8 @@
                    Margin="0,0,20,0" Text="COLLECTION" 
                    TextColor="Black" 
                    HorizontalTextAlignment="Center"
-                   HorizontalOptions="StartAndExpand">
+                   HorizontalOptions="EndAndExpand"
+                   MinimumWidthRequest="200">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="Collection_Clicked"

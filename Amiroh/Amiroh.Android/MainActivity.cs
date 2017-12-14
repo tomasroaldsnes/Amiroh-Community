@@ -12,12 +12,14 @@ using Microsoft.Azure.Mobile.Crashes;
 using Plugin.Permissions;
 using Xamarin.Forms.Platform.Android;
 using Android.Graphics;
+using FFImageLoading.Config;
 
 namespace Amiroh.Droid
 {
     [Activity(Label = "Amiroh", Icon = "@drawable/logo", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -28,7 +30,7 @@ namespace Amiroh.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            
+           
 
             base.OnCreate(bundle);
 

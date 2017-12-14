@@ -4,13 +4,13 @@
              x:Class="Amiroh.Profile.EditInspoPage"
              Title=" "
              BackgroundColor="White"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.HasNavigationBar="True"
              Padding="40, 20, 40, 20"
              >
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" VerticalOptions="Fill">
-            <Entry x:Name="titleEntry" Placeholder="ADD A CATCHY TITLE TO YOUR INSPO" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14" WidthRequest="350"
-                   TextColor="Black" PlaceholderColor="DarkGray" HorizontalOptions="StartAndExpand" VerticalOptions="Start" HorizontalTextAlignment="Start" Margin="0,40,0,40" />
-
+           
             <Label Text="TELL US HOW YOU ARCHIEVED PERFECTION:" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="12"
                    TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="End" ></Label>
 
@@ -39,7 +39,7 @@
                     </StackLayout>
             </ScrollView>
 
-            <Button Text="PUBLISH" Clicked="Publish_Clicked" 
+            <Button x:Name="btnPublish" Text="PUBLISH" Clicked="Publish_Clicked" 
                     FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
                     TextColor="White" BackgroundColor="Black"
                     BorderRadius="30" WidthRequest="200"

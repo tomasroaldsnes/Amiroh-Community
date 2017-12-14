@@ -3,20 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.Login.NewAccountPageName"
              Title=" "
-             BackgroundColor="#203E4A" Padding="10, 20, 10, 20"
+             BackgroundColor="White" Padding="10, 20, 10, 20"
              >
     <ContentPage.Content>
         <StackLayout BackgroundColor="Transparent" VerticalOptions="Fill">
-            <Label Text="WHATS YOUR NAME, GORGEOUS?" FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="16"
-                   TextColor="White" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center" Margin="0,40,0,0" />
+            <Label Text="WHATS YOUR NAME, GORGEOUS?" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                   TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center" Margin="0,40,0,0" />
 
             <Entry x:Name="nameEntry" Placeholder="NAME AND SURNAME" FontFamily="Lato-Light.ttf#Lato-Light"
-                   FontSize="16" PlaceholderColor="WhiteSmoke" TextColor="White" BackgroundColor="Transparent" HeightRequest="50" 
+                   FontSize="14" PlaceholderColor="Gray" TextColor="Black" BackgroundColor="Transparent" HeightRequest="50" 
                    WidthRequest="200" HorizontalTextAlignment="Center" Margin="30,60,30,30" ></Entry>
            
             
-            <Button Text="NEXT" Clicked="Next_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
-                    TextColor="Black" BackgroundColor="White" BorderRadius="30" WidthRequest="200"
+            <Button x:Name="btnNext" Text="NEXT" Clicked="Next_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
+                    TextColor="White" BackgroundColor="Black" BorderRadius="30" WidthRequest="200"
                     HorizontalOptions="Center" Margin="30,0,30,40"></Button>
 
 

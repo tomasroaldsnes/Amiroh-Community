@@ -39,8 +39,7 @@ namespace Amiroh
             navigationPage.BarBackgroundColor = Color.White;
             navigationPage.BarTextColor = Color.Black;
 
-
-            Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
+            
             _category = category;
             
         }

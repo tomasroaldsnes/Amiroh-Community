@@ -26,8 +26,8 @@ namespace Amiroh.Profile
             InitializeComponent();
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
-            navigationPage.BarTextColor = Color.White;
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
 
             _firstTime = FirstTime;
 
@@ -50,11 +50,13 @@ namespace Amiroh.Profile
 
         private async void Later_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new MainPage());
+            await Navigation.PushAsync(new MainPage());
         }
 
         private async void Continue_Clicked(object sender, EventArgs e)
         {
+            btnContinue.IsEnabled = false;
+            lblLater.IsVisible = false;
             string url_user = "http://138.68.137.52:3000/AmirohAPI/users/username/" + MainUser.MainUserID.Username;
             HttpClient _client = new HttpClient(new NativeMessageHandler());
 
@@ -64,9 +66,11 @@ namespace Amiroh.Profile
             MainUser.MainUserID.ProfileDescription = entryDescription.Text;
 
             var response = await _client.PutAsync(url_user, postdataString);
-            
 
-            await Navigation.PushModalAsync(new MainPage());
+            App.IsUserLoggedIn = true;
+
+            btnContinue.IsEnabled = true;
+            await Navigation.PushAsync(new MainPage());
 
         }
 

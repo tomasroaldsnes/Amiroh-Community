@@ -26,9 +26,11 @@ namespace Amiroh
     public partial class InspoPage : ContentPage
     {
         private const string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/";
-        
+
+        private string url_faved_users = "http://138.68.137.52:3000/AmirohAPI/users/faved/" + MainUser.MainUserID.ID;
+
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
-        private ObservableCollection<Inspo> _posts_All;
+        private ObservableCollection<Inspo> _AllInsposList_Sorted;
         ObservableCollection<Inspo> sortedByPoints_First = new ObservableCollection<Inspo>();
 
         
@@ -37,22 +39,33 @@ namespace Amiroh
         {
             InitializeComponent();
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
+            listviewInspo.ItemsSource = _AllInsposList_Sorted;
 
             
+
         }
 
         private async void LoadInspos()
         {
+            //get faved users to check if list of inspos contains posts from faved users
+            var content_faved = await _client.GetStringAsync(url_faved_users);
+            var favedUserList = JsonConvert.DeserializeObject<List<User>>(content_faved);
 
-            //check is device is connected to the internet
+            var favedUsernameList = favedUserList.Select(u => u.Username);
 
-            var content = await _client.GetStringAsync(url_photo);
-            var posts = JsonConvert.DeserializeObject<List<Inspo>>(content);
 
-           _posts_All = new ObservableCollection<Inspo>(
-            posts.OrderBy(inspo => inspo).Reverse<Inspo>());
+            //get all inspos
+            var content_inspo = await _client.GetStringAsync(url_photo);
+            var AllInsposList = JsonConvert.DeserializeObject<List<Inspo>>(content_inspo);
 
-            listviewInspo.ItemsSource = _posts_All;
+            _AllInsposList_Sorted = new ObservableCollection<Inspo>(
+             AllInsposList
+                 .OrderByDescending(i => i.Points)
+                 .OrderByDescending(i => favedUsernameList.Contains<string>(i.Username))
+                
+                );
+
+            listviewInspo.ItemsSource = _AllInsposList_Sorted;
 
             
 
@@ -80,11 +93,11 @@ namespace Amiroh
                 try
                 {
                     Insights.Report(e);
-                    await DisplayAlert("Useless", "I tried to load the inspos, but I failed. Horribly.", "Be better");
+                    await DisplayAlert("Useless Load", "I tried to load the inspos, but I failed. Horribly.", "Be better");
                 }
                 catch
                 {
-                    await DisplayAlert("Error", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
+                    await DisplayAlert("Error Load", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
                 }
             }
 
@@ -118,12 +131,13 @@ namespace Amiroh
                 try
                 {
                     Insights.Report(ex);
-                    await DisplayAlert("Useless", "I tried to load the inspo, but I failed. Horribly.", "Be better");
+                    await DisplayAlert("Useless Tap", "I tried to load the inspo, but I failed. Horribly.", "Be better");
+                    
                     
                 }
                 catch
                 {
-                    await DisplayAlert("Error", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
+                    await DisplayAlert("Error Tap", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
                     
                 }
             }

@@ -42,12 +42,15 @@ namespace Amiroh.Login
 
 
     private async void LoginButton_Clicked(object sender, EventArgs e)
-        {
-            this.IsBusy = true;
+    {
+
+            
+           
+
             try
             {
-                
-                    //check is device is connected to the internet
+                    btnLogin.IsEnabled = false;
+                //check is device is connected to the internet
 
                     string url = url_user + usernameEntry.Text;
                     var content = await _client.GetStringAsync(url);
@@ -64,18 +67,18 @@ namespace Amiroh.Login
                 {
                     Insights.Report(ex);
                     errorLabel.Text = "Connection failed. Are you connected to the internet?";
+                    
+                    btnLogin.IsEnabled = true;
                 }
                 catch
                 {
-                   //
+                    
+                    btnLogin.IsEnabled = true;
                 }
 
 
             }
-            finally
-            {
-                this.IsBusy = false;
-            }
+            
 
             try
             {
@@ -100,8 +103,7 @@ namespace Amiroh.Login
                         MainUser.MainUserID.HasNotifications = true;
                     }
 
-                    var app = Application.Current as App;
-                    app.IsUserLoggedIn = false;
+                    App.IsUserLoggedIn = true;
 
                     Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
                     await Navigation.PopAsync();
@@ -110,6 +112,8 @@ namespace Amiroh.Login
                 {
                     errorLabel.Text = "Username or password is incorrect";
                     passwordEntry.Text = string.Empty;
+                    
+                    btnLogin.IsEnabled = true;
                 }
             }
             catch (Exception ex)
@@ -118,10 +122,14 @@ namespace Amiroh.Login
                 {
                     Insights.Report(ex);
                     errorLabel.Text = "Connection failed. Are you connected to the internet?";
+                    
+                    btnLogin.IsEnabled = true;
                 }
                 catch
                 {
                     await DisplayAlert("Ooops.", "I failed to do what you wanted me to do.", "You are useless.");
+                    
+                    btnLogin.IsEnabled = true;
                 }
 
             }

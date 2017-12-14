@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.InspoPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:local ="clr-namespace:Amiroh.Views"
              BackgroundColor="#FFFFFF"
              
              Padding="20,20,20,10">
@@ -17,23 +18,44 @@
     
         <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell Height="380">
-                            
-                            <ffimageloading:CachedImage x:Name="imgInspo"
+                   
+                    
+
+                        <local:CustomCell Height="380">
+
+                        <ffimageloading:CachedImage x:Name="imgInspo"
                                 DownsampleHeight="300"
                                 DownsampleWidth="300"
                                 Aspect="AspectFill"
                                 Margin="0,40,0,40"
                                 HorizontalOptions="StartAndExpand"
+                                LoadingPlaceholder="placeholder.png"
+                                RetryCount="3"
+                                MinimumWidthRequest="300"
+			                    LoadingPriority="High"                      
+                                CacheDuration="1"
+                                Source = "{Binding URL}" >
+
+                        </ffimageloading:CachedImage>
+
+                    </local:CustomCell>
+                            
+                            <!--<ffimageloading:CachedImage x:Name="imgInspo"
+                                DownsampleHeight="300"
+                                DownsampleWidth="300"
+                                Aspect="AspectFill"
+                                Margin="0,40,0,40"
+                                HorizontalOptions="StartAndExpand"
+                                LoadingPlaceholder="placeholder.png"
                                 MinimumWidthRequest="300"
 			                    LoadingPriority="High"                      
                                 CacheDuration="1"
 			                    Source = "{Binding URL}" >    
                                 
-                            </ffimageloading:CachedImage>
+                            </ffimageloading:CachedImage>-->
                            
                            
-                    </ViewCell>
+                    
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

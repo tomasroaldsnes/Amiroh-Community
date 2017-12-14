@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin;
@@ -122,20 +123,137 @@ namespace Amiroh.Classes
         public string ProfilePicture { get; set; }
     }
 
-    public class Inspo : IComparable
+    public class Inspo : IComparable, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string _title;
+        private string _description;
+        private string _URL;
+        private string[] _hasbeenlikedby;
+        private Comment[] _comments;
+        private int _points;
+        private string[] _tags;
+        private string[] _productsused;
+
+
+
         public string _Id { get; set; }
         public string Username { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string URL { get; set; }
+        public string Title {
+            get { return _title; }
+            set
+            {
+                if (_title == value)
+                    return;
+
+                _title = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+
+        public string Description
+        {
+            get { return _description; }
+            set
+            {
+                if (_description == value)
+                    return;
+
+                _description = value;
+
+                OnPropertyChanged();
+            }
+        }
+        public string URL
+        {
+            get { return _URL; }
+            set
+            {
+                if (_URL == value)
+                    return;
+
+                _URL = value;
+
+                OnPropertyChanged();
+            }
+        }
         public string UserId { get; set; }
-        public string[] HasBeenLikedBy{ get; set; }
-        public Comment[] Comments { get; set; }
-        public Notification[] Notifications { get; set; }
-        public int Points { get; set; }
-        public string[] Tags { get; set; } 
-        public string[] ProductsUsed { get; set; }
+
+        public string[] HasBeenLikedBy
+        {
+            get { return _hasbeenlikedby; }
+            set
+            {
+                if (_hasbeenlikedby == value)
+                    return;
+
+                _hasbeenlikedby = value;
+
+                OnPropertyChanged();
+            }
+        }
+        public Comment[] Comments
+        {
+            get { return _comments; }
+            set
+            {
+                if (_comments == value)
+                    return;
+
+                _comments = value;
+
+                OnPropertyChanged();
+            }
+        }
+        
+        public int Points
+        {
+            get { return _points; }
+            set
+            {
+                if (_points == value)
+                    return;
+
+                _points = value;
+
+                OnPropertyChanged();
+            }
+        }
+        public string[] Tags
+        {
+            get { return _tags; }
+            set
+            {
+                if (_tags == value)
+                    return;
+
+                _tags = value;
+
+                OnPropertyChanged();
+            }
+        }
+        public string[] ProductsUsed
+        {
+            get { return _productsused; }
+            set
+            {
+                if (_productsused == value)
+                    return;
+
+                _productsused = value;
+
+                OnPropertyChanged();
+            }
+        }
+        public string UploadId { get; set; }
 
         public int CompareTo(object obj)
         {

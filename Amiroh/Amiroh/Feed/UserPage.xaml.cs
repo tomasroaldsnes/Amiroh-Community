@@ -39,9 +39,7 @@ namespace Amiroh
         private ObservableCollection<Inspo> _userPhotos;
         private ObservableCollection<Inspo> _userCollection;
 
-        private bool IsInspoLoaded = false;
-        private bool NewInspoUploaded = false;
-
+       
         private string Username = "";
         private ObservableCollection<User> _user;
         
@@ -52,41 +50,54 @@ namespace Amiroh
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
             Username = _username;
 
-            
+            var navigationPage = Application.Current.MainPage as NavigationPage;
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
+
+            //lblUsername.Text = lblUsername.Text.ToUpper();
 
 
 
         }
-        
+
+        private async void UserInspoImageTapped(Inspo i)
+        {
+
+            await Navigation.PushAsync(new ImagePage(i));
+        }
+
 
         protected async override void OnAppearing()
         {
             
             try
             {
-            var content_u = await _client.GetStringAsync(url_user + Username);
-            var uObj = JsonConvert.DeserializeObject<List<User>>(content_u);
+                var content_u = await _client.GetStringAsync(url_user + Username);
+                var uObj = JsonConvert.DeserializeObject<List<User>>(content_u);
 
-             _user = new ObservableCollection<User>(uObj);
+                 _user = new ObservableCollection<User>(uObj);
 
-             this.BindingContext = _user[0];
-             lblUsername.Text = lblUsername.Text.ToUpper();
-
-
+                 this.BindingContext = _user[0];
+                 //lblUsername.Text = lblUsername.Text.ToUpper();
 
 
-                var content_p = await _client.GetStringAsync(url_photo + Username);
-                var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
 
-                 _userPhotos = new ObservableCollection<Inspo>(pI);
 
-                //set the number of points to the correct amount
-                int userPoints = 0;
-                foreach (var image in _userPhotos)
-                {
-                    userPoints += image.Points;
-                }
-                numberOfPoints.Text = userPoints.ToString();
+                    var content_p = await _client.GetStringAsync(url_photo + Username);
+                    var pI = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
+
+                     _userPhotos = new ObservableCollection<Inspo>(pI);
+
+                    //set the number of points to the correct amount
+                    int userPoints = 0;
+                    foreach (var image in _userPhotos)
+                    {
+                        if (image.Points != 0 | image.Points != null)
+                        {
+                            userPoints += image.Points;
+                        }
+                    }
+                    numberOfPoints.Text = userPoints.ToString();
   
             }
             catch (Exception e)
@@ -110,10 +121,9 @@ namespace Amiroh
 
             try
             {
-                if (!IsInspoLoaded)
-                {
+                
                     GridCreation();
-                }
+                
              
                 
             }
@@ -141,8 +151,7 @@ namespace Amiroh
             try
             {
 
-                if (!IsInspoLoaded)
-                {
+                
                     for (int MyCount = 0; MyCount < _userPhotos.Count()+2; MyCount++)
                     {
 
@@ -150,12 +159,7 @@ namespace Amiroh
 
                     }
 
-                }
-                else if(NewInspoUploaded)
-                {
-                    ProfileGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
-                    NewInspoUploaded = false;
-                }
+              
 
                 //set row and columns => column to 1 since AddInspoBtn should always be at position 0,0
                 int row = 4;
@@ -169,13 +173,32 @@ namespace Amiroh
 
                     if (column < 1)
                     {
-                        ProfileGrid.Children.Add(new CachedImage{ Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 0, 5, row, row+1);
-                        
+                        var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+
+                        Inspo obj = _userPhotos[i];
+                        var tappedInspo = new TapGestureRecognizer();
+                        tappedInspo.Tapped += (s, et) =>
+                        {
+                            UserInspoImageTapped(obj);
+                        };
+                        userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                        ProfileGrid.Children.Add(userInspoObject, 0, 5, row, row + 1);
                         column++;
                     }
                     else if (column == 1)
                     {
-                        ProfileGrid.Children.Add(new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand}, 5 , 10, row, row+1);
+                        var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+
+                        Inspo obj = _userPhotos[i];
+                        var tappedInspo = new TapGestureRecognizer();
+                        tappedInspo.Tapped += (s, et) =>
+                        {
+                            UserInspoImageTapped(obj);
+                        };
+                        userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                        ProfileGrid.Children.Add(userInspoObject, 5, 10, row, row + 1);
                         column = 0;
                         row++;
                     }
@@ -186,7 +209,7 @@ namespace Amiroh
 
                 }
                 //Inspos are now loaded and grid does not need to update gridrows
-                IsInspoLoaded = true;
+                
             }
             catch (Exception ex)
             {
@@ -225,13 +248,32 @@ namespace Amiroh
 
                 if (column < 1)
                 {
-                    ProfileGrid.Children.Add(new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 0, 5, row, row + 1);
+                    var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
 
+                    Inspo obj = _userPhotos[i];
+                    var tappedInspo = new TapGestureRecognizer();
+                    tappedInspo.Tapped += (s, et) =>
+                    {
+                        UserInspoImageTapped(obj);
+                    };
+                    userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                    ProfileGrid.Children.Add(userInspoObject, 0, 5, row, row + 1);
                     column++;
                 }
                 else if (column == 1)
                 {
-                    ProfileGrid.Children.Add(new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 5, 10, row, row + 1);
+                    var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+
+                    Inspo obj = _userPhotos[i];
+                    var tappedInspo = new TapGestureRecognizer();
+                    tappedInspo.Tapped += (s, et) =>
+                    {
+                        UserInspoImageTapped(obj);
+                    };
+                    userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                    ProfileGrid.Children.Add(userInspoObject, 5, 10, row, row + 1);
                     column = 0;
                     row++;
                 }
@@ -293,13 +335,32 @@ namespace Amiroh
                 {
                     if (column < 1)
                     {
-                        ProfileGrid.Children.Add(new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 0, 5, row, row + 1);
+                        var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
 
+                        Inspo obj = _userPhotos[i];
+                        var tappedInspo = new TapGestureRecognizer();
+                        tappedInspo.Tapped += (s, ex) =>
+                        {
+                            UserInspoImageTapped(obj);
+                        };
+                        userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                        ProfileGrid.Children.Add(userInspoObject, 0, 5, row, row + 1);
                         column++;
                     }
                     else if (column == 1)
                     {
-                        ProfileGrid.Children.Add(new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand }, 5, 10, row, row + 1);
+                        var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+
+                        Inspo obj = _userPhotos[i];
+                        var tappedInspo = new TapGestureRecognizer();
+                        tappedInspo.Tapped += (s, ex) =>
+                        {
+                            UserInspoImageTapped(obj);
+                        };
+                        userInspoObject.GestureRecognizers.Add(tappedInspo);
+
+                        ProfileGrid.Children.Add(userInspoObject, 5, 10, row, row + 1);
                         column = 0;
                         row++;
                     }

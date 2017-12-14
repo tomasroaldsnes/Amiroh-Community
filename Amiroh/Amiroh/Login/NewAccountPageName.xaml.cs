@@ -34,8 +34,8 @@ namespace Amiroh.Login
             InitializeComponent();
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
-            navigationPage.BarTextColor = Color.White;
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
         }
 
         
@@ -69,9 +69,19 @@ namespace Amiroh.Login
 
         private async void Next_Clicked(object sender, EventArgs e)
         {
+            btnNext.IsEnabled = false;
+            if (nameEntry.Text.Length < 3)
+            {
+                await DisplayAlert("Oops!", "Name has to be longer than 3 characters.", "Fine...");
+                btnNext.IsEnabled = true;
+            }
+            else
+            {
+                mainUserObj.Name = nameEntry.Text;
+                await Navigation.PushAsync(new NewAccountPageEmail(mainUserObj, _users));
 
-            mainUserObj.Name = nameEntry.Text;
-            await Navigation.PushModalAsync(new NewAccountPageEmail(mainUserObj, _users));
+                btnNext.IsEnabled = true;
+            }
 
         }
         bool AreCredentialsAvailable(User user, ObservableCollection<User> _users)

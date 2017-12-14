@@ -23,13 +23,20 @@ namespace Amiroh.Profile
         private string _id;
         private List<string> Tags = new List<string>();
 
+        private bool IsEyesTapped = false;
+        private bool IsLipsTapped = false;
+        private bool IsEyebrowsTapped = false;
+        private bool IsContouringTapped = false;
+        private bool IsDayTapped = false;
+        private bool IsNightTapped = false;
+
         public EditInspoPage(string id)
         {
             InitializeComponent();
             _id = id;
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("White");
+            navigationPage.BarBackgroundColor = Color.White;
             navigationPage.BarTextColor = Color.Black;
 
             tagEyes.GestureRecognizers.Add(new TapGestureRecognizer(EyesTag_Tapped));
@@ -44,55 +51,127 @@ namespace Amiroh.Profile
 
         private async void EyesTag_Tapped(View arg1, object arg2)
         {
-            Tags.Add("Eyes");
-            tagEyes.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+            if (!IsEyesTapped)
+            {
+                Tags.Add("Eyes");
+                tagEyes.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                IsEyesTapped = true;
+            }
+            else
+            {
+                tagEyes.FontFamily = "Lato-Light.ttf#Lato-Light";
+                Tags.Remove("Eyes");
+                IsEyesTapped = false;
+            }
         }
 
         private async void LipsTag_Tapped(View arg1, object arg2)
         {
-            Tags.Add("Lips");
-            tagLips.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+            if (!IsLipsTapped)
+            {
+                Tags.Add("Lips");
+                tagLips.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                IsLipsTapped = true;
+            }
+            else
+            {
+                tagLips.FontFamily = "Lato-Light.ttf#Lato-Light";
+                Tags.Remove("Lips");
+                IsLipsTapped = false;
+            }
         }
 
         private async void EyebrowsTag_Tapped(View arg1, object arg2)
         {
-            Tags.Add("Eyebrows");
-            tagEyebrows.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+            if (!IsEyebrowsTapped)
+            {
+                Tags.Add("Eyebrows");
+                tagEyebrows.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                IsEyebrowsTapped = true;
+            }
+            else
+            {
+                tagEyebrows.FontFamily = "Lato-Light.ttf#Lato-Light";
+                Tags.Remove("Eyebrows");
+                IsEyebrowsTapped = false;
+            }
         }
 
         private async void ContouringTag_Tapped(View arg1, object arg2)
         {
-            Tags.Add("Contouring");
-            tagContouring.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+            if (!IsContouringTapped)
+            {
+                Tags.Add("Contouring");
+                tagContouring.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                IsContouringTapped = true;
+            }
+            else
+            {
+                tagContouring.FontFamily = "Lato-Light.ttf#Lato-Light";
+                Tags.Remove("Contouring");
+                IsContouringTapped = false;
+            }
         }
 
         private async void DayTag_Tapped(View arg1, object arg2)
         {
-            Tags.Add("Day");
-            tagDay.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+            if (!IsDayTapped)
+            {
+                Tags.Add("Day");
+                tagDay.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                IsDayTapped = true;
+
+            }
+            else
+            {
+                tagDay.FontFamily = "Lato-Light.ttf#Lato-Light";
+                Tags.Remove("Day");
+                IsDayTapped = false;
+            }
         }
 
         private async void NightTag_Tapped(View arg1, object arg2)
         {
-            Tags.Add("Night");
-            tagNight.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+            if (!IsNightTapped)
+            {
+                Tags.Add("Night");
+                tagNight.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                IsNightTapped = true;
+            }
+            else
+            {
+                tagNight.FontFamily = "Lato-Light.ttf#Lato-Light";
+                Tags.Remove("Night");
+                IsNightTapped = false;
+            }
         }
 
-        
+
 
         private async void Publish_Clicked(object sender, EventArgs e)
         {
+            btnPublish.IsEnabled = false;
             string url_edit_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/" + _id;
             HttpClient _client = new HttpClient(new NativeMessageHandler());
 
-            string postdataJson = JsonConvert.SerializeObject(new {  title = titleEntry.Text, description = descriptionEntry.Text, tags = Tags.ToArray() }); //<-------
+            string postdataJson = JsonConvert.SerializeObject(new { description = descriptionEntry.Text, tags = Tags.ToArray() }); //<-------
             var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
-            
 
-            var response = await _client.PutAsync(url_edit_inspo, postdataString);
 
-            await Navigation.PushModalAsync(new MainPage());
+            var response = _client.PutAsync(url_edit_inspo, postdataString);
+            var responseString = response.Result.Content.ReadAsStringAsync().Result;
 
+
+            if (response.Result.IsSuccessStatusCode)
+            {
+                btnPublish.IsEnabled = true;
+                await Task.Delay(5000);
+                await Navigation.PushAsync(new MainPage());
+            }
+            else
+            {
+                btnPublish.IsEnabled = true;
+            }
         }
 
         private void Editor_TextChanged(object sender, TextChangedEventArgs e)

@@ -46,7 +46,7 @@ namespace Amiroh.Feed
 
         private async void btnComment_Clicked(object sender, EventArgs e)
         {
-            commentEntry.Text = "";
+            
             commentEntry.IsEnabled = false;
             btnComment.IsEnabled = false;
             
@@ -68,6 +68,7 @@ namespace Amiroh.Feed
                     _comments.Add(new Comment { Username = MainUser.MainUserID.Username, Text = commentEntry.Text, ProfilePicture = MainUser.MainUserID.ProfilePicture });
                     btnComment.IsEnabled = true;
                     commentEntry.IsEnabled = true;
+                    commentEntry.Text = "";
                 }
                 else
                 {

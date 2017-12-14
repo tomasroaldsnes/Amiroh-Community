@@ -33,7 +33,7 @@ namespace Amiroh.Login
             InitializeComponent();
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
+            navigationPage.BarBackgroundColor = Color.White;
             navigationPage.BarTextColor = Color.White;
 
             _users = list;
@@ -44,14 +44,16 @@ namespace Amiroh.Login
 
         private async void Next_Clicked(object sender, EventArgs e)
         {
-
+            btnSignup.IsEnabled = false;
             if (usernameEntry.Text == "" | passwordEntry.Text == "")
             {
-                await DisplayAlert("Oops!", "Please type in your email in the field-thingy.", "OK");
+                await DisplayAlert("Oops!", "Please type in your username in the field-thingy.", "OK");
+                btnSignup.IsEnabled = true;
             }
             else if (passwordEntry.Text.Length < 7 )
             {
                 await DisplayAlert("Oops!", "Password must be longer than 7 characters.", "OK");
+                btnSignup.IsEnabled = true;
             }
             else
             {
@@ -81,15 +83,17 @@ namespace Amiroh.Login
 
                         MainUser.MainUserID.Username = mainUserObj.Username;
 
-                        await Navigation.PushModalAsync(new EditProfilePicPage());
+                        await Navigation.PushAsync(new EditProfilePicPage());
 
-                       
+                        btnSignup.IsEnabled = true;
+
+
 
                     }
                     catch
                     {
 
-                        //
+                        btnSignup.IsEnabled = true;
                     }
 
                     
@@ -97,6 +101,7 @@ namespace Amiroh.Login
                 else
                 {
                     await DisplayAlert("Oops!", "This email is already connected to a user", "OK");
+                    btnSignup.IsEnabled = true;
                 }
             }
 

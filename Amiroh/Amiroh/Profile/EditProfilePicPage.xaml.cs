@@ -26,24 +26,28 @@ namespace Amiroh.Profile
             InitializeComponent();
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
-            navigationPage.BarBackgroundColor = Color.FromHex("#203E4A");
-            navigationPage.BarTextColor = Color.White;
-
-           
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
+            lblLater.IsVisible = true;
+            btnChoose.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = new Command(() => ChooseImage_Clicked()),
+            });
         }
 
         private async void Later_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new EditDescriptionPage(true));
+            await Navigation.PushAsync(new EditDescriptionPage(true));
+            
         }
 
-        private async void ChooseImage_Clicked(object sender, EventArgs e)
+        private async void ChooseImage_Clicked()
         {
-
+            
             try
             {
-                btnChoose.Text = "Uploading, give me a minute...";
-                btnChoose.IsEnabled = false;
+                lblLater.IsVisible = false;
+                lblChooseImageText.Text = "UPLOADING...";
 
                  string url_user = "http://138.68.137.52:3000/AmirohAPI/users/username/";
                  HttpClient _client = new HttpClient(new NativeMessageHandler());
@@ -65,12 +69,12 @@ namespace Amiroh.Profile
                     if (response.Result.IsSuccessStatusCode)
                     {
                         MainUser.MainUserID.ProfilePicture = profilePictureURL;
-                        await Navigation.PushModalAsync(new EditDescriptionPage(true));
+                        await Navigation.PushAsync(new EditDescriptionPage(true));
                     }
                     else
                     {
                         await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
-                        await Navigation.PushModalAsync(new EditDescriptionPage(true));
+                        await Navigation.PushAsync(new EditDescriptionPage(true));
                     }
                 }
                 else
@@ -93,12 +97,12 @@ namespace Amiroh.Profile
 
                     if (response.Result.IsSuccessStatusCode)
                     {
-                        await Navigation.PushModalAsync(new EditDescriptionPage(true));
+                        await Navigation.PushAsync(new EditDescriptionPage(true));
                     }
                     else
                     {
                         await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
-                        await Navigation.PushModalAsync(new EditDescriptionPage(true));
+                        await Navigation.PushAsync(new EditDescriptionPage(true));
                     }
 
                 }

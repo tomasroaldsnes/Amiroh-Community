@@ -15,7 +15,7 @@
                                        WidthRequest="75"
                                        HeightRequest="75"
                                        Aspect="AspectFit"
-                                       HorizontalOptions="Center" Margin="30,80,30,40"></ffimageloading:CachedImage>
+                                       HorizontalOptions="Center" Margin="30,100,30,40"></ffimageloading:CachedImage>
 
             <Label x:Name="lblImageText" Text="CHOOSE IMAGE FROM GALLERY" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16"
                    TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center"  />
