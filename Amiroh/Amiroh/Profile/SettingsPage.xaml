@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Amiroh.Profile.SettingsPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             BackgroundColor="White"
+             Padding="20,20,20,0"
+             NavigationPage.HasBackButton="True"
+             NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <TableView Intent="Settings" BackgroundColor="White">
+            <TableRoot>
+                <TableSection Title="PROFILE">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <ffimageloading:CachedImage Source="feed.png" WidthRequest="30" HeightRequest="30" Aspect="AspectFill"/>
+                            <Label Text="Edit Description"
+                                    TextColor="Black" 
+                                    FontFamily="Lato-Regular.ttf#Lato-Regular"
+                                    FontSize="16"/>
+
+                            <Label Text=">"
+                              HorizontalOptions="EndAndExpand"
+                                    FontFamily="Lato-Regular.ttf#Lato-Regular"
+                                    FontSize="16"
+                                    TextColor="Black" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                         Tapped="EditDescription_Clicked"
+                                         NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

@@ -273,10 +273,7 @@ namespace Amiroh
             
         }
 
-        private void Settings_Tapped(object sender, EventArgs e)
-        {
-            //
-        }
+        
         private void InspoGrid_Clicked(object sender, EventArgs e)
         {
             btnInspoGrid.FontFamily = "Lato-Bold.ttf#Lato-Bold";
@@ -334,10 +331,11 @@ namespace Amiroh
 
             }
         }
-        private void ProductPage_Clicked(object sender, EventArgs e)
+        private async void Settings_Tapped(object sender, EventArgs e)
         {
-            //
+            await Navigation.PushAsync(new SettingsPage());
         }
+
         private async void Collection_Clicked(object sender, EventArgs e)
         {
             for (int i = _userPhotos.Count()+6; i > 6; i--)

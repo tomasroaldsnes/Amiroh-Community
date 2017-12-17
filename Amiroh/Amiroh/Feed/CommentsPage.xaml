@@ -4,7 +4,6 @@
              x:Class="Amiroh.Feed.CommentsPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White"
-             Padding="20,20,20,0"
              NavigationPage.HasBackButton="True"
              NavigationPage.HasNavigationBar="True"
              >
@@ -15,7 +14,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Spacing="7" Margin="0,10,0,10">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Spacing="7" Margin="20,10,20,10">
                             
                             
                             
@@ -36,15 +35,17 @@
         </ListView>
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" HeightRequest="50">
-            <Entry x:Name="commentEntry" Placeholder="Write a comment..."
-                   FontFamily="Lato-Light.ttf#Lato-Light" HorizontalOptions="Fill" 
-                   MinimumWidthRequest="350"></Entry>
+            <Entry x:Name="commentEntry" 
+                   Placeholder="Write a comment..."
+                   FontFamily="Lato-Light.ttf#Lato-Light"
+                   PlaceholderColor="Black"
+                   HorizontalOptions="Fill" 
+                   BackgroundColor="White"></Entry>
             
             <Button x:Name="btnComment" Text=">" 
-                    FontFamily="Lato-Light.ttf#Lato-Light" 
-                    HorizontalOptions="EndAndExpand"
-                    WidthRequest="50"
+                    FontFamily="Lato-Light.ttf#Lato-Light"
                     HeightRequest="50"
+                    WidthRequest="50"
                     BackgroundColor="Black" TextColor="White" 
                     FontSize="20" Clicked="btnComment_Clicked"></Button>
         </StackLayout>

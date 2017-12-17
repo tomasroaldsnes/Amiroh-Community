@@ -66,12 +66,28 @@ namespace Amiroh
             await Navigation.PushAsync(new ImagePage(i));
         }
 
+        private async void CheckIfUserAlreadyFaved()
+        {
+            var content_u = await _client.GetStringAsync(url_addFaved + MainUser.MainUserID.ID); //url_addFaved and url_getFaved is equal
+            var uObj = JsonConvert.DeserializeObject<List<User>>(content_u);
+
+            var favedUsers = uObj.Select(u => u.Username);
+
+            if (favedUsers.Contains<string>(Username))
+            {
+                btnFave.Source = "faved.png";
+                btnFave.IsEnabled = false;
+            }
+        }
+
 
         protected async override void OnAppearing()
         {
             
             try
             {
+                CheckIfUserAlreadyFaved();
+
                 var content_u = await _client.GetStringAsync(url_user + Username);
                 var uObj = JsonConvert.DeserializeObject<List<User>>(content_u);
 

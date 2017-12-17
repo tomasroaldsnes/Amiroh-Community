@@ -164,9 +164,11 @@ namespace Amiroh.Profile
 
             if (response.Result.IsSuccessStatusCode)
             {
+                
+                await Task.Delay(3000);
+                Navigation.InsertPageBefore(new MainPage(), this);
+                await Navigation.PopAsync();
                 btnPublish.IsEnabled = true;
-                await Task.Delay(5000);
-                await Navigation.PushAsync(new MainPage());
             }
             else
             {

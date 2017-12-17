@@ -15,9 +15,19 @@ namespace Amiroh
     {
         public static bool IsUserLoggedIn { get; set; }
 
-        //private const string LoginStatus = "Key";
+        //public string IsFirstTime
+        //{
+        //    get { return Settings.GeneralSettings; }
+        //    set
+        //    {
+        //        if (Settings.GeneralSettings == value)
+        //            return;
+        //        Settings.GeneralSettings = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        
+
 
         public App()
         {

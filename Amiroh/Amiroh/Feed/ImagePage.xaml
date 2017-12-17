@@ -75,6 +75,18 @@
                 </Label.GestureRecognizers>
             </Label>
             <Label Text="{Binding Description}" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Center"></Label>
+            <Label x:Name="lblShowComments"
+                   FontFamily="Lato-Bold.ttf#Lato-Bold"
+                   FontSize="12" TextColor="#203E4A"
+                   HorizontalOptions="StartAndExpand" 
+                   VerticalOptions="Center"
+                   Margin="0,5,0,0">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                                Tapped="Comment_Tapped"
+                                NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
             
             
 

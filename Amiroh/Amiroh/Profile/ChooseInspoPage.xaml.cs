@@ -67,12 +67,12 @@ namespace Amiroh.Profile
                         var content = await _client.GetStringAsync(url_find_upload_inspo);
                         var inspoObj = JsonConvert.DeserializeObject<List<Inspo>>(content);
 
-                        await Navigation.PushAsync(new EditInspoPage(inspoObj[0]._Id));
+                        await Navigation.PushAsync(new AddProductPage(inspoObj[0]._Id));
                     }
                     else
                     {
                         await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
-                        await Navigation.PushAsync(new EditInspoPage("ERROR"));
+                        await Navigation.PushAsync(new ChooseInspoPage());
                     }
                 }
                 else
@@ -104,12 +104,12 @@ namespace Amiroh.Profile
                         var content = await _client.GetStringAsync(url_find_upload_inspo);
                         var inspoObj = JsonConvert.DeserializeObject<List<Inspo>>(content);
 
-                        await Navigation.PushAsync(new EditInspoPage(inspoObj[0]._Id));
+                        await Navigation.PushAsync(new AddProductPage(inspoObj[0]._Id));
                     }
                     else
                     {
                         await DisplayAlert("Upload Error", "I really tried my best here. Promise", "Try harder");
-                        await Navigation.PushAsync(new EditInspoPage("ERROR"));
+                        await Navigation.PushAsync(new ChooseInspoPage());
                     }
                 }
 
@@ -120,7 +120,7 @@ namespace Amiroh.Profile
                 {
                     Insights.Report(ex);
                     await DisplayAlert("Error", "I tried to upload your profile picture, but I failed. Miserably.", "*Takes a deep breath*");
-                    await Navigation.PushAsync(new EditInspoPage("ERROR"));
+                    await Navigation.PushAsync(new ChooseInspoPage());
                 }
                 catch
                 {

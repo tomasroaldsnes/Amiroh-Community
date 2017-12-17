@@ -39,6 +39,7 @@ namespace Amiroh
             this.BindingContext = Obj;
 
             lblUsernameText.Text = lblUsernameText.Text.ToUpper();
+            lblShowComments.Text = "Show all " + obj.Comments.Length + " comments.";
 
 
         }
@@ -162,7 +163,7 @@ namespace Amiroh
 
         private async void Products_Tapped(object sender, EventArgs e)
         {
-            //push page with list of products
+            await Navigation.PushAsync(new ShowProductsPage(Obj));
         }
 
         private async void User_Tapped(object sender, EventArgs e)
@@ -171,9 +172,6 @@ namespace Amiroh
         }
 
 
-        private async void Backarrow_Tapped(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
-        }
+       
     }
 }
