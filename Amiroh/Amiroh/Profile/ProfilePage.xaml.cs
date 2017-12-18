@@ -360,7 +360,7 @@ namespace Amiroh
                 {
                     var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
 
-                    Inspo obj = _userPhotos[i];
+                    Inspo obj = _userCollection[i];
                     var tappedInspo = new TapGestureRecognizer();
                     tappedInspo.Tapped += (s, ex) =>
                     {
@@ -375,7 +375,7 @@ namespace Amiroh
                 {
                     var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
 
-                    Inspo obj = _userPhotos[i];
+                    Inspo obj = _userCollection[i];
                     var tappedInspo = new TapGestureRecognizer();
                     tappedInspo.Tapped += (s, ex) =>
                     {

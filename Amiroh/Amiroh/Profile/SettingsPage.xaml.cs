@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Amiroh.Login;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,47 @@ namespace Amiroh.Profile
         {
             await Navigation.PushAsync(new EditDescriptionPage(false));
         }
+
+        private async void EditProfilePicture_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EditProfilePicPage());
+        }
+
+        private async void EditName_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewAccountPageName()); //set a bool for first time or new constructor
+        }
+
+        private async void EditEmail_Clicked(object sender, EventArgs e)
+        {
+            //await Navigation.PushAsync(new NewAccountPageEmail()); //make a new constructor 
+        }
+
+        private async void Rapport_Clicked(object sender, EventArgs e)
+        {
+            //await Navigation.PushAsync(new NewAccountPageEmail()); //make a new constructor 
+        }
+
+        private async void Feedback_Clicked(object sender, EventArgs e)
+        {
+            //await Navigation.PushAsync(new NewAccountPageEmail()); //make a new constructor 
+        }
+
+        private async void Rate_Clicked(object sender, EventArgs e)
+        {
+            //await Navigation.PushAsync(new NewAccountPageEmail()); //make a new constructor 
+        }
+
+        private async void SignOut_Clicked(object sender, EventArgs e)
+        {
+            //set logged in to false
+            //reset stack
+            Navigation.InsertPageBefore(new LoginPage(), this);
+            await Navigation.PopAsync();
+        }
+
+
+
+
     }
 }

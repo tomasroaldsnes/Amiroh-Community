@@ -8,24 +8,72 @@ using Microsoft.Azure.Mobile;
 using Microsoft.Azure.Mobile.Analytics;
 using Microsoft.Azure.Mobile.Crashes;
 using Plugin.Media;
+using Amiroh.Helpers;
+using Amiroh.Classes;
 
 namespace Amiroh
 {
     public partial class App : Application
     {
-        public static bool IsUserLoggedIn { get; set; }
+        public string IsLoggedIn
+        {
+            get { return Settings.LoginSettings; }
+            set
+            {
+                if (Settings.LoginSettings == value)
+                    return;
+                Settings.LoginSettings = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //public string IsFirstTime
-        //{
-        //    get { return Settings.GeneralSettings; }
-        //    set
-        //    {
-        //        if (Settings.GeneralSettings == value)
-        //            return;
-        //        Settings.GeneralSettings = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        public string SetUsername
+        {
+            get { return Settings.UsernameSettings; }
+            set
+            {
+                if (Settings.UsernameSettings == value)
+                    return;
+                Settings.UsernameSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SetUserId
+        {
+            get { return Settings.IdSettings; }
+            set
+            {
+                if (Settings.IdSettings == value)
+                    return;
+                Settings.IdSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SetUserDescription
+        {
+            get { return Settings.DescriptionSettings; }
+            set
+            {
+                if (Settings.DescriptionSettings == value)
+                    return;
+                Settings.DescriptionSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SetProfilePicture
+        {
+            get { return Settings.ProfilePictureSettings; }
+            set
+            {
+                if (Settings.ProfilePictureSettings == value)
+                    return;
+                Settings.ProfilePictureSettings = value;
+                OnPropertyChanged();
+            }
+        }
 
 
 
@@ -36,13 +84,17 @@ namespace Amiroh
 
             
 
-            if (!IsUserLoggedIn)
+            if (IsLoggedIn == "yes")
             {
-                MainPage = new NavigationPage(new Amiroh.Login.LoginPage());
+                MainUser.MainUserID.ID = SetUserId;
+                MainUser.MainUserID.Username = SetUsername;
+                MainUser.MainUserID.ProfileDescription = SetUserDescription;
+                MainUser.MainUserID.ProfilePicture = SetProfilePicture;
+                MainPage = new NavigationPage(new Amiroh.MainPage());
             }
             else
             {
-                MainPage = new NavigationPage(new Amiroh.MainPage());
+                MainPage = new NavigationPage(new Amiroh.Login.LoginPage());
             }
         }
 

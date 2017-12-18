@@ -63,7 +63,7 @@ namespace Amiroh.Feed
                 if (response.Result.IsSuccessStatusCode)
                 {
                      var _o = new Notification();
-                    _o.PushNotification("POINT", _obj.URL, MainUser.MainUserID.Username, _obj.UserId);
+                    _o.PushNotification("COMMENT", _obj.URL, MainUser.MainUserID.Username, _obj.UserId);
 
                     _comments.Add(new Comment { Username = MainUser.MainUserID.Username, Text = commentEntry.Text, ProfilePicture = MainUser.MainUserID.ProfilePicture });
                     btnComment.IsEnabled = true;

@@ -21,23 +21,86 @@ namespace Amiroh.Helpers
 
 		#region Setting Constants
 
-		private const string SettingsKey = "settings_key";
-		private static readonly string SettingsDefault = string.Empty;
+		private const string LoginKey = "login_key";
+		private static readonly string LoginDefault = "no";
 
-		#endregion
+        private const string IdKey = "id_key";
+        private static readonly string IdDefault = "empty";
+
+        private const string UsernameKey = "username_key";
+        private static readonly string UsernameDefault = "empty";
+
+        private const string DescriptionKey = "description_key";
+        private static readonly string DescriptionDefault = "empty";
+
+        private const string ProfilePictureKey = "profilepicture_key";
+        private static readonly string ProfilePictureDefault = "empty";
 
 
-		public static string GeneralSettings
+
+
+        #endregion
+
+
+        public static string LoginSettings
 		{
 			get
 			{
-				return AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
+				return AppSettings.GetValueOrDefault(LoginKey, LoginDefault);
 			}
 			set
 			{
-				AppSettings.AddOrUpdateValue(SettingsKey, value);
+				AppSettings.AddOrUpdateValue(LoginKey, value);
 			}
 		}
 
-	}
+        public static string IdSettings
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(IdKey, IdDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(IdKey, value);
+            }
+        }
+
+        public static string UsernameSettings
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(UsernameKey, UsernameDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(UsernameKey, value);
+            }
+        }
+
+        public static string DescriptionSettings
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(DescriptionKey, DescriptionDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(DescriptionKey, value);
+            }
+        }
+
+        public static string ProfilePictureSettings
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault(ProfilePictureKey, ProfilePictureDefault);
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue(ProfilePictureKey, value);
+            }
+        }
+
+    }
 }

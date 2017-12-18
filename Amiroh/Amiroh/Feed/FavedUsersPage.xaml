@@ -11,7 +11,7 @@
              >
   
         <ListView x:Name="listviewFavedUsers" BackgroundColor="White" HasUnevenRows="True"
-               SeparatorVisibility="None">
+               SeparatorVisibility="None" ItemTapped="listviewFavedUsers_ItemTapped">
 
             <ListView.ItemTemplate>
                 <DataTemplate>

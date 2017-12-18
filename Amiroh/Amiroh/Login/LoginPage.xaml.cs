@@ -13,25 +13,77 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Amiroh.Controllers;
 using Plugin.Connectivity;
+using Amiroh.Helpers;
 
 namespace Amiroh.Login
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    [assembly: ExportRenderer(typeof(Xamarin.Forms.Button), typeof(GenericButtonRenderer))]
-
     
-
     public partial class LoginPage : ContentPage
     {
+        public string IsLoggedIn
+        {
+            get { return Settings.LoginSettings; }
+            set
+            {
+                if (Settings.LoginSettings == value)
+                    return;
+                Settings.LoginSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SetUsername
+        {
+            get { return Settings.UsernameSettings; }
+            set
+            {
+                if (Settings.UsernameSettings == value)
+                    return;
+                Settings.UsernameSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SetUserId
+        {
+            get { return Settings.IdSettings; }
+            set
+            {
+                if (Settings.IdSettings == value)
+                    return;
+                Settings.IdSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SetUserDescription
+        {
+            get { return Settings.DescriptionSettings; }
+            set
+            {
+                if (Settings.DescriptionSettings == value)
+                    return;
+                Settings.DescriptionSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SetProfilePicture
+        {
+            get { return Settings.ProfilePictureSettings; }
+            set
+            {
+                if (Settings.ProfilePictureSettings == value)
+                    return;
+                Settings.ProfilePictureSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
         private const string url_user = "http://138.68.137.52:3000/AmirohAPI/users/username/";
 
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private ObservableCollection<User> _user;
-
-        public class GenericButtonRenderer : Xamarin.Forms.Button
-        {
-        }
-
 
         public LoginPage()
         {
@@ -92,6 +144,10 @@ namespace Amiroh.Login
                 var isValid = AreCredentialsCorrect(userLogin, _user);
                 if (isValid) //isValid
                 {
+                    SetUserId = _user[0]._Id;
+                    SetUsername = _user[0].Username;
+                    SetUserDescription = _user[0].ProfileDescription;
+                    SetProfilePicture = _user[0].ProfilePicture;
 
                     MainUser.MainUserID.Username = _user[0].Username;
                     MainUser.MainUserID.ID = _user[0]._Id;
@@ -103,7 +159,7 @@ namespace Amiroh.Login
                         MainUser.MainUserID.HasNotifications = true;
                     }
 
-                    App.IsUserLoggedIn = true;
+                    IsLoggedIn = "yes";
 
                     Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
                     await Navigation.PopAsync();

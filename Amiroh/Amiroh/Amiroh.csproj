@@ -35,7 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controllers\SettingsHelper.cs" />
     <Compile Include="Discover\DiscoverPageCategoryOverview.xaml.cs">
       <DependentUpon>DiscoverPageCategoryOverview.xaml</DependentUpon>
     </Compile>

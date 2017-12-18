@@ -22,15 +22,15 @@
 
                               <Label Text="{Binding Username}" TextColor="Black" FontSize="12" 
                                    FontFamily="Lato-Bold.ttf#Lato-Bold" 
-                                   HorizontalOptions="Start"
+                                   HorizontalOptions="StartAndExpand"
                                    VerticalOptions="Center"></Label>
 
                             <Label Text="{Binding Text}" TextColor="Black" FontSize="12" 
-                                   FontFamily="Lato-Light.ttf#Lato-Light" HorizontalOptions="StartAndExpand" 
+                                   FontFamily="Lato-Light.ttf#Lato-Light" 
                                    VerticalOptions="Center"></Label>
 
-                            <ffimageloading:CachedImage Source="{Binding URL}" HeightRequest="50"
-                                   HorizontalOptions="Start" CacheDuration="1" Aspect="AspectFill" ></ffimageloading:CachedImage>
+                            <ffimageloading:CachedImage Source="{Binding URL}" HeightRequest="50" WidthRequest="50"
+                                    CacheDuration="1" Aspect="AspectFit" ></ffimageloading:CachedImage>
 
                         </StackLayout>
                     </ViewCell>

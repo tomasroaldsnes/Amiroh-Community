@@ -67,7 +67,7 @@ namespace Amiroh.Profile
 
             var response = await _client.PutAsync(url_user, postdataString);
 
-            App.IsUserLoggedIn = true;
+           
 
             btnContinue.IsEnabled = true;
             await Navigation.PushAsync(new MainPage());

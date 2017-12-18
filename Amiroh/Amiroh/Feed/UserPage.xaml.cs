@@ -47,7 +47,6 @@ namespace Amiroh
         public UserPage(string _username)
         {
             InitializeComponent();
-            Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
             Username = _username;
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
@@ -94,9 +93,12 @@ namespace Amiroh
                  _user = new ObservableCollection<User>(uObj);
 
                  this.BindingContext = _user[0];
-                 //lblUsername.Text = lblUsername.Text.ToUpper();
+                //lblUsername.Text = lblUsername.Text.ToUpper();
 
+                var content_c = await _client.GetStringAsync(url_user_collection + _user[0]._Id);
+                var c_obj = JsonConvert.DeserializeObject<List<Inspo>>(content_c);
 
+                _userCollection = new ObservableCollection<Inspo>(c_obj);
 
 
                     var content_p = await _client.GetStringAsync(url_photo + Username);
@@ -333,10 +335,7 @@ namespace Amiroh
                 ProfileGrid.Children.RemoveAt(i);
             }
 
-            var content_p = await _client.GetStringAsync(url_user_collection + MainUser.MainUserID.ID);
-            var user_obj = JsonConvert.DeserializeObject<List<Inspo>>(content_p);
-
-            _userCollection = new ObservableCollection<Inspo>(user_obj);
+            
 
             btnInspoGrid.FontFamily = "Lato-Light.ttf#Lato-Light";
             btnCollection.FontFamily = "Lato-Bold.ttf#Lato-Bold";
@@ -368,7 +367,7 @@ namespace Amiroh
                     {
                         var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
 
-                        Inspo obj = _userPhotos[i];
+                        Inspo obj = _userCollection[i];
                         var tappedInspo = new TapGestureRecognizer();
                         tappedInspo.Tapped += (s, ex) =>
                         {

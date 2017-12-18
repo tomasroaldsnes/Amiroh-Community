@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -50,7 +50,36 @@ namespace Amiroh.Feed
             
         }
 
-       
+        private async void listviewFavedUsers_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            try
+            {
+                if (listviewFavedUsers.SelectedItem != null)
+                {
 
+                    var obj = e.Item as User;
+
+                    await Navigation.PushAsync(new UserPage(obj.Username));
+                    listviewFavedUsers.SelectedItem = null;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                try
+                {
+                    Insights.Report(ex);
+                    await DisplayAlert("Useless Tap", "I tried to load the inspo, but I failed. Horribly.", "Be better");
+
+
+                }
+                catch
+                {
+                    await DisplayAlert("Error Tap", "Error when trying to connect! Something is wrong! HELP!", "Jesus, calm down already.");
+
+                }
+            }
+
+        }
     }
 }
