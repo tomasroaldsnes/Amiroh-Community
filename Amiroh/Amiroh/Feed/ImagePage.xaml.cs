@@ -19,12 +19,13 @@ namespace Amiroh
     public partial class ImagePage : ContentPage
     {
         private const string url_inspo_update = "http://138.68.137.52:3000/AmirohAPI/inspos/";
+        private string url_user_collection = "http://138.68.137.52:3000/AmirohAPI/users/collection/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         Inspo Obj = new Inspo();
 
         private bool PointsAreTapped = false;
+        private bool CollectionsAreTapped = false;
 
-       
 
 
         public ImagePage(Inspo obj)
@@ -44,12 +45,22 @@ namespace Amiroh
 
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             if (Obj.HasBeenLikedBy.Contains<string>(MainUser.MainUserID.Username))
             {
                 btnPoints.Source = "pointson.png";
                 PointsAreTapped = true;
+            }
+
+            var content_c = await _client.GetStringAsync(url_user_collection + MainUser.MainUserID.ID);
+            var collection_list = JsonConvert.DeserializeObject<List<Inspo>>(content_c);
+            var collection_list_id = collection_list.Select(c => c._Id);
+
+            if (collection_list_id.Contains<string>(Obj._Id))
+            {
+                btnCollect.Source = "collectionon.png";
+                CollectionsAreTapped = true;
             }
 
         }
@@ -135,30 +146,33 @@ namespace Amiroh
 
         private async void Collection_Tapped(object sender, EventArgs e)
         {
-            //add to main users collection
-            //add inspo._id to user collection
-            string url_user_collection = "http://138.68.137.52:3000/AmirohAPI/users/collection/" + MainUser.MainUserID.ID;
-
-            string postdataJson = JsonConvert.SerializeObject(new { _id = Obj._Id });
-
-            var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
-
-            
-            var response = _client.PostAsync(url_user_collection, postdataString);
-            var responseString = response.Result.Content.ReadAsStringAsync().Result;
-
-            if (response.Result.IsSuccessStatusCode)
-            {
-                btnCollect.Source = "collectionon.png";
-                btnCollect.IsEnabled = false;
-
-            }
-            else
+            if (!CollectionsAreTapped)
             {
 
-                await DisplayAlert("Upload Error", Obj._Id.ToString() + "  " + Obj.Username, "Try harder");
+                string url_user_collection = "http://138.68.137.52:3000/AmirohAPI/users/collection/" + MainUser.MainUserID.ID;
 
+                string postdataJson = JsonConvert.SerializeObject(new { _id = Obj._Id });
+
+                var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+
+
+                var response = _client.PostAsync(url_user_collection, postdataString);
+                var responseString = response.Result.Content.ReadAsStringAsync().Result;
+
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    btnCollect.Source = "collectionon.png";
+                    btnCollect.IsEnabled = false;
+
+                }
+                else
+                {
+
+                    await DisplayAlert("Upload Error", Obj._Id.ToString() + "  " + Obj.Username, "Try harder");
+
+                }
             }
+            else await DisplayAlert("Already in Collection", "You have already added this inspo to your collection.", "Ah, I forgot");
         }
 
         private async void Products_Tapped(object sender, EventArgs e)

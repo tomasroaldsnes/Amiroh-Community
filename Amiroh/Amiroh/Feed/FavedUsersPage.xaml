@@ -19,13 +19,14 @@
                         <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,5,0,5">
                             
                             <ffimageloading:CachedImage Source="{Binding ProfilePicture}" HeightRequest="50" LoadingPlaceholder="placeholder.png" WidthRequest="50"
-                                   HorizontalOptions="StartAndExpand" CacheDuration="1" Aspect="AspectFill"></ffimageloading:CachedImage>
+                                    CacheDuration="1" Aspect="AspectFill"></ffimageloading:CachedImage>
                             
                             <Label x:Name="lblUsernameText"
                                    Text="{Binding Username}" TextColor="Black" FontSize="16" 
                                    FontFamily="Lato-Bold.ttf#Lato-Bold" 
                                    HorizontalOptions="StartAndExpand"
                                    HorizontalTextAlignment="Start"
+                                   Margin="10,0,0,0"
                                    VerticalOptions="Center" ></Label>
                             
                             

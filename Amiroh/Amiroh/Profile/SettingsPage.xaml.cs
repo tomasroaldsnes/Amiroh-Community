@@ -1,4 +1,5 @@
-﻿using Amiroh.Login;
+﻿using Amiroh.Helpers;
+using Amiroh.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,18 @@ namespace Amiroh.Profile
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : ContentPage
     {
+        public string IsLoggedIn
+        {
+            get { return Settings.LoginSettings; }
+            set
+            {
+                if (Settings.LoginSettings == value)
+                    return;
+                Settings.LoginSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
         public SettingsPage()
         {
             InitializeComponent();
@@ -59,7 +72,9 @@ namespace Amiroh.Profile
         private async void SignOut_Clicked(object sender, EventArgs e)
         {
             //set logged in to false
-            //reset stack
+            IsLoggedIn = "no";
+
+            
             Navigation.InsertPageBefore(new LoginPage(), this);
             await Navigation.PopAsync();
         }

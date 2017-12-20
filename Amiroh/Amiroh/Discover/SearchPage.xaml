@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Amiroh.Discover.SearchPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar x:Name="searchUsersBar" Placeholder="Search for Users" TextChanged="searchContent_TextChanged" BackgroundColor="White">
+
+            </SearchBar>
+            <ListView x:Name="searchListView" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RecycleElement" VerticalOptions="FillAndExpand"
+               SeparatorVisibility="None" ItemTapped="searchListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="60">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="10,5,0,5">
+
+                                <ffimageloading:CachedImage Source="{Binding ProfilePicture}"
+                                                                HeightRequest="50" 
+                                                                LoadingPlaceholder="placeholder.png" 
+                                                                WidthRequest="50"
+                                                                CacheDuration="1"
+                                                                Aspect="AspectFill"></ffimageloading:CachedImage>
+
+                                <Label x:Name="lblUsernameText"
+                                   Text="{Binding Username}" TextColor="Black" FontSize="16" 
+                                   FontFamily="Lato-Bold.ttf#Lato-Bold" 
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   Margin="10,0,0,0"
+                                   VerticalOptions="Center" ></Label>
+
+
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

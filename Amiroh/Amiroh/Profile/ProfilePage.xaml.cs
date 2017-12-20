@@ -30,7 +30,9 @@ namespace Amiroh
         
         private string url_photo = "http://138.68.137.52:3000/AmirohAPI/inspos/user/";
         private string url_user_collection = "http://138.68.137.52:3000/AmirohAPI/users/collection/";
-      
+
+        private string url_user_notifications = "http://138.68.137.52:3000/AmirohAPI/users/notification/";
+
         private const string url_user = "http://138.68.137.52:3000/AmirohAPI/users/username/";
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
        // private ObservableCollection<Inspo> _profileImages;
@@ -93,7 +95,16 @@ namespace Amiroh
                    
                 }
                 numberOfPoints.Text = userPoints.ToString();
-  
+
+                var content_n = await _client.GetStringAsync(url_user_notifications + MainUser.MainUserID.ID);
+                var nI = JsonConvert.DeserializeObject<List<Notification>>(content_n);
+
+                notificationList = new List<Notification>(nI);
+                if(notificationList.Count() > 0)
+                {
+                    btnNotifications.Source = "notifications.png";
+                }
+
             }
             catch (Exception e)
             {
@@ -269,7 +280,7 @@ namespace Amiroh
                 MainUser.MainUserID.HasNotifications = false;
             }
             btnNotifications.Source = "notificationnull.png";
-            await Navigation.PushAsync(new NotificationPage());
+            await Navigation.PushAsync(new NotificationPage(notificationList));
             
         }
 

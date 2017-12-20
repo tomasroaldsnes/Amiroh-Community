@@ -44,7 +44,7 @@
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
-                    <Image x:Name="btnCollect" Source="collectionoff.png"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start">
+                    <Image x:Name="btnCollect" Source="collection.png"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 Tapped="Collection_Tapped"
@@ -53,7 +53,7 @@
                     </Image>
                     
                     
-                    <Image x:Name="btnProducts" Source="feed.png"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" HorizontalOptions="End">
+                    <Image x:Name="btnProducts" Source="MakeupList.png"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" HorizontalOptions="End">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 Tapped="Products_Tapped"

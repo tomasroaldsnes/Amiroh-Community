@@ -21,9 +21,9 @@ namespace Amiroh.Profile
         string url_user_notification = "http://138.68.137.52:3000/AmirohAPI/users/notification/";
         string url_user_delete_notification = "http://138.68.137.52:3000/AmirohAPI/users/notification/";
         HttpClient _client = new HttpClient(new NativeMessageHandler());
-        private ObservableCollection<Notification> notificationList;
-
-        public NotificationPage()
+        private ObservableCollection<Notification> _notificationList;
+        private List<Notification> _nlist;
+        public NotificationPage(List<Notification> nList)
         {
 
             InitializeComponent();
@@ -32,20 +32,18 @@ namespace Amiroh.Profile
             navigationPage.BarBackgroundColor = Color.White;
             navigationPage.BarTextColor = Color.Black;
 
+            _nlist = nList;
 
 
         }
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
-            var content = await _client.GetStringAsync(url_user_notification + MainUser.MainUserID.ID);
-            var o = JsonConvert.DeserializeObject<List<Notification>>(content);
+            
+            _notificationList = new ObservableCollection<Notification>(_nlist);
 
-            notificationList = new ObservableCollection<Notification>(o);
-
-            if (notificationList.Count() != 0)
+            if (_notificationList.Count() != 0)
             {
-                notificationList = new ObservableCollection<Notification>(notificationList);
-                listviewNotifications.ItemsSource = notificationList;
+                listviewNotifications.ItemsSource = _notificationList;
             }
             else
             {
@@ -64,7 +62,7 @@ namespace Amiroh.Profile
         {
             string _url = url_user_delete_notification + MainUser.MainUserID.ID;
             var response = await _client.DeleteAsync(_url);
-            notificationList.Clear();
+            _notificationList.Clear();
 
             MainUser.MainUserID.HasNotifications = false;
         }

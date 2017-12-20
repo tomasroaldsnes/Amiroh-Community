@@ -6,9 +6,38 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="White">
-                <SearchBar x:Name="searchContent" Placeholder="Search">
+                <SearchBar x:Name="searchContent" Placeholder="Search for Users" SearchButtonPressed="searchContent_SearchButtonPressed">
                     
                 </SearchBar>
+                <!--<ListView x:Name="searchListView" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RecycleElement" VerticalOptions="FillAndExpand"
+               SeparatorVisibility="None" ItemTapped="searchListView_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="60">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="10,5,0,5">
+
+                                    <ffimageloading:CachedImage Source="{Binding ProfilePicture}"
+                                                                HeightRequest="50" 
+                                                                LoadingPlaceholder="placeholder.png" 
+                                                                WidthRequest="50"
+                                                                CacheDuration="1"
+                                                                Aspect="AspectFill"></ffimageloading:CachedImage>
+
+                                    <Label x:Name="lblUsernameText"
+                                   Text="{Binding Username}" TextColor="Black" FontSize="16" 
+                                   FontFamily="Lato-Bold.ttf#Lato-Bold" 
+                                   HorizontalOptions="StartAndExpand"
+                                   HorizontalTextAlignment="Start"
+                                   Margin="10,0,0,0"
+                                   VerticalOptions="Center" ></Label>
+
+
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                 </ListView>-->
                 <!--<Image Source="discoverpage.png" Aspect="AspectFill" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"></Image>-->
                 <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
