@@ -14,6 +14,7 @@ using Xamarin.Forms.Xaml;
 using Amiroh.Controllers;
 using Plugin.Connectivity;
 using Amiroh.Helpers;
+using Microsoft.AppCenter.Analytics;
 
 namespace Amiroh.Login
 {
@@ -160,7 +161,7 @@ namespace Amiroh.Login
                     }
 
                     IsLoggedIn = "yes";
-
+                    Analytics.TrackEvent("User has logged in.");
                     Navigation.InsertPageBefore(new Amiroh.MainPage(), this);
                     await Navigation.PopAsync();
                 }

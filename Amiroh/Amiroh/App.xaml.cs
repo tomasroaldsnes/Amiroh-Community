@@ -10,6 +10,9 @@ using Microsoft.Azure.Mobile.Crashes;
 using Plugin.Media;
 using Amiroh.Helpers;
 using Amiroh.Classes;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace Amiroh
 {
@@ -101,8 +104,9 @@ namespace Amiroh
         protected override void OnStart()
         {
             // Handle when your app starts
-            MobileCenter.Start("807dda2e-7898-4a82-9a94-ccd8e28dc754",
-                   typeof(Analytics), typeof(Crashes));
+            AppCenter.Start("android=807dda2e-7898-4a82-9a94-ccd8e28dc754;" +
+                   "ios=dc9fa6db-6cf9-4d76-9002-a85f6037ea6e",
+                   typeof(Microsoft.AppCenter.Analytics.Analytics), typeof(Microsoft.AppCenter.Crashes.Crashes));
         }
 
         protected override void OnSleep()

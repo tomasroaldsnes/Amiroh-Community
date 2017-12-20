@@ -1,5 +1,6 @@
 ﻿using Amiroh.Classes;
 using Amiroh.Controllers;
+using Microsoft.AppCenter.Analytics;
 using ModernHttpClient;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
@@ -164,7 +165,7 @@ namespace Amiroh.Profile
 
             if (response.Result.IsSuccessStatusCode)
             {
-                
+                Analytics.TrackEvent("User has published an Inspo.");
                 await Task.Delay(3000);
                 Navigation.InsertPageBefore(new MainPage(), this);
                 await Navigation.PopAsync();

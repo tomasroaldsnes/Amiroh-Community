@@ -25,7 +25,20 @@ namespace Amiroh.Login
 
         User mainUserObj;
 
+        private bool FromSettings;
 
+        public NewAccountPageEmail()
+        {
+            InitializeComponent();
+
+            var navigationPage = Application.Current.MainPage as NavigationPage;
+            navigationPage.BarBackgroundColor = Color.White;
+            navigationPage.BarTextColor = Color.Black;
+
+            btnNext.Text = "CHANGE";
+
+            FromSettings = true;
+        }
 
         public NewAccountPageEmail(User o, ObservableCollection<User> list)
         {
@@ -56,19 +69,52 @@ namespace Amiroh.Login
             }
             else
             {
-                if (AreCredentialsAvailable(emailEntry.Text, _users))
+                if (FromSettings)
                 {
-                    mainUserObj.Email = emailEntry.Text;
-                    
-                    await Navigation.PushAsync(new NewAccountPageUP(mainUserObj, _users));
+                    string url_users = "http://138.68.137.52:3000/AmirohAPI/users";
+                    HttpClient _client = new HttpClient(new NativeMessageHandler());
 
-                    btnNext.IsEnabled = true;
+                    var content = await _client.GetStringAsync(url_users);
+                    var userList = JsonConvert.DeserializeObject<List<User>>(content);
+
+                    var _userList = new ObservableCollection<User>(userList);
+
+                    if (AreCredentialsAvailable(emailEntry.Text, _userList))
+                    {
+                        string postdataJson = JsonConvert.SerializeObject(new { email = emailEntry.Text });
+                        var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+
+                        var response = await _client.PutAsync(url_users, postdataString);
+
+                        await Navigation.PopAsync();
+
+                        btnNext.IsEnabled = true;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Oops!", "This email is already connected to a user", "OK");
+                        btnNext.IsEnabled = true;
+                    }
+
                 }
                 else
                 {
-                    await DisplayAlert("Oops!", "This email is already connected to a user", "OK");
-                    btnNext.IsEnabled = true;
+                    if (AreCredentialsAvailable(emailEntry.Text, _users))
+                    {
+                        mainUserObj.Email = emailEntry.Text;
+
+                        await Navigation.PushAsync(new NewAccountPageUP(mainUserObj, _users));
+
+                        btnNext.IsEnabled = true;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Oops!", "This email is already connected to a user", "OK");
+                        btnNext.IsEnabled = true;
+                    }
+
                 }
+               
             }
 
         }
