@@ -67,7 +67,7 @@ namespace Amiroh.Profile
                         var content = await _client.GetStringAsync(url_find_upload_inspo);
                         var inspoObj = JsonConvert.DeserializeObject<List<Inspo>>(content);
 
-                        await Navigation.PushAsync(new AddProductPage(inspoObj[0]._Id));
+                        await Navigation.PushAsync(new AddProductPage(inspoObj[0]._Id, false));
                     }
                     else
                     {
@@ -104,7 +104,7 @@ namespace Amiroh.Profile
                         var content = await _client.GetStringAsync(url_find_upload_inspo);
                         var inspoObj = JsonConvert.DeserializeObject<List<Inspo>>(content);
 
-                        await Navigation.PushAsync(new AddProductPage(inspoObj[0]._Id));
+                        await Navigation.PushAsync(new AddProductPage(inspoObj[0]._Id, false));
                     }
                     else
                     {

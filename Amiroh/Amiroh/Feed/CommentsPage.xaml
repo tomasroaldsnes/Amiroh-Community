@@ -34,12 +34,13 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" HeightRequest="50">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="50">
             <Entry x:Name="commentEntry" 
                    Placeholder="Write a comment..."
                    FontFamily="Lato-Light.ttf#Lato-Light"
                    PlaceholderColor="Black"
-                   HorizontalOptions="Fill" 
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Start"
                    BackgroundColor="White"></Entry>
             
             <Button x:Name="btnComment" Text=">" 

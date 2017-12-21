@@ -204,7 +204,7 @@ namespace Amiroh
 
         private async void EditProducts_Activated(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddProductPage(Obj._Id));
+            await Navigation.PushAsync(new AddProductPage(Obj._Id, true));
         }
         private async void DeleteInspo_Activated(object sender, EventArgs e)
         {
@@ -217,6 +217,7 @@ namespace Amiroh
 
             if (response.Result.IsSuccessStatusCode)
             {
+                Navigation.InsertPageBefore(new MainPage(), this);
                 await Navigation.PopAsync();
 
             }

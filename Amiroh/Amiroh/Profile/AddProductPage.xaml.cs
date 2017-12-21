@@ -24,7 +24,9 @@ namespace Amiroh.Profile
 
         private string _id;
 
-        public AddProductPage(string id)
+        private bool _FromSettings;
+
+        public AddProductPage(string id, bool fromSettings)
         {
 
             InitializeComponent();
@@ -34,6 +36,12 @@ namespace Amiroh.Profile
             navigationPage.BarTextColor = Color.Black;
 
             _id = id;
+            _FromSettings = fromSettings;
+
+            if (_FromSettings)
+            {
+                btnContinue.Text = "Update";
+            }
 
 
 
@@ -93,8 +101,14 @@ namespace Amiroh.Profile
 
                 if (response.Result.IsSuccessStatusCode)
                 {
+                    if (_FromSettings)
+                    {
+                        Navigation.InsertPageBefore(new MainPage(), this);
+                        await Navigation.PopAsync();
+                    }
+                    else 
+                        await Navigation.PushAsync(new EditInspoPage(_id));
 
-                    await Navigation.PushAsync(new EditInspoPage(_id));
                     btnContinue.IsEnabled = true;
                 }
                 else
