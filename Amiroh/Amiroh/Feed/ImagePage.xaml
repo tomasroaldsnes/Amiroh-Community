@@ -4,13 +4,18 @@
              x:Class="Amiroh.ImagePage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Title=" "
+             
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="True"
              NavigationPage.HasBackButton="True"
              Padding="10,20,10,10">
-   
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnEditInspoDescription" Name="Edit Description" Order="Secondary" Text="Edit Description" Activated ="EditDescription_Activated" Priority="0" />
+        <ToolbarItem x:Name="btnEditInspoProducts" Name="Edit Products" Order="Secondary" Text="Edit Products" Activated ="EditProducts_Activated" Priority="1" />
+        <ToolbarItem x:Name="btnDeleteInspo" Name="Delete Inspo" Order="Secondary" Text="Delete Inspo" Activated ="DeleteInspo_Activated" Priority="2" />
+    </ContentPage.ToolbarItems>
 
-        <ScrollView>
+    <ScrollView>
         <StackLayout Orientation="Vertical" BackgroundColor="White">
             <!--<Label x:Name="userName" Text="{Binding Username}" FontSize="16" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black" ></Label>-->
            

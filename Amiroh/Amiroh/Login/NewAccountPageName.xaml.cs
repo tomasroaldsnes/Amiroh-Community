@@ -27,15 +27,17 @@ namespace Amiroh.Login
 
         User mainUserObj = new User();
 
+        private bool FromSettings;
 
-
-        public NewAccountPageName()
+        public NewAccountPageName(bool settings)
         {
             InitializeComponent();
 
             var navigationPage = Application.Current.MainPage as NavigationPage;
             navigationPage.BarBackgroundColor = Color.White;
             navigationPage.BarTextColor = Color.Black;
+
+            FromSettings = settings;
         }
 
         
@@ -45,6 +47,8 @@ namespace Amiroh.Login
             
                 try
                 {
+                    if (FromSettings)
+                        btnNext.Text = "UPDATE";
 
                     var content = await _client.GetStringAsync(url_user);
                     var userobj = JsonConvert.DeserializeObject<List<User>>(content);
@@ -77,10 +81,24 @@ namespace Amiroh.Login
             }
             else
             {
-                mainUserObj.Name = nameEntry.Text;
-                await Navigation.PushAsync(new NewAccountPageEmail(mainUserObj, _users));
+                if (FromSettings)
+                {
+                    string postdataJson = JsonConvert.SerializeObject(new { name = nameEntry.Text });
+                    var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
-                btnNext.IsEnabled = true;
+                    var response = await _client.PutAsync(url_user + MainUser.MainUserID.ID, postdataString);
+
+                    await Navigation.PopAsync();
+
+                    btnNext.IsEnabled = true;
+                }
+                else
+                {
+                    mainUserObj.Name = nameEntry.Text;
+                    await Navigation.PushAsync(new NewAccountPageEmail(mainUserObj, _users));
+
+                    btnNext.IsEnabled = true;
+                }
             }
 
         }

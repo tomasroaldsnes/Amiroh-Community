@@ -1,5 +1,6 @@
 ﻿using Amiroh.Classes;
 using Amiroh.Feed;
+using Amiroh.Profile;
 using ModernHttpClient;
 using Newtonsoft.Json;
 using System;
@@ -26,6 +27,8 @@ namespace Amiroh
         private bool PointsAreTapped = false;
         private bool CollectionsAreTapped = false;
 
+        private bool UserOwnsInspo;
+
 
 
         public ImagePage(Inspo obj)
@@ -47,6 +50,14 @@ namespace Amiroh
 
         protected async override void OnAppearing()
         {
+
+            if (Obj.UserId != MainUser.MainUserID.ID)
+            {
+
+                if (this.ToolbarItems.Count > 0)
+                    this.ToolbarItems.Clear();
+            }
+
             if (Obj.HasBeenLikedBy.Contains<string>(MainUser.MainUserID.Username))
             {
                 btnPoints.Source = "pointson.png";
@@ -64,7 +75,8 @@ namespace Amiroh
             }
 
         }
-        
+
+       
 
         private async void Points_Tapped(object sender, EventArgs e)
         {
@@ -185,7 +197,29 @@ namespace Amiroh
             await Navigation.PushAsync(new UserPage(Obj.Username));
         }
 
+        private async void EditDescription_Activated(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EditInspoPage(Obj._Id));
+        }
 
-       
+        private async void EditProducts_Activated(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddProductPage(Obj._Id));
+        }
+        private async void DeleteInspo_Activated(object sender, EventArgs e)
+        {
+            string url_edit_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/" + Obj._Id;
+            HttpClient _client = new HttpClient(new NativeMessageHandler());
+
+            var response = _client.DeleteAsync(url_edit_inspo);
+            var responseString = response.Result.Content.ReadAsStringAsync().Result;
+
+
+            if (response.Result.IsSuccessStatusCode)
+            {
+                await Navigation.PopAsync();
+
+            }
+        }
     }
 }

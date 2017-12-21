@@ -193,7 +193,7 @@ namespace Amiroh.Login
         }
         private async void OnSignUpButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewAccountPageName());
+            await Navigation.PushAsync(new NewAccountPageName(false));
         }
         bool AreCredentialsCorrect(User userLogin, ObservableCollection<User> _user)
         {
