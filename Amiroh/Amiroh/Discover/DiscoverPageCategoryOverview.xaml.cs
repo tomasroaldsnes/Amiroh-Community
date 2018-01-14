@@ -27,7 +27,7 @@ namespace Amiroh
         
         private HttpClient _client = new HttpClient(new NativeMessageHandler());
         private ObservableCollection<Inspo> _posts;
-        ObservableCollection<Inspo> sortedByPoints_posts;
+        ObservableCollection<Inspo> DiscoverInsposList_Sorted;
         private string _category = "";
         private bool InspoListLoaded = false;
 
@@ -101,16 +101,21 @@ namespace Amiroh
                     this.Title = "EDITOR's PICK";
                 }
 
-                _posts = new ObservableCollection<Inspo>(posts);
-                sortedByPoints_posts = new ObservableCollection<Inspo>(
-                         _posts.OrderBy(inspo => inspo).Reverse<Inspo>()
-                         );
-                listviewInspo.ItemsSource = sortedByPoints_posts;
+                
+
+                DiscoverInsposList_Sorted = new ObservableCollection<Inspo>(
+                     posts
+                         .OrderByDescending(i => i.InspoCreated)
+                         .OrderByDescending(i => i.Points)
+
+                );
+
+                listviewInspo.ItemsSource = DiscoverInsposList_Sorted;
 
 
 
 
-                if(listviewInspo.IsRefreshing == true)
+                if (listviewInspo.IsRefreshing == true)
                 {
                     listviewInspo.IsRefreshing = false;
                 }

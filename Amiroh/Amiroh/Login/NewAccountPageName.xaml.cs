@@ -95,6 +95,7 @@ namespace Amiroh.Login
                 else
                 {
                     mainUserObj.Name = nameEntry.Text;
+                    mainUserObj.UserCreated = DateTime.Now.ToUniversalTime();
                     await Navigation.PushAsync(new NewAccountPageEmail(mainUserObj, _users));
 
                     btnNext.IsEnabled = true;

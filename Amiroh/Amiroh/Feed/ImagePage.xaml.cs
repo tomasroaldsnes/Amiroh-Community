@@ -45,18 +45,20 @@ namespace Amiroh
             lblUsernameText.Text = lblUsernameText.Text.ToUpper();
             lblShowComments.Text = "Show all " + obj.Comments.Length + " comments.";
 
-
-        }
-
-        protected async override void OnAppearing()
-        {
-
             if (Obj.UserId != MainUser.MainUserID.ID)
             {
 
                 if (this.ToolbarItems.Count > 0)
                     this.ToolbarItems.Clear();
             }
+
+
+        }
+
+        protected async override void OnAppearing()
+        {
+
+            
 
             if (Obj.HasBeenLikedBy.Contains<string>(MainUser.MainUserID.Username))
             {

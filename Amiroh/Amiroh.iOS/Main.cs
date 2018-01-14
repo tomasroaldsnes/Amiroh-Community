@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using FFImageLoading.Forms.Touch;
 
 namespace Amiroh.iOS
 {
@@ -14,6 +15,7 @@ namespace Amiroh.iOS
         {
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
+            //CachedImageRenderer.Init();
             UIApplication.Main(args, null, "AppDelegate");
         }
     }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Amiroh.DiscoverPageCategoryOverview"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:local ="clr-namespace:Amiroh.Views"
              BackgroundColor="#FFFFFF"
              Padding="15,20,15,10"
              NavigationPage.HasBackButton="True"
@@ -14,22 +15,22 @@
 
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell Height="380">
+                <local:CustomCell Height="380">
 
                     <ffimageloading:CachedImage x:Name="imgInspo"
-                                DownsampleHeight="300"
-                                DownsampleWidth="300"
                                 Aspect="AspectFill"
-                                Margin="0,40,0,40"
-                                HorizontalOptions="StartAndExpand"
+                                HeightRequest="380"                        
+                                HorizontalOptions="Fill"
+                                CacheDuration="3"
+                                LoadingPlaceholder="placeholder.png"                        
                                 MinimumWidthRequest="300"
-			                    LoadingPriority="High" 
-			                    Source = "{Binding URL}">
+                                Margin="0,40,0,40"
+                                Source = "{Binding URL}" >
 
                     </ffimageloading:CachedImage>
 
-
-                </ViewCell>
+                </local:CustomCell>
+                
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

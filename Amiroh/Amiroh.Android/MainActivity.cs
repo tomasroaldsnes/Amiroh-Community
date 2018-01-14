@@ -37,7 +37,7 @@ namespace Amiroh.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 
-            CachedImageRenderer.Init();
+            CachedImageRenderer.Init(enableFastRenderer: true);
 
 
         }

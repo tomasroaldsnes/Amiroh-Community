@@ -170,7 +170,7 @@ namespace Amiroh
             {
 
                 
-                    for (int MyCount = 0; MyCount < _userPhotos.Count()+2; MyCount++)
+                    for (int MyCount = 0; MyCount < _userPhotos.Count()/2; MyCount++)
                     {
 
                         ProfileGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(150, GridUnitType.Absolute) });
@@ -191,7 +191,7 @@ namespace Amiroh
 
                     if (column < 1)
                     {
-                        var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+                        var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, LoadingPlaceholder = "placeholder.png", VerticalOptions = LayoutOptions.StartAndExpand };
 
                         Inspo obj = _userPhotos[i];
                         var tappedInspo = new TapGestureRecognizer();
@@ -206,7 +206,7 @@ namespace Amiroh
                     }
                     else if (column == 1)
                     {
-                        var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+                        var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, LoadingPlaceholder = "placeholder.png", VerticalOptions = LayoutOptions.StartAndExpand };
 
                         Inspo obj = _userPhotos[i];
                         var tappedInspo = new TapGestureRecognizer();
@@ -266,7 +266,7 @@ namespace Amiroh
 
                 if (column < 1)
                 {
-                    var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+                    var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, LoadingPlaceholder = "placeholder.png", VerticalOptions = LayoutOptions.StartAndExpand };
 
                     Inspo obj = _userPhotos[i];
                     var tappedInspo = new TapGestureRecognizer();
@@ -281,7 +281,7 @@ namespace Amiroh
                 }
                 else if (column == 1)
                 {
-                    var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+                    var userInspoObject = new CachedImage { Source = _userPhotos[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, LoadingPlaceholder = "placeholder.png", VerticalOptions = LayoutOptions.StartAndExpand };
 
                     Inspo obj = _userPhotos[i];
                     var tappedInspo = new TapGestureRecognizer();
@@ -350,7 +350,7 @@ namespace Amiroh
                 {
                     if (column < 1)
                     {
-                        var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+                        var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, LoadingPlaceholder = "placeholder.png", VerticalOptions = LayoutOptions.StartAndExpand };
 
                         Inspo obj = _userPhotos[i];
                         var tappedInspo = new TapGestureRecognizer();
@@ -365,7 +365,7 @@ namespace Amiroh
                     }
                     else if (column == 1)
                     {
-                        var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, VerticalOptions = LayoutOptions.StartAndExpand };
+                        var userInspoObject = new CachedImage { Source = _userCollection[i].URL, WidthRequest = 145, HeightRequest = 145, DownsampleHeight = 145, DownsampleWidth = 145, LoadingPlaceholder = "placeholder.png", VerticalOptions = LayoutOptions.StartAndExpand };
 
                         Inspo obj = _userCollection[i];
                         var tappedInspo = new TapGestureRecognizer();

@@ -4,7 +4,7 @@
              x:Class="Amiroh.Profile.AddProductPage"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White"
-             Padding="30,10,30,0"
+             Padding="30,10,30,30"
              NavigationPage.HasBackButton="True"
              Title="PRODUCTS"
              NavigationPage.HasNavigationBar="True"

@@ -19,7 +19,7 @@
                     HorizontalOptions="Fill" Margin="0,5,0,45"
                     TextChanged="Editor_TextChanged"></Editor>
 
-            <Label Text="ADD SOME TAGS TO YOUR INSPO: " 
+            <Label Text="ADD UP TO 3 TAGS TO DESCRIBE YOUR INSPO: " 
                    FontFamily="Lato-Regular.ttf#Lato-Regular" 
                    FontSize="12" Margin="0,0,0,20"
                    TextColor="Black" HorizontalOptions="Center" 

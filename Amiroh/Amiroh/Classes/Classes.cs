@@ -44,6 +44,7 @@ namespace Amiroh.Classes
         public Notification[] Notifications { get; set; }
         public string[] Collections { get; set; }
         public string[] Inspos { get; set; }
+        public DateTime UserCreated { get; set; }
 
 
 
@@ -254,6 +255,7 @@ namespace Amiroh.Classes
             }
         }
         public string UploadId { get; set; }
+        public DateTime InspoCreated { get; set; }
 
         public int CompareTo(object obj)
         {
@@ -283,13 +285,18 @@ namespace Amiroh.Classes
 
                 if (!CrossMedia.Current.IsPickPhotoSupported)
                 {
-                    errorMessage = "Make sure camera is available";
+                    errorMessage = "ERROR";
                     return errorMessage;
                 }
 
                 var _image = await CrossMedia.Current.PickPhotoAsync();
 
-               
+                if (_image == null)
+                {
+                    errorMessage = "ERROR";
+                    return errorMessage;
+                }
+
                 var imageName = await Controller.UploadFileAsync("inspo", _image.GetStream());
 
                 InspoURL = imageName.ToString();
@@ -302,7 +309,7 @@ namespace Amiroh.Classes
             catch (Exception er)
             {
                 Insights.Report(er);
-                return errorMessage = "Failure to upload Inspo";
+                return errorMessage = "ERROR";
             }
 
 
@@ -320,7 +327,7 @@ namespace Amiroh.Classes
 
                 if (!CrossMedia.Current.IsPickPhotoSupported)
                 {
-                    errorMessage = "Make sure camera is available";
+                    errorMessage = "ERROR";
                     return errorMessage;
                 }
 
@@ -328,7 +335,7 @@ namespace Amiroh.Classes
 
                 if (_image == null)
                 {
-                    errorMessage = "Please pick a photo!";
+                    errorMessage = "ERROR";
                     return errorMessage;
                 }
                 else
@@ -346,7 +353,7 @@ namespace Amiroh.Classes
             catch (Exception er)
             {
                 Insights.Report(er);
-                return errorMessage = "Failure to upload Inspo";
+                return errorMessage = "ERROR";
             }
 
 

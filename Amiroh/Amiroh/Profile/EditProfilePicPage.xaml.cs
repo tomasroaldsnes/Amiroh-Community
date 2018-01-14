@@ -37,7 +37,29 @@ namespace Amiroh.Profile
 
         private async void Later_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EditDescriptionPage(true));
+            string url_user = "http://138.68.137.52:3000/AmirohAPI/users/username/";
+            HttpClient _client = new HttpClient(new NativeMessageHandler());
+
+            string postdataJson = JsonConvert.SerializeObject(new { profilePicture = "placeholder.png" });
+            var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
+
+            string new_url = url_user + MainUser.MainUserID.Username;
+            var response = _client.PutAsync(new_url, postdataString);
+            var responseString = response.Result.Content.ReadAsStringAsync().Result;
+
+
+            if (response.Result.IsSuccessStatusCode)
+            {
+                MainUser.MainUserID.ProfilePicture = "placeholder.png";
+                await Navigation.PushAsync(new EditDescriptionPage(true));
+            }
+            else
+            {
+                MainUser.MainUserID.ProfilePicture = "placeholder.png";
+                await Navigation.PushAsync(new EditDescriptionPage(true));
+            }
+
+            
             
         }
 

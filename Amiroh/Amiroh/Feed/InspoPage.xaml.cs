@@ -43,6 +43,8 @@ namespace Amiroh
 
             
 
+
+
         }
 
         private async void LoadInspos()
@@ -60,6 +62,7 @@ namespace Amiroh
 
             _AllInsposList_Sorted = new ObservableCollection<Inspo>(
              AllInsposList
+                 .OrderByDescending(i => i.InspoCreated)
                  .OrderByDescending(i => i.Points)
                  .OrderByDescending(i => favedUsernameList.Contains<string>(i.Username))
                 

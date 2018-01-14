@@ -9,60 +9,28 @@
                 <SearchBar x:Name="searchContent" Placeholder="Search for Users" SearchButtonPressed="searchContent_SearchButtonPressed">
                     
                 </SearchBar>
-                <!--<ListView x:Name="searchListView" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RecycleElement" VerticalOptions="FillAndExpand"
-               SeparatorVisibility="None" ItemTapped="searchListView_ItemTapped">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell Height="60">
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="10,5,0,5">
-
-                                    <ffimageloading:CachedImage Source="{Binding ProfilePicture}"
-                                                                HeightRequest="50" 
-                                                                LoadingPlaceholder="placeholder.png" 
-                                                                WidthRequest="50"
-                                                                CacheDuration="1"
-                                                                Aspect="AspectFill"></ffimageloading:CachedImage>
-
-                                    <Label x:Name="lblUsernameText"
-                                   Text="{Binding Username}" TextColor="Black" FontSize="16" 
-                                   FontFamily="Lato-Bold.ttf#Lato-Bold" 
-                                   HorizontalOptions="StartAndExpand"
-                                   HorizontalTextAlignment="Start"
-                                   Margin="10,0,0,0"
-                                   VerticalOptions="Center" ></Label>
-
-
-
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                 </ListView>-->
-                <!--<Image Source="discoverpage.png" Aspect="AspectFill" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"></Image>-->
+                
                 <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="175" />
-                        <RowDefinition Height="175" />
-                        <RowDefinition Height="175" />
-                        <RowDefinition Height="175"/>
-                        <RowDefinition Height="175"/>
-                        <RowDefinition Height="175" />
-                        <RowDefinition Height="175" />
-                        <RowDefinition Height="175" />
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="200"/>
+                        
                         
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <ffimageloading:CachedImage x:Name="ctgEyes" CacheDuration="7" Source="eyes.png" Grid.Row="0" Grid.Column="0" Aspect="AspectFit" HeightRequest="175" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  ></ffimageloading:CachedImage>
-                    <ffimageloading:CachedImage x:Name="ctgLips" CacheDuration="7" Source="lips.png" Grid.Row="0" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  ></ffimageloading:CachedImage>
-                    <ffimageloading:CachedImage x:Name="ctgContouring" CacheDuration="7" Source="contouring.png" Grid.Row="1" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
-                    <ffimageloading:CachedImage x:Name="ctgEyebrows" CacheDuration="7" Source="eyebrows.png" Grid.Row="1" Grid.Column="1"  Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
-                    <ffimageloading:CachedImage x:Name="ctgNight" CacheDuration="7" Source="nightmakeup.png" Grid.Row="2" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
-                    <ffimageloading:CachedImage x:Name="ctgDay" CacheDuration="7" Source="daymakeup.png" Grid.Row="2" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
-                    <ffimageloading:CachedImage x:Name="ctgTrending" CacheDuration="7" Source="trending.png" Grid.Row="3" Grid.Column="0" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
-                    <ffimageloading:CachedImage x:Name="ctgEditor" CacheDuration="7" Source="editorspick.png" Grid.Row="3" Grid.Column="1" Aspect="AspectFit" HeightRequest="175"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgEyes" CacheDuration="7" Source="eyes.png" Grid.Row="0" Grid.Column="0" Aspect="AspectFill"  HorizontalOptions="StartAndExpand"   ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgLips" CacheDuration="7" Source="lips.png" Grid.Row="0" Grid.Column="1" Aspect="AspectFill"  HorizontalOptions="EndAndExpand"   ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgContouring" CacheDuration="7" Source="contouring.png" Grid.Row="1" Grid.Column="0" Aspect="AspectFill"  HorizontalOptions="StartAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgEyebrows" CacheDuration="7" Source="eyebrows.png" Grid.Row="1" Grid.Column="1"  Aspect="AspectFill"  HorizontalOptions="EndAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgNight" CacheDuration="7" Source="nightmakeup.png" Grid.Row="2" Grid.Column="0" Aspect="AspectFill"  HorizontalOptions="StartAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgDay" CacheDuration="7" Source="daymakeup.png" Grid.Row="2" Grid.Column="1" Aspect="AspectFill"  HorizontalOptions="EndAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgTrending" CacheDuration="7" Source="trending.png" Grid.Row="3" Grid.Column="0" Aspect="AspectFill"  HorizontalOptions="StartAndExpand" ></ffimageloading:CachedImage>
+                    <ffimageloading:CachedImage x:Name="ctgEditor" CacheDuration="7" Source="editorspick.png" Grid.Row="3" Grid.Column="1" Aspect="AspectFill"  HorizontalOptions="EndAndExpand" ></ffimageloading:CachedImage>
 
                 </Grid>
             </StackLayout>

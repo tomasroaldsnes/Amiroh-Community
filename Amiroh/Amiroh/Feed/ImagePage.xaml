@@ -10,20 +10,22 @@
              NavigationPage.HasBackButton="True"
              Padding="10,20,10,10">
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btnEditInspoDescription" Name="Edit Description" Order="Secondary" Text="Edit Description" Activated ="EditDescription_Activated" Priority="0" />
         <ToolbarItem x:Name="btnEditInspoProducts" Name="Edit Products" Order="Secondary" Text="Edit Products" Activated ="EditProducts_Activated" Priority="1" />
-        <ToolbarItem x:Name="btnDeleteInspo" Name="Delete Inspo" Order="Secondary" Text="Delete Inspo" Activated ="DeleteInspo_Activated" Priority="2" />
+        <ToolbarItem x:Name="btnEditInspoDescription" Name="Edit Description" Order="Secondary" Text="Edit Description" Activated ="EditDescription_Activated" Priority="1"  />
+        <ToolbarItem x:Name="btnDeleteInspo" Name="Delete Inspo" Order="Primary" Text="Delete Inspo" Activated ="DeleteInspo_Activated"  Priority="1" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <StackLayout Orientation="Vertical" BackgroundColor="White">
+        <StackLayout Orientation="Vertical" BackgroundColor="White" HorizontalOptions="Fill">
             <!--<Label x:Name="userName" Text="{Binding Username}" FontSize="16" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black" ></Label>-->
            
  
                 <!--<Image x:Name="bigImage" Source="{Binding URL}" Aspect="AspectFit" Grid.Row="0" Grid.Column="0"></Image>-->
-            <ffimageloading:CachedImage HorizontalOptions="Fill" VerticalOptions="Start"
+            <ffimageloading:CachedImage 
+                                HorizontalOptions="Fill" 
+                                HeightRequest="400"        
                                 LoadingPriority="High"
-                                Aspect="AspectFit"
+                                Aspect="AspectFill"
                                 LoadingPlaceholder="placeholder.png"
                                 MinimumWidthRequest="300"                   
                                 CacheDuration="1"

@@ -50,6 +50,7 @@ namespace Amiroh.Profile
 
         private async void Later_Clicked(object sender, EventArgs e)
         {
+            MainUser.MainUserID.ProfileDescription = "Write a catchy profile description! You can change it at any time from Settings => Change Profile Description.";
             await Navigation.PushAsync(new MainPage());
         }
 

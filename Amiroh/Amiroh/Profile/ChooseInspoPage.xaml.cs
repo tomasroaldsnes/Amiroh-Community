@@ -34,6 +34,15 @@ namespace Amiroh.Profile
 
         }
 
+        private async void FakeTimer()
+        {
+            
+            for (int i = 0; i < 99; i++){
+                lblImageText.Text = "Uploading, give me a minute... " + i + "%";
+                await Task.Delay(100);
+            }
+        }
+
         private async void ChooseImage_Tapped(View arg1, object arg2)
         {
 
@@ -46,14 +55,21 @@ namespace Amiroh.Profile
                  HttpClient _client = new HttpClient(new NativeMessageHandler());
 
                 string uploadedInspoURL = "";
-                uploadedInspoURL = await ImageUpload.ProfilePictureUploadAsync();
+                uploadedInspoURL = await ImageUpload.InspoUploadAsync();
+                FakeTimer();
+
+                if(uploadedInspoURL == "ERROR")
+                {
+                    await DisplayAlert("Ooops!", "An error occured while uploading!", "OK");
+                    await Navigation.PushAsync(new ChooseInspoPage());
+                }
 
 
                 if (uploadedInspoURL != "")
                 {
                     var uId = Guid.NewGuid().ToString();
 
-                    string postdataJson = JsonConvert.SerializeObject(new { URL = uploadedInspoURL, username = MainUser.MainUserID.Username, userId = MainUser.MainUserID.ID, points = 0, uploadId = uId });
+                    string postdataJson = JsonConvert.SerializeObject(new { URL = uploadedInspoURL, username = MainUser.MainUserID.Username, userId = MainUser.MainUserID.ID, points = 0, uploadId = uId, inspoCreated = DateTime.Now.ToUniversalTime() });
                     var postdataString = new StringContent(postdataJson, new UTF8Encoding(), "application/json");
 
                     

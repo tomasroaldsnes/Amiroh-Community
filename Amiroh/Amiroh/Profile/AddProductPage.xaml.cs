@@ -46,9 +46,26 @@ namespace Amiroh.Profile
 
 
         }
-        
 
-        
+        private async void CleanUp()
+        {
+            string url_edit_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/" + _id;
+            HttpClient _client = new HttpClient(new NativeMessageHandler());
+
+            var response = await _client.DeleteAsync(url_edit_inspo);
+  
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            if (!_FromSettings)
+            {
+                CleanUp();
+            }
+            return base.OnBackButtonPressed();
+        }
+
+
 
         private async void Continue_Tapped(object sender, ItemTappedEventArgs e)
         {
