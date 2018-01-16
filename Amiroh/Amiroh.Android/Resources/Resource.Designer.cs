@@ -26,6 +26,7 @@ namespace Amiroh.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Microsoft.AppCenter.Push.Android.Resource.String.library_name = global::Amiroh.Droid.Resource.String.library_name;
 			global::ModernHttpClient.Resource.String.library_name = global::Amiroh.Droid.Resource.String.library_name;
 			global::PCLCrypto.Resource.String.ApplicationName = global::Amiroh.Droid.Resource.String.ApplicationName;
 			global::PCLCrypto.Resource.String.Hello = global::Amiroh.Droid.Resource.String.Hello;

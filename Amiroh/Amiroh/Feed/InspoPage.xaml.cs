@@ -37,7 +37,9 @@ namespace Amiroh
 
         public InspoPage()
         {
+            
             InitializeComponent();
+           
             Xamarin.Forms.NavigationPage.SetHasNavigationBar(this, false);
             listviewInspo.ItemsSource = _AllInsposList_Sorted;
 

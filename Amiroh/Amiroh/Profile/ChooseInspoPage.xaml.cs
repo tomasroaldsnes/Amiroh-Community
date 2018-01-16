@@ -34,14 +34,7 @@ namespace Amiroh.Profile
 
         }
 
-        private async void FakeTimer()
-        {
-            
-            for (int i = 0; i < 99; i++){
-                lblImageText.Text = "Uploading, give me a minute... " + i + "%";
-                await Task.Delay(100);
-            }
-        }
+        
 
         private async void ChooseImage_Tapped(View arg1, object arg2)
         {
@@ -54,11 +47,15 @@ namespace Amiroh.Profile
                  string url_inspo = "http://138.68.137.52:3000/AmirohAPI/inspos/";
                  HttpClient _client = new HttpClient(new NativeMessageHandler());
 
+
                 string uploadedInspoURL = "";
                 uploadedInspoURL = await ImageUpload.InspoUploadAsync();
-                FakeTimer();
 
-                if(uploadedInspoURL == "ERROR")
+                lblImageText.Text = "Finished!";
+
+
+
+                if (uploadedInspoURL == "ERROR")
                 {
                     await DisplayAlert("Ooops!", "An error occured while uploading!", "OK");
                     await Navigation.PushAsync(new ChooseInspoPage());

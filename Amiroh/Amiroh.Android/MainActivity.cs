@@ -13,6 +13,8 @@ using Plugin.Permissions;
 using Xamarin.Forms.Platform.Android;
 using Android.Graphics;
 using FFImageLoading.Config;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Push;
 
 namespace Amiroh.Droid
 {
@@ -35,9 +37,14 @@ namespace Amiroh.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+
+            
 
             CachedImageRenderer.Init(enableFastRenderer: true);
+
+            Push.SetSenderId("50802392920");
+
+            LoadApplication(new App());
 
 
         }
