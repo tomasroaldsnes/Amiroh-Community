@@ -22,12 +22,11 @@
  
                 <!--<Image x:Name="bigImage" Source="{Binding URL}" Aspect="AspectFit" Grid.Row="0" Grid.Column="0"></Image>-->
             <ffimageloading:CachedImage 
-                                HorizontalOptions="Fill" 
-                                HeightRequest="400"        
+                                HorizontalOptions="CenterAndExpand"       
                                 LoadingPriority="High"
+                                HeightRequest="500"
                                 Aspect="AspectFill"
-                                LoadingPlaceholder="placeholder.png"
-                                MinimumWidthRequest="300"                   
+                                LoadingPlaceholder="placeholder.png"                  
                                 CacheDuration="1"
 			                    Source = "{Binding URL}" >
             </ffimageloading:CachedImage>
@@ -36,7 +35,7 @@
                          HorizontalOptions="Fill"
                          Margin="5,0,0,0"
                          HeightRequest="50">
-                    <Image x:Name="btnPoints" Source="points.png" Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start"  HorizontalOptions="Fill">
+                    <Image x:Name="btnPoints" Source="points.png" Aspect="AspectFit" WidthRequest="20" HeightRequest="20" VerticalOptions="Start"  HorizontalOptions="Fill">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 x:Name="PointsTappedHandler"
@@ -44,14 +43,14 @@
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
-                    <Image x:Name="btnComment" Source="comment.png"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start">
+                    <Image x:Name="btnComment" Source="comment.png"  Aspect="AspectFit" WidthRequest="20" HeightRequest="20" VerticalOptions="Start">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 Tapped="Comment_Tapped"
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
-                    <Image x:Name="btnCollect" Source="collection.png"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start">
+                    <Image x:Name="btnCollect" Source="collection.png"  Aspect="AspectFit" WidthRequest="20" HeightRequest="20" VerticalOptions="Start">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 Tapped="Collection_Tapped"
@@ -60,7 +59,7 @@
                     </Image>
                     
                     
-                    <Image x:Name="btnProducts" Source="MakeupList.png"  Aspect="AspectFit" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" HorizontalOptions="End">
+                    <Image x:Name="btnProducts" Source="MakeupList.png"  Aspect="AspectFit" WidthRequest="20" HeightRequest="20" VerticalOptions="Start" HorizontalOptions="End">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 Tapped="Products_Tapped"
