@@ -17,7 +17,7 @@
             
             <Button x:Name="btnContinue" Text="CONTINUE" Clicked="Continue_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
                     TextColor="White" BackgroundColor="Black" BorderRadius="30" WidthRequest="200"
-                    HorizontalOptions="Center" Margin="30,20,30,60"></Button>
+                    HorizontalOptions="Center" Margin="30,20,30,40"></Button>
 
             <Label x:Name="lblLater" Text="Nah, later." FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="12"
                    TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center">

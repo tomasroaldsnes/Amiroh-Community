@@ -2,7 +2,8 @@
   "images": [
     {
       "scale": "1x",
-      "idiom": "universal"
+      "idiom": "universal",
+      "filename": "tutdiscover.png"
     },
     {
       "scale": "2x",

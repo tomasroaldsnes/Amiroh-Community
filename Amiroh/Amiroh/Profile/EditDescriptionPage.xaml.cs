@@ -1,5 +1,6 @@
 ﻿using Amiroh.Classes;
 using Amiroh.Controllers;
+using Amiroh.Login;
 using ModernHttpClient;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
@@ -50,8 +51,15 @@ namespace Amiroh.Profile
 
         private async void Later_Clicked(object sender, EventArgs e)
         {
-            MainUser.MainUserID.ProfileDescription = "Write a catchy profile description! You can change it at any time from Settings => Change Profile Description.";
-            await Navigation.PushAsync(new MainPage());
+            if(_firstTime)
+                MainUser.MainUserID.ProfileDescription = "Write a catchy profile description! You can change it at any time from Settings => Change Profile Description.";
+
+            if (_firstTime)
+            {
+                await Navigation.PushAsync(new TutorialPage());
+            }
+            else
+                await Navigation.PushAsync(new MainPage());
         }
 
         private async void Continue_Clicked(object sender, EventArgs e)
@@ -71,7 +79,12 @@ namespace Amiroh.Profile
            
 
             btnContinue.IsEnabled = true;
-            await Navigation.PushAsync(new MainPage());
+            if (_firstTime)
+            {
+                await Navigation.PushAsync(new TutorialPage());
+            }
+            else
+                await Navigation.PushAsync(new MainPage());
 
         }
 

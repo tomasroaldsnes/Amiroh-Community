@@ -21,7 +21,7 @@
             <Label x:Name="lblChooseImageText" Text="CHOOSE A PROFILE PICTURE FROM GALLERY" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
                    TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center"  />
 
-            <Label x:Name="lblLater" Text="Nah, later." FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="12" Margin="0,10,0,0"
+            <Label x:Name="lblLater" Text="Nah, later." FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="12" Margin="0,40,0,0"
                    TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer

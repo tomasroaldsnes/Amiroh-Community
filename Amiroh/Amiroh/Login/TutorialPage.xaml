@@ -1,8 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Amiroh.Login.TutorialPage">
+             x:Class="Amiroh.Login.TutorialPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             BackgroundColor="White" Padding="10, 20, 10, 20"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True"
+             >
     <ContentPage.Content>
-        
+        <StackLayout BackgroundColor="White" VerticalOptions="Fill">
+
+
+            <ffimageloading:CachedImage x:Name="imgTutorialImage" Source="tutfeed.png" 
+                                       WidthRequest="150"
+                                       HeightRequest="300"
+                                       Aspect="AspectFit"
+                                       HorizontalOptions="Center" Margin="30,0,30,10"></ffimageloading:CachedImage>
+
+            <Label x:Name="lblImageText" 
+                   FontFamily="Lato-Light.ttf#Lato-Light" FontSize="12"
+                   WidthRequest="350"
+                   TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center"  />
+
+            <Button x:Name="btnNext" Text="NEXT" Clicked="Next_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
+                    TextColor="White" BackgroundColor="Black" BorderRadius="30" WidthRequest="200"
+                    HorizontalOptions="Center" Margin="30,20,30,0"></Button>
+
+
+
+
+
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
