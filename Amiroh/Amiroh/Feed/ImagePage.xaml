@@ -17,14 +17,12 @@
 
     <ScrollView>
         <StackLayout Orientation="Vertical" BackgroundColor="White" HorizontalOptions="Fill">
-            <!--<Label x:Name="userName" Text="{Binding Username}" FontSize="16" VerticalOptions="EndAndExpand" HorizontalOptions="Center" FontFamily="Lato-Bold.ttf#Lato-Bold" TextColor="Black" ></Label>-->
-           
- 
-                <!--<Image x:Name="bigImage" Source="{Binding URL}" Aspect="AspectFit" Grid.Row="0" Grid.Column="0"></Image>-->
+            
             <ffimageloading:CachedImage 
-                                HorizontalOptions="CenterAndExpand"       
+                                HorizontalOptions="Fill"       
                                 LoadingPriority="High"
                                 HeightRequest="500"
+                                MinimumWidthRequest="300"
                                 Aspect="AspectFill"
                                 LoadingPlaceholder="placeholder.png"                  
                                 CacheDuration="1"

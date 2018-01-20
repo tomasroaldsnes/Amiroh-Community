@@ -6,15 +6,44 @@
              xmlns:local ="clr-namespace:Amiroh.Views"
              BackgroundColor="#FFFFFF"
              
-             Padding="20,20,20,10">
+             Padding="20,40,20,10">
 
 
     
 
     <StackLayout>
-        <!--Needs to be moved below ListView for Android, and above for iOS. LayoutBounds value need to change accordingly. iOS: "0,0,20,20 and "1,0,2020"   Android: "0,1,20,20" an "1,1,20,20" -->
+        <!--Needs to be moved below ListView for Android, and above for iOS. LayoutBounds value need to change accordingly. iOS: "0,0,20,20 and "1,0,20,20"   Android: "0,1,20,20" an "1,1,20,20" -->
         
-        
+        <AbsoluteLayout HorizontalOptions="Fill" HeightRequest="20" MinimumWidthRequest="300" BackgroundColor="Transparent">
+            <Image x:Name="btnSocial" Source="feedfave.png"
+               HeightRequest="20" WidthRequest="20"  
+               Aspect="AspectFit" 
+               HorizontalOptions="StartAndExpand"
+               AbsoluteLayout.LayoutBounds="0,0,20,20"
+               AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="Social_Tapped"
+                            NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image x:Name="btnAddInspo" Source="addinspo.png"
+               HeightRequest="20" WidthRequest="20" 
+               HorizontalOptions="EndAndExpand"
+               Aspect="AspectFit" 
+               AbsoluteLayout.LayoutBounds="1,0,20,20" 
+               AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="AddInspo_Tapped"
+                            NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+
+
         <ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RecycleElement" VerticalOptions="FillAndExpand"
                SeparatorVisibility="None" ItemTapped="listviewInspo_ItemTapped" IsPullToRefreshEnabled="True" Refreshing="listviewInspo_Refreshing" 
                >
@@ -46,36 +75,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-        <!--Needs to be moved below ListView for Android, and above for iOS. LayoutBounds value need to change accordingly. iOS: "0,0,20,20 and "1,0,2020"   Android: "0,1,20,20" an "1,1,20,20" -->
-        <AbsoluteLayout HorizontalOptions="Fill" HeightRequest="20" MinimumWidthRequest="300" BackgroundColor="Transparent">
-            <Image x:Name="btnSocial" Source="feedfave.png"
-               HeightRequest="20" WidthRequest="20"  
-               Aspect="AspectFit" 
-               HorizontalOptions="StartAndExpand"
-               AbsoluteLayout.LayoutBounds="0,1,20,20"
-               AbsoluteLayout.LayoutFlags="PositionProportional">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                            Tapped="Social_Tapped"
-                            NumberOfTapsRequired="1" />
-                </Image.GestureRecognizers>
-            </Image>
-
-            <Image x:Name="btnAddInspo" Source="addinspo.png"
-               HeightRequest="20" WidthRequest="20" 
-               HorizontalOptions="EndAndExpand"
-               Aspect="AspectFit" 
-               AbsoluteLayout.LayoutBounds="1,1,20,20" 
-               AbsoluteLayout.LayoutFlags="PositionProportional">
-
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                            Tapped="AddInspo_Tapped"
-                            NumberOfTapsRequired="1" />
-                </Image.GestureRecognizers>
-            </Image>
-        </AbsoluteLayout>
-
+       
 
 
 
