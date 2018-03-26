@@ -9,8 +9,9 @@
              NavigationPage.HasBackButton="True"
              NavigationPage.HasNavigationBar="True"
              >
-  
-        <ListView x:Name="listviewFavedUsers" BackgroundColor="White" HasUnevenRows="True"
+    <StackLayout>
+    <Label x:Name="NoFavorittedUsers" HorizontalOptions="Center" TextColor="Black" FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light"></Label>
+    <ListView x:Name="listviewFavedUsers" BackgroundColor="White" HasUnevenRows="True"
                SeparatorVisibility="None" ItemTapped="listviewFavedUsers_ItemTapped">
 
             <ListView.ItemTemplate>
@@ -36,5 +37,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
+    </StackLayout>
 </ContentPage>

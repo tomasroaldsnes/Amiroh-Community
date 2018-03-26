@@ -30,6 +30,7 @@ namespace Amiroh
         ObservableCollection<Inspo> DiscoverInsposList_Sorted;
         private string _category = "";
         private bool InspoListLoaded = false;
+        List<string> _blockedUserList;
 
         public DiscoverPageCategoryOverview(string category)
         {
@@ -43,7 +44,15 @@ namespace Amiroh
             _category = category;
             
         }
+        private async void CheckForBlockedUsers()
+        {
+            HttpClient block_client = new HttpClient(new NativeMessageHandler());
+            string url_blocked_users = "http://138.68.137.52:3000/AmirohAPI/users/blockedUsersID/" + MainUser.MainUserID.ID;
 
+            var content_blocked = await block_client.GetStringAsync(url_blocked_users);
+            var blockedUserList = JsonConvert.DeserializeObject<List<string>>(content_blocked);
+            _blockedUserList = blockedUserList;
+        }
         private async void LoadInspos()
         {
             try
@@ -105,6 +114,8 @@ namespace Amiroh
 
                 DiscoverInsposList_Sorted = new ObservableCollection<Inspo>(
                      posts
+                         .Where(i => !_blockedUserList.Contains(i.UserId))
+                         .OrderByDescending(i => i.InspoCreated)
                          .OrderByDescending(i => i.InspoCreated)
                          .OrderByDescending(i => i.Points)
 
@@ -148,6 +159,7 @@ namespace Amiroh
             //see if app needs to load new list of inspos
             if (!InspoListLoaded)
             {
+                CheckForBlockedUsers();
                 LoadInspos();
                 InspoListLoaded = true;
             }

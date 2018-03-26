@@ -16,24 +16,24 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <StackLayout Orientation="Vertical" BackgroundColor="White" HorizontalOptions="Fill">
+        <StackLayout Orientation="Vertical" BackgroundColor="White" >
             
             <ffimageloading:CachedImage 
-                                HorizontalOptions="Fill"       
                                 LoadingPriority="High"
-                                HeightRequest="500"
-                                MinimumWidthRequest="300"
-                                Aspect="AspectFill"
-                                LoadingPlaceholder="placeholder.png"                  
-                                CacheDuration="1"
-			                    Source = "{Binding URL}" >
+                                HeightRequest="400"
+                                Aspect="AspectFit"
+                                HorizontalOptions="Fill"
+                                DownsampleHeight="400"
+                                RetryCount="3"
+                                LoadingPlaceholder="placeholder.png"
+			                    Source = "{Binding URL}">
             </ffimageloading:CachedImage>
 
             <StackLayout Orientation="Horizontal" Spacing="10"
                          HorizontalOptions="Fill"
-                         Margin="5,0,0,0"
+                         Margin="10,5,0,0"
                          HeightRequest="50">
-                    <Image x:Name="btnPoints" Source="points.png" Aspect="AspectFit" WidthRequest="20" HeightRequest="20" VerticalOptions="Start"  HorizontalOptions="Fill">
+                    <Image x:Name="btnPoints" Source="points.png" Aspect="AspectFit" WidthRequest="25" HeightRequest="25" VerticalOptions="Start"  HorizontalOptions="Fill">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 x:Name="PointsTappedHandler"
@@ -41,14 +41,14 @@
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
-                    <Image x:Name="btnComment" Source="comment.png"  Aspect="AspectFit" WidthRequest="20" HeightRequest="20" VerticalOptions="Start">
+                    <Image x:Name="btnComment" Source="comment.png"  Aspect="AspectFit" WidthRequest="25" HeightRequest="25" VerticalOptions="Start">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 Tapped="Comment_Tapped"
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
-                    <Image x:Name="btnCollect" Source="collection.png"  Aspect="AspectFit" WidthRequest="20" HeightRequest="20" VerticalOptions="Start">
+                    <Image x:Name="btnCollect" Source="collection.png"  Aspect="AspectFit" WidthRequest="25" HeightRequest="25" VerticalOptions="Start">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 Tapped="Collection_Tapped"
@@ -57,13 +57,26 @@
                     </Image>
                     
                     
-                    <Image x:Name="btnProducts" Source="MakeupList.png"  Aspect="AspectFit" WidthRequest="20" HeightRequest="20" VerticalOptions="Start" HorizontalOptions="End">
+                    <Image x:Name="btnProducts" Source="MakeupList.png"  Aspect="AspectFit" WidthRequest="25" HeightRequest="25" VerticalOptions="Start" HorizontalOptions="End">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
                                 Tapped="Products_Tapped"
                                 NumberOfTapsRequired="1" />
                         </Image.GestureRecognizers>
                     </Image>
+
+                <Label x:Name="lblReport"
+                   Text="REPORT"
+                   FontFamily="Lato-Regular.ttf#Lato-Regular"
+                   FontSize="12" TextColor="#203E4A"
+                   HorizontalOptions="EndAndExpand" 
+                   VerticalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="Report_Tapped"
+                                NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Label>
                 </StackLayout>
 
             <Label x:Name="lblUsernameText"

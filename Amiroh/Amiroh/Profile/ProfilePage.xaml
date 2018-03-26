@@ -76,7 +76,6 @@
             <StackLayout Grid.Row="3" Grid.ColumnSpan="10" Orientation="Horizontal" VerticalOptions="StartAndExpand" HeightRequest="50">
                 
             <Label x:Name="btnInspoGrid" FontSize="14" 
-                   FontFamily="Lato-Bold.ttf#Lato-Bold"
                    Margin="20,0,0,0" Text="INSPO" 
                    HorizontalTextAlignment="Center" 
                    TextColor="Black" HorizontalOptions="StartAndExpand"
@@ -86,7 +85,13 @@
                             Tapped="InspoGrid_Clicked"
                             NumberOfTapsRequired="1" />
                 </Label.GestureRecognizers>
-            </Label>
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="iOS" Value="Lato-Bold"/>
+                            <On Platform="Android" Value="Lato-Bold.ttf#Lato-Bold"/>
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
             
             <!--...............................................................................-->
 

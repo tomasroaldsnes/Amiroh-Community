@@ -52,6 +52,29 @@ namespace Amiroh.Profile
 
         }
 
+        private string SetLightFont()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    return "Lato-Light";
+                default:
+                    return "Lato-Light.ttf#Lato-Light";
+                    
+            }
+        }
+        private string SetBoldFont() {
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    return "Lato-Bold";
+                default:
+                    return "Lato-Bold.ttf#Lato-Bold";
+
+            }
+        }
+
         private async void EyesTag_Tapped(View arg1, object arg2)
         {
             if (!IsEyesTapped)
@@ -59,7 +82,7 @@ namespace Amiroh.Profile
                 if(TagCounter < 3){
 
                     Tags.Add("Eyes");
-                    tagEyes.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                    tagEyes.FontFamily = SetBoldFont();
                     IsEyesTapped = true;
                     TagCounter++;
                 }
@@ -67,7 +90,7 @@ namespace Amiroh.Profile
             }
             else
             {
-                tagEyes.FontFamily = "Lato-Light.ttf#Lato-Light";
+                tagEyes.FontFamily = SetLightFont();
                 Tags.Remove("Eyes");
                 IsEyesTapped = false;
                 TagCounter--;
@@ -81,14 +104,14 @@ namespace Amiroh.Profile
                 if (TagCounter < 3)
                 {
                     Tags.Add("Lips");
-                    tagLips.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                    tagLips.FontFamily = SetBoldFont();
                     IsLipsTapped = true;
                     TagCounter++;
                 }
             }
             else
             {
-                tagLips.FontFamily = "Lato-Light.ttf#Lato-Light";
+                tagLips.FontFamily = SetLightFont();
                 Tags.Remove("Lips");
                 IsLipsTapped = false;
                 TagCounter--;
@@ -102,14 +125,14 @@ namespace Amiroh.Profile
                 if (TagCounter < 3)
                 {
                     Tags.Add("Eyebrows");
-                    tagEyebrows.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                    tagEyebrows.FontFamily = SetBoldFont();
                     IsEyebrowsTapped = true;
                     TagCounter++;
                 }
             }
             else
             {
-                tagEyebrows.FontFamily = "Lato-Light.ttf#Lato-Light";
+                tagEyebrows.FontFamily = SetLightFont();
                 Tags.Remove("Eyebrows");
                 IsEyebrowsTapped = false;
                 TagCounter--;
@@ -123,14 +146,14 @@ namespace Amiroh.Profile
                 if (TagCounter < 3)
                 {
                     Tags.Add("Contouring");
-                    tagContouring.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                    tagContouring.FontFamily = SetBoldFont();
                     IsContouringTapped = true;
                     TagCounter++;
                 }
             }
             else
             {
-                tagContouring.FontFamily = "Lato-Light.ttf#Lato-Light";
+                tagContouring.FontFamily = SetLightFont();
                 Tags.Remove("Contouring");
                 IsContouringTapped = false;
                 TagCounter--;
@@ -144,7 +167,7 @@ namespace Amiroh.Profile
                 if (TagCounter < 3)
                 {
                     Tags.Add("Day");
-                    tagDay.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                    tagDay.FontFamily = SetBoldFont();
                     IsDayTapped = true;
                     TagCounter++;
                 }
@@ -152,7 +175,7 @@ namespace Amiroh.Profile
             }
             else
             {
-                tagDay.FontFamily = "Lato-Light.ttf#Lato-Light";
+                tagDay.FontFamily = SetLightFont();
                 Tags.Remove("Day");
                 IsDayTapped = false;
                 TagCounter--;
@@ -166,14 +189,14 @@ namespace Amiroh.Profile
                 if (TagCounter < 3)
                 {
                     Tags.Add("Night");
-                    tagNight.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+                    tagNight.FontFamily = SetBoldFont();
                     IsNightTapped = true;
                     TagCounter++;
                 }
             }
             else
             {
-                tagNight.FontFamily = "Lato-Light.ttf#Lato-Light";
+                tagNight.FontFamily = SetLightFont();
                 Tags.Remove("Night");
                 IsNightTapped = false;
                 TagCounter--;

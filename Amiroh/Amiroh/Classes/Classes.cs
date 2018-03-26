@@ -1,5 +1,4 @@
 ﻿using Amiroh.Controllers;
-using IncrementalListView.FormsPlugin;
 using ModernHttpClient;
 using Newtonsoft.Json;
 using Plugin.Media;
@@ -45,9 +44,22 @@ namespace Amiroh.Classes
         public string[] Collections { get; set; }
         public string[] Inspos { get; set; }
         public DateTime UserCreated { get; set; }
+        public string[] BlockedUsers { get; set; }
 
 
 
+
+
+    }
+
+    public class Report
+    {
+        public string UsernameReported { get; set; }
+        public string UserIdReported { get; set; }
+        public string UsernameHasMadeComplaint { get; set; }
+        public string UserIdHasMadeComplaint { get; set; }
+        public string ReasonForReport { get; set; }
+        public DateTime DateOfCompaint { get; set; }
 
 
     }

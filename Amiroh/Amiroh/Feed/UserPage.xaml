@@ -8,7 +8,16 @@
              NavigationPage.HasNavigationBar="True"
              Padding="10,10,10,10">
 
-    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnBlockUser" 
+                     Name="Block User"
+                     Order="Secondary" 
+                     Text="Block User" 
+                     Activated ="BlockUser_Activated" 
+                     Priority="1" />
+    </ContentPage.ToolbarItems>
+
+
     <ScrollView>
         <!--start of user information grid-->
         <Grid x:Name="ProfileGrid" BackgroundColor="White" ColumnSpacing="10" RowSpacing="20">
@@ -63,7 +72,7 @@
             <!--THRID ROW START-->
             <StackLayout Grid.Row="3" Grid.ColumnSpan="10" Orientation="Horizontal" VerticalOptions="StartAndExpand" HeightRequest="50">
                 
-            <Label x:Name="btnInspoGrid" FontSize="14" FontFamily="Lato-Bold.ttf#Lato-Bold" Margin="20,0,0,0" Text="INSPO" HorizontalTextAlignment="Center" TextColor="Black" HorizontalOptions="StartAndExpand">
+            <Label x:Name="btnInspoGrid" FontSize="14" FontFamily="Lato-Bold.ttf#Lato-Bold" FontAttributes="Bold" Margin="20,0,0,0" Text="INSPO" HorizontalTextAlignment="Center" TextColor="Black" HorizontalOptions="StartAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="InspoGrid_Clicked"
@@ -73,8 +82,8 @@
             
             <!--...............................................................................-->
 
-            
-            <Label x:Name="btnCollection" FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Margin="0,0,20,0" Text="COLLECTION" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand">
+
+                <Label x:Name="btnCollection" FontSize="14" FontFamily="Lato-Light.ttf#Lato-Light" Margin="0,0,20,0" Text="COLLECTION" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="EndAndExpand">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer
                             Tapped="Collection_Clicked"

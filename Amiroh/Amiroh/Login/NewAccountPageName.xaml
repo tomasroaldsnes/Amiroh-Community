@@ -12,16 +12,30 @@
 
             <Entry x:Name="nameEntry" Placeholder="NAME AND SURNAME" FontFamily="Lato-Light.ttf#Lato-Light"
                    FontSize="14" PlaceholderColor="Gray" TextColor="Black" BackgroundColor="Transparent" HeightRequest="50" 
-                   WidthRequest="200" HorizontalTextAlignment="Center" Margin="30,60,30,30" ></Entry>
-           
+                   WidthRequest="200" HorizontalTextAlignment="Center" Margin="30,60,30,0" ></Entry>
+
+            <Label FontFamily="Lato-Light.ttf#Lato-Light" FontSize="12"
+                   TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center" Margin="0,40,0,10" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="By clicking next, you indicate that you have read and understand our "/>
+                        <Span Text="Terms of Use" ForegroundColor="#203E4A" Font="Lato-Bold.ttf#Lato-Bold" ></Span>
+                        <Span Text=" and our " />
+                        <Span Text="Privacy Policy." ForegroundColor="#203E4A" Font="Lato-Bold.ttf#Lato-Bold" ></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="Terms_Tapped"
+                            NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
             
             <Button x:Name="btnNext" Text="NEXT" Clicked="Next_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
                     TextColor="White" BackgroundColor="Black" BorderRadius="30" WidthRequest="200"
                     HorizontalOptions="Center" Margin="30,0,30,40"></Button>
 
-
-
-
+           
 
         </StackLayout>
     </ContentPage.Content>

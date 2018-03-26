@@ -53,7 +53,22 @@ namespace Amiroh
             navigationPage.BarBackgroundColor = Color.White;
             navigationPage.BarTextColor = Color.Black;
 
-            //lblUsername.Text = lblUsername.Text.ToUpper();
+            if(Username == MainUser.MainUserID.Username)
+            {
+                if (this.ToolbarItems.Count > 0)
+                    this.ToolbarItems.Clear();
+            }
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    btnBlockUser.Order = ToolbarItemOrder.Primary;
+                    break;
+                default:
+                    btnBlockUser.Order = ToolbarItemOrder.Secondary;
+                    break;
+            }
+
 
 
 
@@ -391,6 +406,35 @@ namespace Amiroh
                 await DisplayAlert("Collection Error", "This user has no inspos collected.", "Dang.");
             }
             
+        }
+
+        private async void BlockUser_Activated(object sender, EventArgs e)
+        {
+            bool AreYouSure = await DisplayAlert("Block User", "Are you sure you want to block this user?", "Yes, block user.", "No");
+            if (AreYouSure)
+            {
+                BlockUser();
+            }
+            
+        }
+
+        private async void BlockUser()
+        {
+            HttpClient block_client = new HttpClient(new NativeMessageHandler());
+            string url_addBlockedUser = "http://138.68.137.52:3000/AmirohAPI/users/blockUser/" + MainUser.MainUserID.ID;
+
+            
+            string postNewBlockedUser = JsonConvert.SerializeObject(new { _id = _user[0]._Id });
+            var poststringNewBlockedUser = new StringContent(postNewBlockedUser, new UTF8Encoding(), "application/json");
+
+
+            var responseNewBlockedUser = block_client.PostAsync(url_addBlockedUser, poststringNewBlockedUser);
+            var responsestringNewBlockedUser = responseNewBlockedUser.Result.Content.ReadAsStringAsync().Result;
+
+            if (responseNewBlockedUser.Result.IsSuccessStatusCode)
+            {
+                await Navigation.PushAsync(new MainPage());
+            }
         }
     }
 }

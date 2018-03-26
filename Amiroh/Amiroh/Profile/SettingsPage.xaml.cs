@@ -56,7 +56,7 @@ namespace Amiroh.Profile
 
         private async void Rapport_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Need to Repport Something?", "Send an email with your problem to hello@amiroh.com.", "OK"); 
+            await DisplayAlert("Need to report something?", "Report Inspos by clicking 'report' below the image. If you have other concerns, please contact us on hello@amiroh.com ", "OK"); 
         }
 
         private async void Feedback_Clicked(object sender, EventArgs e)
@@ -66,7 +66,17 @@ namespace Amiroh.Profile
 
         private async void Rate_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Thank you for rating us!", "The Beta version of Amiroh Community does not have a direct link to your App store yet. But feel free to go rate us anyway. Sorry for the extra trouble.", "God dammit Amiroh.");
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    await DisplayAlert("Thank you for rating us!", "The Beta version of Amiroh Community does not have a direct link to your App store yet. But feel free to go rate us anyway. Sorry for the extra trouble.", "God dammit Amiroh.");
+                    break;
+                default:
+                    Device.OpenUri(new Uri("https://play.google.com/store/apps/details?id=com.amiroh&hl=en"));
+                    break;
+            }
+            
+            
         }
 
         private async void SignOut_Clicked(object sender, EventArgs e)

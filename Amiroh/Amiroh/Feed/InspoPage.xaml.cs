@@ -33,7 +33,8 @@ namespace Amiroh
         private ObservableCollection<Inspo> _AllInsposList_Sorted;
         ObservableCollection<Inspo> sortedByPoints_First = new ObservableCollection<Inspo>();
 
-        
+        List<string> _blockedUserList;
+
 
         public InspoPage()
         {
@@ -47,6 +48,16 @@ namespace Amiroh
 
 
 
+        }
+
+        private async void CheckForBlockedUsers()
+        {
+            HttpClient block_client = new HttpClient(new NativeMessageHandler());
+            string url_blocked_users = "http://138.68.137.52:3000/AmirohAPI/users/blockedUsersID/" + MainUser.MainUserID.ID;
+
+            var content_blocked = await block_client.GetStringAsync(url_blocked_users);
+            var blockedUserList = JsonConvert.DeserializeObject<List<string>>(content_blocked);
+            _blockedUserList = blockedUserList;
         }
 
         private async void LoadInspos()
@@ -64,11 +75,13 @@ namespace Amiroh
 
             _AllInsposList_Sorted = new ObservableCollection<Inspo>(
              AllInsposList
+                 .Where(i => !_blockedUserList.Contains(i.UserId))
                  .OrderByDescending(i => i.InspoCreated)
                  .OrderByDescending(i => i.Points)
                  .OrderByDescending(i => favedUsernameList.Contains<string>(i.Username))
                 
                 );
+
 
             listviewInspo.ItemsSource = _AllInsposList_Sorted;
 
@@ -87,6 +100,8 @@ namespace Amiroh
         {
             try
             {
+                //add check on demand bool
+                CheckForBlockedUsers();
 
                 LoadInspos();
 

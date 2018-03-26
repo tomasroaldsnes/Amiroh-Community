@@ -116,5 +116,12 @@ namespace Amiroh.Login
             }
             return true;
         }
+
+        private void Terms_Tapped(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://www.amiroh.com/eula-privacy-policy"));
+        }
+
+       
     }
 }

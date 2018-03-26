@@ -18,10 +18,16 @@
                             
                             
                             
-                            <Label Text="{Binding Username}" TextColor="Black" FontSize="16" 
-                                   FontFamily="Lato-Bold.ttf#Lato-Bold" 
+                            <Label Text="{Binding Username}" TextColor="Black" FontSize="16"
                                    HorizontalOptions="Start"
-                                   VerticalOptions="Center"></Label>
+                                   VerticalOptions="Center">
+                                <Label.FontFamily>
+                                    <OnPlatform x:TypeArguments="x:String">
+                                        <On Platform="iOS" Value="Lato-Bold"/>
+                                        <On Platform="Android" Value="Lato-Bold.ttf#Lato-Bold"/>
+                                    </OnPlatform>
+                                </Label.FontFamily>
+                            </Label>
                             
                             <Label Text="{Binding Text}" TextColor="Black" FontSize="16" 
                                    FontFamily="Lato-Light.ttf#Lato-Light" HorizontalOptions="StartAndExpand" 

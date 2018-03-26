@@ -12,36 +12,8 @@
     
 
     <StackLayout>
-        <!--Needs to be moved below ListView for Android, and above for iOS. LayoutBounds value need to change accordingly. iOS: "0,0,20,20 and "1,0,20,20"   Android: "0,1,20,20" an "1,1,20,20" -->
-        
-        <AbsoluteLayout HorizontalOptions="Fill" HeightRequest="20" MinimumWidthRequest="300" BackgroundColor="Transparent">
-            <Image x:Name="btnSocial" Source="feedfave.png"
-               HeightRequest="20" WidthRequest="20"  
-               Aspect="AspectFit" 
-               HorizontalOptions="StartAndExpand"
-               AbsoluteLayout.LayoutBounds="0,0,20,20"
-               AbsoluteLayout.LayoutFlags="PositionProportional">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                            Tapped="Social_Tapped"
-                            NumberOfTapsRequired="1" />
-                </Image.GestureRecognizers>
-            </Image>
 
-            <Image x:Name="btnAddInspo" Source="addinspo.png"
-               HeightRequest="20" WidthRequest="20" 
-               HorizontalOptions="EndAndExpand"
-               Aspect="AspectFit" 
-               AbsoluteLayout.LayoutBounds="1,0,20,20" 
-               AbsoluteLayout.LayoutFlags="PositionProportional">
-
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer
-                            Tapped="AddInspo_Tapped"
-                            NumberOfTapsRequired="1" />
-                </Image.GestureRecognizers>
-            </Image>
-        </AbsoluteLayout>
+       
 
 
         <ListView x:Name="listviewInspo" BackgroundColor="White" HasUnevenRows="True" CachingStrategy="RecycleElement" VerticalOptions="FillAndExpand"
@@ -55,9 +27,11 @@
 
                             <ffimageloading:CachedImage x:Name="imgInspo"
                                 Aspect="AspectFit"
-                                HeightRequest="380"                        
+                                HeightRequest="420" 
+                                DownsampleHeight="420"
                                 HorizontalOptions="Fill"
                                 CacheDuration="3"
+                                RetryCount="3"                        
                                 LoadingPlaceholder="placeholder.png"                        
                                 MinimumWidthRequest="300"
                                 Margin="0,40,0,40"
@@ -75,8 +49,36 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-       
+        <!--Needs to be moved below ListView for Android, and above for iOS. LayoutBounds value need to change accordingly. iOS: "0,0,20,20 and "1,0,20,20"   Android: "0,1,20,20" an "1,1,20,20" -->
 
+        <AbsoluteLayout HorizontalOptions="Fill" HeightRequest="20" MinimumWidthRequest="300" BackgroundColor="Transparent">
+            <Image x:Name="btnSocial" Source="feedfave.png"
+               HeightRequest="25" WidthRequest="25"  
+               Aspect="AspectFit" 
+               HorizontalOptions="StartAndExpand"
+               AbsoluteLayout.LayoutBounds="0,1,20,20"
+               AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="Social_Tapped"
+                            NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image x:Name="btnAddInspo" Source="addinspo.png"
+               HeightRequest="25" WidthRequest="25" 
+               HorizontalOptions="EndAndExpand"
+               Aspect="AspectFit" 
+               AbsoluteLayout.LayoutBounds="1,1,20,20" 
+               AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="AddInspo_Tapped"
+                            NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
 
 
     </StackLayout>

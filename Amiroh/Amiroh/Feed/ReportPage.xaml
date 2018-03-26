@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Amiroh.Feed.ReportPage"
+             BackgroundColor="White" Padding="10, 20, 10, 20">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" VerticalOptions="Fill">
+            <Label Text="REASON FOR REPORT:" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
+                   TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="Start" />
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,5,0,5">
+                <Label
+                    Text="Hate related" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                   TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
+                <Switch x:Name="switchHate" IsToggled="False"></Switch>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,5,0,5">
+                <Label
+                    Text="Harrassment or bullying" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                   TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
+                <Switch x:Name="switchHarassment" IsToggled="False"></Switch>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,5,0,5">
+                <Label
+                    Text="Self-harm" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                   TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
+                <Switch x:Name="switchSelfHarm" IsToggled="False"></Switch>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,5,0,5">
+                <Label
+                    Text="Drug related" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                   TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
+                <Switch x:Name="switchDrugs" IsToggled="False"></Switch>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,5,0,5">
+                <Label
+                    Text="Sale of firearms" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                   TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
+                <Switch x:Name="switchFirearm" IsToggled="False"></Switch>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,5,0,5">
+                <Label
+                    Text="Intelectual Property violation" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                   TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
+                <Switch x:Name="switchIP" IsToggled="False"></Switch>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,5,0,5">
+                <Label
+                    Text="Nudity or pornographic" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                   TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
+                <Switch x:Name="switchNudity" IsToggled="False"></Switch>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" Margin="0,5,0,5">
+                <Label
+                    Text="Ugh, it's gross" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="14"
+                   TextColor="Black" HorizontalOptions="StartAndExpand"></Label>
+                <Switch x:Name="switchUgh" IsToggled="False"></Switch>
+            </StackLayout>
+
+
+
+            <Button x:Name="btnReport" Text="REPORT" Clicked="Report_Clicked" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16"
+                    TextColor="White" BackgroundColor="Black" BorderRadius="30" WidthRequest="200"
+                    HorizontalOptions="Center" Margin="30,20,30,10"></Button>
+
+            <Label x:Name="lblBlock" Text="Block user instead." FontFamily="Lato-Regular.ttf#Lato-Regular" FontSize="12"
+                   TextColor="Black" HorizontalOptions="Center" VerticalOptions="Start" HorizontalTextAlignment="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                                    Tapped="Block_Tapped"
+                                    NumberOfTapsRequired="1" />
+                </Label.GestureRecognizers>
+            </Label>
+
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

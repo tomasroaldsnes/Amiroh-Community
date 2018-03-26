@@ -26,8 +26,7 @@ namespace Amiroh
 
         private bool PointsAreTapped = false;
         private bool CollectionsAreTapped = false;
-
-        private bool UserOwnsInspo;
+        
 
 
 
@@ -223,6 +222,11 @@ namespace Amiroh
                 await Navigation.PopAsync();
 
             }
+        }
+
+        private async void Report_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ReportPage(Obj));
         }
     }
 }

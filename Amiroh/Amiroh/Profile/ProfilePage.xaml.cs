@@ -65,6 +65,30 @@ namespace Amiroh
 
         }
 
+        private string SetLightFont()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    return "Lato-Light";
+                default:
+                    return "Lato-Light.ttf#Lato-Light";
+
+            }
+        }
+        private string SetBoldFont()
+        {
+
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    return "Lato-Bold";
+                default:
+                    return "Lato-Bold.ttf#Lato-Bold";
+
+            }
+        }
+
         private async void UserInspoImageTapped(Inspo i)
         {
              await Navigation.PushAsync(new ImagePage(i));
@@ -287,8 +311,8 @@ namespace Amiroh
         
         private void InspoGrid_Clicked(object sender, EventArgs e)
         {
-            btnInspoGrid.FontFamily = "Lato-Bold.ttf#Lato-Bold";
-            btnCollection.FontFamily = "Lato-Light.ttf#Lato-Light";
+            btnInspoGrid.FontFamily = SetBoldFont();
+            btnCollection.FontFamily = SetLightFont();
 
 
 
@@ -359,8 +383,8 @@ namespace Amiroh
 
             _userCollection = new ObservableCollection<Inspo>(user_obj);
 
-            btnInspoGrid.FontFamily = "Lato-Light.ttf#Lato-Light";
-            btnCollection.FontFamily = "Lato-Bold.ttf#Lato-Bold";
+            btnInspoGrid.FontFamily = SetLightFont();
+            btnCollection.FontFamily = SetBoldFont();
 
             int row = 4;
             int column = 0;

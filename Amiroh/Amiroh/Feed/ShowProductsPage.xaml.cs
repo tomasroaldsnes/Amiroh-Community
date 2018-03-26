@@ -37,6 +37,11 @@ namespace Amiroh.Feed
             productsList = new ObservableCollection<string>(_obj.ProductsUsed);
             listviewProducts.ItemsSource = productsList;
 
+            if(productsList.Count() == 0)
+            {
+                NoAddedProducts.Text = "The user did not add any products for this Inspo :(";
+            }
+
         }
        
 

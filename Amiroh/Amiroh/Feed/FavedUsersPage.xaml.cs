@@ -47,6 +47,12 @@ namespace Amiroh.Feed
             favedUsers = new ObservableCollection<User>(posts);
 
             listviewFavedUsers.ItemsSource = favedUsers;
+
+            if(favedUsers.Count() == 0)
+            {
+                NoFavorittedUsers.Text = "You haven't favoritted any users yet!";
+            }
+                
             
         }
 

@@ -33,9 +33,7 @@
                         <Label x:Name="tagEyebrows" Text="Eyebrows" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" />
                         <Label x:Name="tagDay" Text="Day Makeup" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" />
                         <Label x:Name="tagNight" Text="Night Makeup" FontFamily="Lato-Light.ttf#Lato-Light" FontSize="16" TextColor="Black" />
-                        <!--<Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
-                        <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />
-                        <Label Text="Tag" FontFamily="Lato-Bold.ttf#Lato-Bold" FontSize="16" TextColor="White" />-->
+                        
                     </StackLayout>
             </ScrollView>
 
